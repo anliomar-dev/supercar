@@ -1,7 +1,2 @@
 RewriteEngine On
-
-# Permet de rediriger toutes les requêtes vers index.php
-RewriteBase /supercar/public/
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule ^ index.php [QSA,L]
+RewriteRule ^([a-zA-Z0-9\-\_\/]*)$ index.php?p=$1

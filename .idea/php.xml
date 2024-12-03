@@ -20,6 +20,7 @@
       <path value="$PROJECT_DIR$/vendor/graham-campbell/result-type" />
       <path value="$PROJECT_DIR$/vendor/composer" />
       <path value="$PROJECT_DIR$/vendor/phpoption/phpoption" />
+      <path value="$PROJECT_DIR$/vendor/altorouter/altorouter" />
     </include_path>
   </component>
   <component name="PhpStanOptionsConfiguration">

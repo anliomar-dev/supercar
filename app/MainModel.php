@@ -16,24 +16,25 @@ $dotenv->load();
 
 abstract class MainModel
 {
-    private $HOST;
-    private $DBNAME;
-    private $USER;
-    private $PASSWORD;
+    private string $HOST;
+    private string $DBNAME;
+    private string $USER;
+    private string $PASSWORD;
     /**
-     * @var null
+     * @var ?object
      */
-    protected $_connection;
+    protected object|null $_connection;
 
     public function __construct() {
         // load environnement variables
-        $this->HOST = isset($_ENV['HOST_DB']) ? $_ENV['HOST_DB'] : null;
-        $this->DBNAME = isset($_ENV['DB_NAME']) ? $_ENV['DB_NAME'] : null;
-        $this->USER = isset($_ENV['USER_DB']) ? $_ENV['USER_DB'] : null;
-        $this->PASSWORD = isset($_ENV['PASSWORD_DB']) ? $_ENV['PASSWORD_DB'] : null;
+        $this->HOST = $_ENV['HOST_DB'] ?? null;
+        $this->DBNAME = $_ENV['DB_NAME'] ?? null;
+        $this->USER = $_ENV['USER_DB'] ?? null;
+        $this->PASSWORD = $_ENV['PASSWORD_DB'] ?? null;
     }
 
-    public function getConnection(){
+    public function getConnection(): void
+    {
         $this->_connection = null;
         try{
             $this->_connection = new PDO("mysql:host=$this->HOST;dbname=$this->DBNAME", $this->USER, $this->PASSWORD);
@@ -48,9 +49,10 @@ abstract class MainModel
     /**
      * this function fetch all rows from a specific table
      * @param $table string the name of table we want to fetch data
-     * @return array|null
+     * @return ?array
      */
-    public function getAll($table){
+    public function getAll(string $table): ?array
+    {
         try{
             if($this->_connection == null){
                 $this->getConnection();
@@ -69,9 +71,9 @@ abstract class MainModel
      * @param $table string the name of the table we want to fetch data
      * @param $column string the name of column we want select by
      * @param $value string|int the value of column
-     * @return array|null
+     * @return ?array
      */
-    public function getByColumn($table, $column, $value) {
+    public function getByColumn(string $table, string $column, string|int $value): ?array {
         try{
             if($this->_connection == null){
                 $this->getConnection();

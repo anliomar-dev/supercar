@@ -3,12 +3,10 @@
 // app/MainController.php
 namespace app;
 
-use Couchbase\View;
-
 abstract class MainController
 {
     // array that store all loaded models
-    protected $models = [];
+    protected array $models = [];
 
     /**
      * Loads a model from the 'models' directory.
@@ -19,7 +17,8 @@ abstract class MainController
      * @param string $modelName The name of the model to load (without the '.php' extension).
      * @return object An instance of the specified model class.
      */
-    public function loadModel($modelName) {
+    public function loadModel(string $modelName): object
+    {
         // Check if the model is already loaded
         if (!isset($this->models[$modelName])) {
             require_once(ROOT . 'models/' . $modelName . '.php');

@@ -11,7 +11,7 @@ require_once(ROOT.'app/MainController.php');
 $params = explode('/', $_GET['p']);
 if($params[0] != ''){
     $controller = ucfirst($params[0]);
-    $action = isset($params[1]) ? $params[1] : 'index';
+    $action = $params[1] ?? 'index';
 
     require_once(ROOT.'controllers/client/'.$controller.'.php');
     // Add the full namespace for controller

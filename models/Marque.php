@@ -2,7 +2,9 @@
 
 namespace models;
 
-class Marque
+use app\MainModel;
+
+class Marque extends MainModel
 {
 
 }

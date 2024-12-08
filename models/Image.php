@@ -2,7 +2,9 @@
 
 namespace models;
 
-class Image
+use app\MainModel;
+
+class Image extends MainModel
 {
 
 }

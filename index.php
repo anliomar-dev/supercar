@@ -19,9 +19,15 @@ if($params[0] != ''){
 
     // Create the controller instance
     $controllerInstance = new $controllerClass();
+    if(method_exists($controllerInstance, $action)){
+        // Call the action method
+        $controllerInstance->$action();
+    }else{
+        if(isset($params[1])){
+            $controllerInstance->getByColumn($params[0], "slug", $params[1]);
+        }
+    }
 
-    // Call the action method
-    $controllerInstance->$action();
 }else{
     require_once(ROOT.'controllers/client/Accueil.php');
     $controllerClass = 'controllers\\client\\Accueil';

@@ -17,5 +17,9 @@ class Marque extends MainController
         var_dump($all_marques);
     }
 
-
+    public function getByColumn($table, $column, $value) {
+        $marqueModel = $this->loadModel("Marque");
+        $marque = $marqueModel->getByColumn($table, $column, $value);
+        var_dump($marque);
+    }
 }

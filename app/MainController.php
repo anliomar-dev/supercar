@@ -3,6 +3,8 @@
 // app/MainController.php
 namespace app;
 
+use Couchbase\View;
+
 abstract class MainController
 {
     // array that store all loaded models
@@ -27,5 +29,6 @@ abstract class MainController
         // Return the model directly if it is already loaded
         return $this->models[$modelName];
     }
+
 }
 

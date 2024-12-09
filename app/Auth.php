@@ -1,7 +1,7 @@
 <?php
 
 namespace app;
-class Auth
+class Auth extends MainModel
 {
 
 }

@@ -8,7 +8,8 @@ class Accueil extends MainController {
     public function index(): void
     {
         $imageModel = $this->loadModel("Image");
-        echo "Bienvenue sur l'accueil <br>";
+        require_once ROOT.'views\client\accueil.php';
+        $this->render("accueil");
     }
 }
 

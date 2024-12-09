@@ -16,14 +16,14 @@ $dotenv->load();
 
 abstract class MainModel
 {
-    private string $HOST;
-    private string $DBNAME;
-    private string $USER;
-    private string $PASSWORD;
+    private ?string $HOST;
+    private ?string $DBNAME;
+    private ?string $USER;
+    private ?string $PASSWORD;
     /**
      * @var ?object
      */
-    protected object|null $_connection;
+    protected ?PDO $_connection = null;
 
     public function __construct() {
         // load environnement variables
@@ -33,17 +33,23 @@ abstract class MainModel
         $this->PASSWORD = $_ENV['PASSWORD_DB'] ?? null;
     }
 
-    public function getConnection(): void
+    /**
+     * Establishes a connection to the database
+     * @return ?PDO
+     */
+    public function getConnection(): ?PDO
     {
-        $this->_connection = null;
-        try{
-            $this->_connection = new PDO("mysql:host=$this->HOST;dbname=$this->DBNAME", $this->USER, $this->PASSWORD);
-            $this->_connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            $this->_connection->exec("SET CHARACTER SET utf8");
-        }catch(PDOException $exception){
-            echo 'error while connecting to the database: '. $exception->getMessage();
+        if ($this->_connection === null) {
+            try {
+                $this->_connection = new PDO("mysql:host=$this->HOST;dbname=$this->DBNAME", $this->USER, $this->PASSWORD);
+                $this->_connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                $this->_connection->exec("SET CHARACTER SET utf8");
+            } catch (PDOException $exception) {
+                echo 'Error while connecting to the database: ' . $exception->getMessage();
+                return null;
+            }
         }
-
+        return $this->_connection;
     }
 
     /**
@@ -82,7 +88,12 @@ abstract class MainModel
             $statement = $this->_connection->prepare($query);
             $statement->bindValue(':'.$column, $value);
             $statement->execute();
-            return $statement->fetch(PDO::FETCH_ASSOC);
+
+            $result = $statement->fetch(PDO::FETCH_ASSOC);
+            if ($result === false) {
+                return null;
+            }
+            return $result;
         }catch(PDOException $exception){
             echo 'error while connecting to the database: '. $exception->getMessage();
             return null;

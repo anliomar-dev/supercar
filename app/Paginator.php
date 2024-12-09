@@ -2,14 +2,16 @@
 
 namespace app;
 
+use PDO;
+
 class Paginator
 {
-    private object $db;
+    private PDO $db;
     private int $perPage;
     private int $currentPage;
     private string $query;
 
-    public function __construct(object $db, string $query, int $perPage = 10, int $currentPage = 1){
+    public function __construct(PDO $db, string $query, int $perPage = 10, int $currentPage = 1){
         $this->db = $db;
         $this->perPage = $perPage;
         $this->currentPage = $currentPage;
@@ -23,7 +25,7 @@ class Paginator
      */
     public function getResults(): ?array{
         $offset = ($this->currentPage - 1) * $this->perPage;
-        $paginatedQuery = $this->query . " LIMIT {$offset}, {$this->perPage}";
+        $paginatedQuery = $this->query . " LIMIT :limit OFFSET :offset";
         $statement = $this->db->prepare($paginatedQuery);
         $statement->bindValue(':limit', $this->perPage, \PDO::PARAM_INT);
         $statement->bindValue(':offset', $offset, \PDO::PARAM_INT);

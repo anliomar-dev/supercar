@@ -3,6 +3,7 @@
 namespace controllers\client;
 
 use app\MainController;
+use app\Paginator;
 
 class Marque extends MainController
 {
@@ -18,8 +19,14 @@ class Marque extends MainController
     public function all(): void
     {
         $marqueModel = $this->loadModel("Marque");
-        $all_marques = $marqueModel->getAll("marque");
-        var_dump($all_marques);
+        $query = "SELECT * FROM marque";
+        $currentPage = $_GET['page'] ?? 1;
+        $perPage = 2;
+        $marqueModel = $this->loadModel("Marque");
+        //$all_marques = $marqueModel->getAll("marque");
+        $paginator = new Paginator($marqueModel->getConnection(), $query, $perPage, $currentPage);
+        $paginationData = $paginator->getPaginationData();
+        var_dump($paginationData);
     }
 
     public function getByColumn(string $table, string $column, string|int $value) {

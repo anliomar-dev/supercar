@@ -8,7 +8,7 @@ class Accueil extends MainController {
     public function index(): void
     {
         $imageModel = $this->loadModel("Image");
-        echo "Bienvenue sur l'accueil<br>";
+        echo "Bienvenue sur l'accueil <br>";
     }
 }
 

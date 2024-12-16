@@ -34,24 +34,14 @@ abstract class MainController
      * This function renders a view located in the 'views/admin' or 'views/client' folder.
      *
      * @param string $viewName The name of the view to render (without extension)
-     * @param string $role The role of the user (either 'admin' or 'client'). Defaults to 'client'.
+     * @param string $path The of the folder views (root/views or root/admin/views).
      * @param array $data
      * @return void
      */
-    public function render(string $viewName, string $role = "client", array $data=[]): void {
-        // Define valid roles
-        $validRoles = ["client", "admin"];
-
-        // Validate the role to ensure it's either 'client' or 'admin'
-        if (!in_array($role, $validRoles)) {
-            $role = "client"; // Default to 'client' if an invalid role is passed
-        }
-
-        // Determine the folder based on the role
-        $folder = $role === "admin" ? "admin" : "client";
+    public function render(string $viewName, string $path = "", array $data=[]): void {
 
         // Attempt to include the view file
-        $viewPath = ROOT . 'views/' . $folder . '/' . $viewName . '.php';
+        $viewPath = ROOT . $path. '/views/' . $viewName . '.php';
         extract($data);
 
         // Check if the file exists before requiring it

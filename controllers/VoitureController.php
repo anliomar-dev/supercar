@@ -1,6 +1,6 @@
 <?php
 
-namespace controllers\client;
+namespace controllers;
 
 use app\MainController;
 

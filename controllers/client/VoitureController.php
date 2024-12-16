@@ -4,7 +4,7 @@ namespace controllers\client;
 
 use app\MainController;
 
-class Voiture extends MainController
+class VoitureController extends MainController
 {
     function index(): void{
         echo "hello bienvenue sur la page voitures";

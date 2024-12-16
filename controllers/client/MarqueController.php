@@ -5,7 +5,7 @@ namespace controllers\client;
 use app\MainController;
 use app\Paginator;
 
-class Marque extends MainController
+class MarqueController extends MainController
 {
     /**
      * @return void
@@ -27,9 +27,10 @@ class Marque extends MainController
         $paginator = new Paginator($marqueModel->getConnection(), $query, $perPage, $currentPage);
         $paginationData = $paginator->getPaginationData();
         var_dump($paginationData);
+
     }
 
-    public function getByColumn(string $table, string $column, string|int $value) {
+    public function getByColumn(string $table, string $column, string|int $value): void {
         $marqueModel = $this->loadModel("Marque");
         $marque = $marqueModel->getByColumn($table, $column, $value);
         var_dump($marque);

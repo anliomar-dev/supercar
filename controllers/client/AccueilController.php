@@ -1,10 +1,10 @@
 <?php
 
-// controllers/client/Accueil.php
+// controllers/client/AccueilController.php
 namespace controllers\client;
 use app\MainController;
 
-class Accueil extends MainController {
+class AccueilController extends MainController {
     public function index(): void
     {
         $imageModel = $this->loadModel("Image");

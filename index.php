@@ -13,10 +13,10 @@ if (!empty($_GET['p'])) {
         $action = $params[1] ?? 'index';
 
         // load controller
-        require_once(ROOT . 'controllers/client/' . $controller . '.php');
+        require_once(ROOT . 'controllers/client/' . $controller.'Controller' . '.php');
 
         // Namespace for the controller
-        $controllerClass = 'controllers\\client\\' . $controller;
+        $controllerClass = 'controllers\\client\\' . $controller.'Controller';
 
         // controller instance
         $controllerInstance = new $controllerClass();
@@ -32,8 +32,8 @@ if (!empty($_GET['p'])) {
         }
     }
 } else {
-    require_once(ROOT . 'controllers/client/Accueil.php');
-    $controllerClass = 'controllers\\client\\Accueil';
+    require_once(ROOT . 'controllers/client/AccueilController.php');
+    $controllerClass = 'controllers\\client\\AccueilController';
     $controllerInstance = new $controllerClass();
     $controllerInstance->index();
 }

@@ -9,6 +9,6 @@
     <title>Accueil</title>
 </head>
 <body>
-    <h1 class="font-bold text-4xl">bonsoir</h1>
+    <h1 class="font-bold text-4xl">bonsoir bienvenue sur la page d'accueil</h1>
 </body>
 </html>

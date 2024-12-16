@@ -23,7 +23,7 @@ abstract class MainModel
     /**
      * @var ?object
      */
-    protected ?PDO $_connection = null;
+    protected ?object $_connection = null;
 
     public function __construct() {
         // load environnement variables

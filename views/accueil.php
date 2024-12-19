@@ -9,9 +9,17 @@
     <title>Accueil</title>
 </head>
 <body>
-    <h1 class="font-bold text-4xl text-amber-800">bonsoir bienvenue sur la page d'accueil</h1>
-    <button class="btn btn-primary">primary</button>
-    <button class="btn btn-secondary">secondary</button>
-    <p class="text-primary font-bold text-4xl">ceci est un paragraphe</p>
+    <!-- header -->
+    <header></header>
+
+    <!--hero section-->
+    <section class="hero-section"></section>
+
+    <section class="about-section"></section>
+    <section class="why-choose-us-section"></section>
+    <section class="how-it-work-section"></section>
+    <section class="collection-section"></section>
+    <section class="comming-soon-section"></section>
+    <footer></footer>
 </body>
 </html>

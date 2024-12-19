@@ -11,31 +11,43 @@ if (!empty($_GET['p'])) {
     if ($params[0] != '') {
         $controller = ucfirst($params[0]);
         $action = $params[1] ?? 'index';
-
-        // load controller
-        require_once(ROOT . 'controllers/' . $controller.'Controller' . '.php');
+        $arguments = array_slice($params, 2);
 
         // Namespace for the controller
         $controllerClass = 'controllers\\' . $controller.'Controller';
 
-        // controller instance
-        $controllerInstance = new $controllerClass();
-
-        if (method_exists($controllerInstance, $action)) {
-            $controllerInstance->$action();
-        } else {
-            // if the method does not exist, call getByColumn, use the first param is the name of the table
-            // and name of the column is the slug if the table is marque or modele
-            if (isset($params[1])) {
-                $controllerInstance->getByColumn($params[0], "slug", $params[1]);
+        if(class_exists($controllerClass)) {
+            echo "navbar";
+            // load controller
+            require_once(ROOT . 'controllers/' . $controller.'Controller' . '.php');
+            // controller instance
+            $controllerInstance = new $controllerClass();
+            if (method_exists($controllerInstance, $action)) {
+                $controllerInstance->$action();
+            } else {
+                // if the method does not exist we call getByColumn method
+                // to get a specific row by id if $params[1] is int else by slug
+                if (filter_var($params[1], FILTER_VALIDATE_INT)) {
+                    $id = intval($params[1]);
+                    $controllerInstance->getByColumn($params[0], "id_$params[0]", $id);
+                }
+                // $params[1] is not int: call get by slug
+                else {
+                    $controllerInstance->getByColumn($params[0], "slug", $params[1]);
+                }
             }
+            echo "footer";
+        }else{
+            echo "404";
         }
     }
 } else {
+    echo "navbar";
     require_once(ROOT . 'controllers/AccueilController.php');
     $controllerClass = 'controllers\\AccueilController';
     $controllerInstance = new $controllerClass();
     $controllerInstance->index();
+    echo "footer";
 }
 
 

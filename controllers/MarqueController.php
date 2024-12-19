@@ -35,4 +35,5 @@ class MarqueController extends MainController
         $marque = $marqueModel->getByColumn($table, $column, $value);
         var_dump($marque);
     }
+
 }

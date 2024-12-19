@@ -11,5 +11,6 @@ class AccueilController extends MainController {
         require_once ROOT.'views\accueil.php';
         $this->render("accueil");
     }
+
 }
 

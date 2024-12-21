@@ -4,6 +4,8 @@ export default {
     './views/*.php',
     './views/*.html',
     './views/*.js',
+    './layout/*.php',
+    './layout/*.html',
   ],
   theme: {
     extend: {

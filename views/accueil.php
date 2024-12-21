@@ -10,7 +10,7 @@
 </head>
 <body>
     <!-- header -->
-    <header></header>
+    <header>header</header>
 
     <!--hero section-->
     <section class="hero-section"></section>

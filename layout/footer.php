@@ -9,12 +9,12 @@
 		<title>Document</title>
 	</head>
 	<body>
-		<footer class="footer footer-center bg-base-200 text-base-content rounded p-10">
-			<nav class="grid grid-flow-col gap-4">
-				<a class="link link-hover">Apropos</a>
-				<a class="link link-hover">Contact</a>
-				<a class="link link-hover">Politiques de confidentialités</a>
-				<a class="link link-hover">Mentions légales</a>
+		<footer class="footer footer-center bg-neutral-content text-base-content rounded p-10">
+			<nav class="grid grid-cols-1 gap-4">
+				<a href="" class="link link-hover">Apropos</a>
+				<a href="" class="link link-hover">Contact</a>
+				<a href="" class="link link-hover">Politique de confidentialité</a>
+				<a href="" class="link link-hover">Mentions légales</a>
 			</nav>
 			<nav>
 				<div class="grid grid-flow-col gap-4">
@@ -54,7 +54,7 @@
 				</div>
 			</nav>
 			<aside>
-				<p>
+				<p class="leading-6">
 					Copyright © <?php $date = new DateTime(); echo $date->format("Y"); ?> - All right reserved by ACME Industries Ltd
 				</p>
 			</aside>

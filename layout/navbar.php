@@ -10,7 +10,7 @@
 	<body>
 		<div class="overlay fixed top-14 w-full h-full bg-black opacity-50 hidden"></div>
 		<!-- /.overlay -->
-		<nav class="flex justify-around border items-center py-2 px-6">
+		<nav class="flex justify-around items-center py-3 px-6 shadow-md sticky top-0 bg-base-100">
 			<div class="nav__logo">
 				<a href="" class="logo flex gap-2 items-center">
 					<img src="http://localhost/supercar/public/medias/logos/logo-dark.png"
@@ -23,17 +23,20 @@
 				<ul class="flex flex-col gap-4 bg-primary py-[55px] h-full rounded-lg px-10" id="">
 					<li class="">
 						<div class="dropdown dropdown-hover">
-							<a href="" class="flex items-center font-medium">
+							<a class="flex items-center font-medium">
 								<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
 									<path stroke-linecap="round" stroke-linejoin="round" d="m2.25 12 8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />
 								</svg>
 								<div tabindex="0" role="button" class="btn btn-primary min-h-0 h-8 m-1 border-none" style="font-weight: 750;">
-									Hover
+									Menu
 								</div>
 							</a>
 							<ul tabindex="0" class="dropdown-content menu bg-base-100 rounded-box z-[1] w-auto shadow">
-								<li><a>Item 2</a></li>
-								<li><a>Item 1</a></li>
+								<li><a href="">Accueil</a></li>
+								<li><a href="">Apropos</a></li>
+								<li><a href="">Expérience</a></li>
+								<li><a href="">Collection</a></li>
+								<li><a href="">Evennements</a></li>
 							</ul>
 						</div>
 					</li>
@@ -74,7 +77,7 @@
 			<div class="hidden">
 				<button class="btn btn-primary h-10 min-h-0">Register</button>
 			</div>
-			<label class="btn min-h-0 h-10 btn-circle swap swap-rotate border-none">
+			<label class="btn btn-primary min-h-0 h-10 btn-circle swap swap-rotate">
 				<!-- this hidden checkbox controls the state -->
 				<input type="checkbox" id="toggleMenuCheckbox" />
 

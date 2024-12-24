@@ -31,23 +31,23 @@
 			</div>
 		</section>
 
-		<!-- about section-->
-		<section class="about-section px-6 py-10">
-			<div class="about-section__header flex flex-col gap-y-2 items-center pb-6">
+		<!-- experience section-->
+		<section class="experience px-6 py-10">
+			<div class="experience__header flex flex-col gap-y-2 items-center pb-6">
 				<h3 class="font-default">Experience</h3>
 				<h2 class="font-comic text-xl text-primary">Pourquoi nous choisir ?</h2>
 			</div>
-			<div class="about-section__body flex flex-col">
+			<div class="experience__body flex flex-col">
 				<div class="flex flex-col gap-y-4">
 					<div class="w-full">
-						<img src="http://localhost/supercar/public/medias/images/mercedes-amg-gt.png" class="w-full rounded-lg" alt="">
+						<img src="http://localhost/supercar/public/medias/images/experience-img.png" class="w-full rounded-lg" alt="">
 					</div>
 					<div class="border-2 flex flex-col justify-center items-center py-3 rounded-lg">
 						<h3 class="text-2xl font-default">Plus d'informations</h3>
 						<p class="text-primary text-xl">+230 5429 7857</p>
 					</div>
 				<div>
-				<div class="about__description">
+				<div class="experience__description">
 					<p class="font-default text-primary-content">
 						Chez <span class="bg-accent text-accent-content font-bold px-2">Supercar</span>, nous nous engageons à offrir à nos clients une expérience de conduite inoubliable
 						Avec une large sélection de véhicules de marques renommées.
@@ -84,8 +84,28 @@
 				</div>
 			</div>
 		</section>
+
+		<!-- About section -->
+		<section class="about flex flex-col px-6 py-8 bg-base-200">
+			<div class="experience__header flex flex-col gap-y-2 items-center pb-6">
+				<h3 class="font-default">Apropos</h3>
+				<h2 class="font-comic text-xl text-primary">QUI SOMMES NOUS ?</h2>
+			</div>
+			<div class="flex flex-col gap-y-6">
+				<div class="rounded-lg">
+					<img src="http://localhost/supercar/public/medias/images/about-img.webp" class="rounded-lg" alt="about-image">
+				</div>
+				<div class="border p-3 rounded-lg">
+					<p>
+						Depuis notre création en <span class="bg-accent text-accent-content px-2">2009</span>, Supercar s'efforce d'offrir une nouvelle approche de la location et de l'essai de voitures haut de gamme.
+						Fondée par des passionnés d'automobile, notre entreprise s'engage à proposer des services
+						de qualité exceptionnelle, en mettant un point d'honneur à la satisfaction de nos clients.
+					</p>
+				</div>
+			</div>
+		</section>
+
 		<section class="how-it-work-section"></section>
-		<section class="why-choose-us-section"></section>
 		<section class="collection-section"></section>
 		<section class="comming-soon-section"></section>
 		<footer></footer>

@@ -145,12 +145,42 @@
 				<button class="btn min-h-0 h-8 engine-type-btn electric-btn" data-engine="electric">Éléctriques</button>
 				<button class="btn min-h-0 h-8 engine-type-btn hybrid-btn" data-engine="hybrid">Hybrides</button>
 			</div>
-			<h3 class="text-lg my-4 engine-type">Combustions</h3>
+			<h3 class="text-lg my-4 engine-type-title text-secondary font-comic font-bold">Combustions</h3>
 			<div class="cars-container">
 				<div class="combustion-container cars-by-engine">
-					<div class="border">
-						<div class="">
-							combustion
+					<div class="border bg-base-200 shadow-lg max-w-xs px-4 py-4 rounded-xl">
+						<div class="header-card flex flex-col gap-y-2 w-full pb-6">
+							<div class="flex items-center w-full gap-x-6">
+								<div class="w-[60px]">
+									<img src="https://www.1min30.com/wp-content/uploads/2017/07/Ferrari-logo-500x403.jpg" class="w-full rounded-lg" alt="">
+								</div>
+								<div class="flex flex-col">
+									<div class="text-lg font-comic">Ferrari</div>
+									<h2 class="text-lg font-bold text-secondary">Sf90 stradale</h2>
+								</div>
+							</div>
+						</div>
+						<div class="body-card flex flex-col">
+							<div class="body-img">
+								<img src="https://hips.hearstapps.com/hmg-prod/images/2024-ferrari-812-gts-101-64caae4038b21.jpeg?crop=0.547xw:0.548xh;0.127xw,0.342xh&resize=1200:*" class="rounded-lg" alt="">
+							</div>
+							<div class="details py-3">
+								<h3 class="text-xl font-bold py-2">Details</h3>
+								<table class="w-full pt-2 bg-base-100 rounded-lg">
+									<tr>
+										<td class="border font-medium px-3 py-1">Année</td>
+										<td class="border px-3 py-1">2024</td>
+									</tr>
+									<tr>
+										<td class="border font-medium px-3 py-1">Prix</td>
+										<td class="border px-3 py-1">200 Rs</td>
+									</tr>
+								</table>
+							</div>
+						</div>
+						<div class="footer-card flex gap-y-2 box-border">
+							<button class="btn btn-primary w-1/2 min-h-0 h-8 ">Essayer</button>
+							<button class="btn w-1/2 min-h-0 h-8 text-secondary">voir plus</button>
 						</div>
 					</div>
 				</div>

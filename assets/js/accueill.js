@@ -13,7 +13,9 @@ function toggleActiveClass(activeEl, allSiblings, activeClass) {
 }
 
 document.addEventListener("DOMContentLoaded", function() {
+    // tabs btn for engine type( electric, hybrid or combustion)
     const engineTypeBtns = document.querySelectorAll(".engine-type-btn");
+    // cars containers by engine type
     const carsByEngineContainers = document.querySelectorAll(".cars-by-engine");
     engineTypeBtns.forEach(el => {
         el.addEventListener("click", (e) => {
@@ -22,6 +24,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 container.classList.add("hidden")
             })
             document.querySelector(`.${e.target.dataset.engine}-container`).classList.remove("hidden");
+            document.querySelector(".engine-type-title").textContent = e.target.textContent;
         })
     })
 })

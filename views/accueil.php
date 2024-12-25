@@ -5,7 +5,8 @@
 		<meta name="viewport"
 			  content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 		<meta http-equiv="X-UA-Compatible" content="ie=edge">
-		<link rel="stylesheet" href="http://localhost/supercar/assets/css/styles.css">
+		<link rel="stylesheet" href="/supercar/assets/css/styles.css">
+		<script src="/supercar/assets/js/accueill.js" type="module" defer></script>
 		<title>Accueil</title>
 		<script>
             document.addEventListener('DOMContentLoaded', function() {
@@ -140,20 +141,24 @@
 		<section class="cars px-8 flex flex-col items-center">
 			<h2 class="font-comic text-xl text-primary mb-6">Decouvrez nos voitures</h2>
 			<div class="category-list flex justify-center gap-4 flex-wrap">
-				<button class="btn min-h-0 h-8 btn-primary">Combustions</button>
-				<button class="btn min-h-0 h-8">Éléctriques</button>
-				<button class="btn min-h-0 h-8">Hybrides</button>
+				<button class="btn min-h-0 h-8 engine-type-btn combustion-btn btn-primary" data-engine="combustion">Combustions</button>
+				<button class="btn min-h-0 h-8 engine-type-btn electric-btn" data-engine="electric">Éléctriques</button>
+				<button class="btn min-h-0 h-8 engine-type-btn hybrid-btn" data-engine="hybrid">Hybrides</button>
 			</div>
-			<h3 class="text-lg my-4">Combustion</h3>
+			<h3 class="text-lg my-4 engine-type">Combustions</h3>
 			<div class="cars-container">
-				<div>
-
+				<div class="combustion-container cars-by-engine">
+					<div class="border">
+						<div class="">
+							combustion
+						</div>
+					</div>
 				</div>
-				<div>
-
+				<div class="electric-container cars-by-engine hidden">
+					éléctriques
 				</div>
-				<div>
-
+				<div class="hybrid-container cars-by-engine hidden">
+					hybrides
 				</div>
 			</div>
 		</section>

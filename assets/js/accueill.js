@@ -13,7 +13,7 @@ function toggleActiveClass(activeEl, allSiblings, activeClass) {
 }
 
 document.addEventListener("DOMContentLoaded", function() {
-    // tabs btn for engine type( electric, hybrid or combustion)
+    // tabs btn for engine type( electrics, hybrid or combustion)
     const engineTypeBtns = document.querySelectorAll(".engine-type-btn");
     // cars containers by engine type
     const carsByEngineContainers = document.querySelectorAll(".cars-by-engine");

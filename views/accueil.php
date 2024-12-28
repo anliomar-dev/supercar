@@ -54,7 +54,7 @@
 						Avec une large sélection de véhicules de marques renommées.
 					</p>
 					<div class="description__main-goals py-3">
-						<h3 class="text-secondary text-lg underline">Notre objectif</h3>
+						<h3 class="text-secondary text-lg underline">Nos objectifs</h3>
 						<ul class="">
 							<li class="flex gap-x-2 items-start py-2">
 								<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-12">
@@ -138,7 +138,7 @@
 		</section>
 
 		<!-- car collection section -->
-		<section class="cars px-8 flex flex-col items-center">
+		<section class="cars px-8 flex flex-col items-center py-8">
 			<h2 class="font-comic text-xl text-primary mb-6">Decouvrez nos voitures</h2>
 			<div class="category-list flex justify-center gap-4 flex-wrap">
 				<button class="btn min-h-0 h-8 engine-type-btn combustion-btn btn-primary" data-engine="combustion">Combustions</button>
@@ -147,49 +147,52 @@
 			</div>
 			<h3 class="text-lg my-4 engine-type-title text-secondary font-comic font-bold">Combustions</h3>
 			<div class="cars-container">
-				<div class="combustion-container cars-by-engine">
-					<div class="border bg-base-200 shadow-lg max-w-xs px-4 py-4 rounded-xl">
+				<template id="car-card-template">
+					<div class="border rounded-xl bg-base-200 shadow-lg max-w-xs px-4 py-4">
 						<div class="header-card flex flex-col gap-y-2 w-full pb-6">
 							<div class="flex items-center w-full gap-x-6">
 								<div class="w-[60px]">
-									<img src="https://www.1min30.com/wp-content/uploads/2017/07/Ferrari-logo-500x403.jpg" class="w-full rounded-lg" alt="">
+									<img src="" class="brand-logo w-full rounded-lg" alt="">
 								</div>
 								<div class="flex flex-col">
-									<div class="text-lg font-comic">Ferrari</div>
-									<h2 class="text-lg font-bold text-secondary">Sf90 stradale</h2>
+									<div class="text-lg font-comic brand-name">Ferrari</div>
+									<h2 class="text-lg font-bold text-secondary model-name">Sf90 stradale</h2>
 								</div>
 							</div>
 						</div>
 						<div class="body-card flex flex-col">
 							<div class="body-img">
-								<img src="https://hips.hearstapps.com/hmg-prod/images/2024-ferrari-812-gts-101-64caae4038b21.jpeg?crop=0.547xw:0.548xh;0.127xw,0.342xh&resize=1200:*" class="rounded-lg" alt="">
+								<img src="" class="rounded-lg model-img" alt="">
 							</div>
 							<div class="details py-3">
 								<h3 class="text-xl font-bold py-2">Details</h3>
 								<table class="w-full pt-2 bg-base-100 rounded-lg">
 									<tr>
 										<td class="border font-medium px-3 py-1">Année</td>
-										<td class="border px-3 py-1">2024</td>
+										<td class="border px-3 py-1 year"></td>
 									</tr>
 									<tr>
 										<td class="border font-medium px-3 py-1">Prix</td>
-										<td class="border px-3 py-1">200 Rs</td>
+										<td class="border px-3 py-1 price"></td>
 									</tr>
 								</table>
 							</div>
 						</div>
 						<div class="footer-card flex gap-y-2 box-border">
-							<button class="btn btn-primary w-1/2 min-h-0 h-8 ">Essayer</button>
-							<button class="btn w-1/2 min-h-0 h-8 text-secondary">voir plus</button>
+							<a href="#" class="btn btn-primary w-1/2 min-h-0 h-8">Essayer</a>
+							<a href="#" class="btn w-1/2 min-h-0 h-8 text-secondary">voir plus</a>
 						</div>
 					</div>
+				</template>
+				<div class="combustion-container cars-by-engine flex flex-col gap-y-6">
 				</div>
-				<div class="electric-container cars-by-engine hidden">
-					éléctriques
+				<div class="electric-container cars-by-engine hidden flex flex-col gap-y-6">
 				</div>
-				<div class="hybrid-container cars-by-engine hidden">
-					hybrides
+				<div class="hybrid-container cars-by-engine hidden flex flex-col gap-y-6">
 				</div>
+			</div>
+			<div class="pt-6 flex justify-end">
+				<a href="" class="btn btn-primary min-h-0 h-8">plus de voitures</a>
 			</div>
 		</section>
 		<section class="comming-soon-section"></section>

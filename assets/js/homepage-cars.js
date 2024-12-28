@@ -2,7 +2,7 @@ const carsImagesPath = "/supercar/public/images/homepage-cars/";
 
 export const electricCars = [
     {
-        "brand": "Tesla",
+        "brandName": "Tesla",
         "model": "Model 3",
         "year": "2017",
         "price": "65000",
@@ -10,7 +10,7 @@ export const electricCars = [
         "slug": "model-3",
     },
     {
-        "brand": "Tesla",
+        "brandName": "Tesla",
         "model": "Model x",
         "year": "2015",
         "price": "105000",
@@ -18,7 +18,7 @@ export const electricCars = [
         "slug": "model-x",
     },
     {
-        "brand": "Mercedes-Benz",
+        "brandName": "Mercedes-Benz",
         "model": "EQC",
         "year": "2019",
         "price": " 75000",
@@ -26,7 +26,7 @@ export const electricCars = [
         "slug": "eqc",
     },
     {
-        "brand": "Porshce",
+        "brandName": "Porsche",
         "model": "Taycan",
         "year": "2019",
         "price": "95000",
@@ -37,7 +37,7 @@ export const electricCars = [
 
 export const combustionCars = [
     {
-        "brand": "Mercedes-Benz",
+        "brandName": "Mercedes-Benz",
         "model": "Classe S",
         "year": "2019",
         "price": "90000",
@@ -45,7 +45,7 @@ export const combustionCars = [
         "slug": "classe-s",
     },
     {
-        "brand": "Ferrari",
+        "brandName": "Ferrari",
         "model": "488 GTB",
         "year": "2015",
         "price": "250000",
@@ -53,7 +53,7 @@ export const combustionCars = [
         "slug": "488-gtb",
     },
     {
-        "brand": "Porsche",
+        "brandName": "Porsche",
         "model": "911 Carrera S",
         "year": "2020",
         "price": "120000",
@@ -61,7 +61,7 @@ export const combustionCars = [
         "slug": "911-carrera-s",
     },
     {
-        "brand": "Mercedes-Benz",
+        "brandName": "Mercedes-Benz",
         "model": "AMG GT",
         "year": "2015",
         "price": "130000",
@@ -73,7 +73,7 @@ export const combustionCars = [
 
 export const hybridCars = [
     {
-        "brand": "Mercedes-Benz",
+        "brandName": "Mercedes-Benz",
         "model": "S-Class Plug-in Hybrid",
         "year": "2020",
         "price": "115000",
@@ -81,7 +81,7 @@ export const hybridCars = [
         "slug": "s-lass-plug-in-hybrid"
     },
     {
-        "brand": "Ferrari",
+        "brandName": "Ferrari",
         "model": "SF90 Stradale",
         "year": "2020",
         "price": "450000",
@@ -89,7 +89,7 @@ export const hybridCars = [
         "slug": "sf90-stradale"
     },
     {
-        "brand": "Porsche",
+        "brandName": "Porsche",
         "model": "Panamera 4 E-Hybrid",
         "year": "2020",
         "price": "110000",
@@ -97,7 +97,7 @@ export const hybridCars = [
         "slug": "panamera-4-e-hybrid"
     },
     {
-        "brand": "Mercedes-Benz",
+        "brandName": "Mercedes-Benz",
         "model": "E-Class Plug-in Hybrid",
         "year": "2020",
         "price": "75000",

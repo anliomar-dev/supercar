@@ -195,6 +195,82 @@
 				<a href="" class="btn btn-primary min-h-0 h-8">plus de voitures</a>
 			</div>
 		</section>
-		<section class="comming-soon-section"></section>
+		<section class="upcoming-events bg-base-200 px-8 flex flex-col items-center py-8">
+			<template id="upcoming-vents-template">
+				<div class="card bg-base-100 image-full w-96 shadow-xl">
+					<figure>
+						<img
+							src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp"
+							alt="Shoes" />
+					</figure>
+					<div class="card-body">
+						<h2 class="card-title">Shoes!</h2>
+						<p>If a dog chews shoes whose shoes does he choose?</p>
+						<div class="card-actions justify-end">
+							<button class="btn btn-primary">Buy Now</button>
+						</div>
+					</div>
+				</div>
+			</template>
+			<h2 class="font-comic text-xl text-primary mb-6">À ne pas manquer</h2>
+			<div class="events-container flex flex-col gap-y-6">
+				<div class="card bg-base-100 image-full w-full shadow-xl">
+					<figure>
+						<img
+							src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp"
+							alt="Shoes" />
+					</figure>
+					<div class="card-body">
+						<h2 class="card-title">Shoes!</h2>
+						<p>If a dog chews shoes whose shoes does he choose?</p>
+						<div class="card-actions justify-end">
+							<button class="btn btn-primary">Details</button>
+						</div>
+					</div>
+				</div>
+				<div class="card bg-base-100 image-full w-full shadow-xl">
+					<figure>
+						<img
+							src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp"
+							alt="Shoes" />
+					</figure>
+					<div class="card-body">
+						<h2 class="card-title">Shoes!</h2>
+						<p>If a dog chews shoes whose shoes does he choose?</p>
+						<div class="card-actions justify-end">
+							<button class="btn btn-primary">Details</button>
+						</div>
+					</div>
+				</div>
+				<div class="card bg-base-100 image-full w-full shadow-xl">
+					<figure>
+						<img
+							src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp"
+							alt="Shoes" />
+					</figure>
+					<div class="card-body">
+						<h2 class="card-title">Shoes!</h2>
+						<p>If a dog chews shoes whose shoes does he choose?</p>
+						<div class="card-actions justify-end">
+							<button class="btn btn-primary">Details</button>
+						</div>
+					</div>
+				</div>
+				<div class="card bg-base-100 image-full w-full shadow-xl">
+					<figure>
+						<img
+							src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp"
+							alt="Shoes" />
+					</figure>
+					<div class="card-body">
+						<h2 class="card-title">Shoes!</h2>
+						<p>If a dog chews shoes whose shoes does he choose?</p>
+						<div class="card-actions justify-end">
+							<button class="btn btn-primary">Details</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
 	</body>
 </html>

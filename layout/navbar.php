@@ -10,7 +10,7 @@
 	<body>
 		<div class="overlay fixed top-14 w-full h-full bg-black opacity-50 hidden"></div>
 		<!-- /.overlay -->
-		<nav class="flex justify-around items-center py-3 px-6 shadow-md sticky top-0 bg-base-100">
+		<nav class="flex justify-around items-center py-3 px-6 shadow-md sticky top-0 bg-base-100" style="z-index: 2000;">
 			<div class="nav__logo">
 				<a href="" class="logo flex gap-2 items-center">
 					<img src="http://localhost/supercar/public/logos/logo-dark.png"

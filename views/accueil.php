@@ -16,30 +16,32 @@
 	</head>
 	<body>
 		<!-- hero section -->
-		<section class="hero-section flex flex-col-reverse items-center px-6 pt-8 pb-12 gap-y-6 bg-base-200">
-			<div class="hero-section__header flex flex-col gap-y-3 justify-center items-start">
-				<h1 class="hero-title font-comic text-2xl">Trouvez la voiture de vos rêves</h1>
-				<p class="font-default text-primary-content">Explorez notre gamme de véhicules exceptionnels et réservez dès maintenant votre essai gratuit</p>
-				<div>
+		<section class="hero-section flex flex-col-reverse lg:flex-row items-center justify-center
+			px-8 pt-8 pb-12 md:px-px-16 lg:px-28 lg:py-36 gap-y-6 lg:gap-x-6 bg-base-200">
+			<div class="hero-section__header flex flex-col gap-y-4 md:py-6 lg:py-8 md:px-6 justify-center items-start lg:px-14">
+				<div class="flex flex-col gap-y-4">
+					<h1 class="hero-title font-comic text-2xl md:text-4xl">Trouvez la voiture de vos rêves</h1>
+					<p class="font-default text-primary-content lg:text-xl">Explorez notre gamme de véhicules exceptionnels et réservez dès maintenant votre essai gratuit</p>
+				</div>
+				<div class="">
 					<button class="btn btn-primary min-h-0 h-10">Reservez un essai gratuit</button>
 				</div>
 			</div>
-			<div>
+			<div class="lg:w-[1200px] flex justify-center items-center py-3 lg:py-8">
 				<div class="hero-mask"></div>
-				<div class="hero-img">
-					<img src="http://localhost/supercar/public/images/hero-image.png" alt="">
+				<div class="hero-img h-full">
+					<img src="http://localhost/supercar/public/images/hero-image.png" class="h-full" alt="">
 				</div>
 			</div>
 		</section>
 
 		<!-- experience section-->
-		<section class="experience px-6 py-10">
+		<section class="experience px-8 md:px-16 lg:px-28 py-10 md:py-16 w-screen">
 			<div class="experience__header flex flex-col gap-y-2 items-center pb-6">
-				<h3 class="font-default">Experience</h3>
-				<h2 class="font-comic text-xl text-primary">Pourquoi nous choisir ?</h2>
+				<h3 class="font-comic text-xl text-primary md:text-4xl md:my-6">Experience</h3>
 			</div>
-			<div class="experience__body flex flex-col">
-				<div class="flex flex-col gap-y-4">
+			<div class="experience__body flex flex-col lg:flex-row gap-4 w-full">
+				<div class="flex flex-col gap-y-4 w-full ">
 					<div class="w-full">
 						<img src="http://localhost/supercar/public/images/experience-img.png" class="w-full rounded-lg" alt="">
 					</div>
@@ -47,37 +49,38 @@
 						<h3 class="text-2xl font-default">Plus d'informations</h3>
 						<p class="text-primary text-xl">+230 5429 7857</p>
 					</div>
-				<div>
-				<div class="experience__description">
-					<p class="font-default text-primary-content">
+				</div>
+				<div class="experience__description pb-4 md:px-8 pt-6 lg:pt-0">
+					<h2 class="font-comic text-xl md:text-4xl text-secondary pb-8">Pourquoi nous choisir ?</h2>
+					<p class="font-default text-primary-content md:text-lg">
 						Chez <span class="bg-accent text-accent-content font-bold px-2">Supercar</span>, nous nous engageons à offrir à nos clients une expérience de conduite inoubliable
 						Avec une large sélection de véhicules de marques renommées.
 					</p>
-					<div class="description__main-goals py-3">
-						<h3 class="text-secondary text-lg underline">Nos objectifs</h3>
+					<div class="description__main-goals py-3 md:py-6">
+						<h3 class="text-secondary text-lg md:text-xl py-2 underline">Nos objectifs</h3>
 						<ul class="">
 							<li class="flex gap-x-2 items-start py-2">
-								<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-12">
+								<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-7">
 									<path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
 								</svg>
-								<span class="pt-2">
-									Vous aider à trouver la voiture qui correspond parfaitement à vos besoins
+								<span class="md:text-lg">
+								  Vous aider à trouver la voiture qui correspond à vos besoins
 								</span>
 							</li>
 							<li class="flex gap-x-2 items-start py-2">
 								<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-7">
 									<path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
 								</svg>
-								<span class="">
-									Offrir un service personnalisé à chaque client
+								<span class="md:text-lg">
+								  Offrir un service personnalisé à chaque client
 								</span>
 							</li>
 							<li class="flex gap-x-2 items-start pt-2">
 								<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-7">
 									<path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
 								</svg>
-								<span class="">
-									Proposer les meilleures options automobiles.
+								<span class="md:text-lg">
+								  Proposer les meilleures options automobiles.
 								</span>
 							</li>
 						</ul>
@@ -87,17 +90,17 @@
 		</section>
 
 		<!-- About section -->
-		<section class="about flex flex-col px-6 py-8 bg-base-200">
+		<section class="about flex flex-col px-8 md:px-16 lg:px-28 py-10 md:py-20 bg-base-200 w-screen">
 			<div class="experience__header flex flex-col gap-y-2 items-center pb-6">
-				<h3 class="font-default">Apropos</h3>
-				<h2 class="font-comic text-xl text-primary">QUI SOMMES NOUS ?</h2>
+				<h3 class="font-default text-xl md:text-4xl text-primary mb-4">Apropos</h3>
 			</div>
-			<div class="flex flex-col gap-y-6">
-				<div class="rounded-lg">
-					<img src="http://localhost/supercar/public/images/about-img.webp" class="rounded-lg" alt="about-image">
+			<div class="flex flex-col md:flex-row md:gap-x-8 gap-y-6 w-full">
+				<div class="rounded-lg md:w-1/2">
+					<img src="http://localhost/supercar/public/images/about-img.webp" class="rounded-lg w-full" alt="about-image">
 				</div>
-				<div class="border p-3 rounded-lg">
-					<p>
+				<div class="bg-base-100 border-neutral-700 p-3 md:px-8 md:py-6 md:w-1/2 rounded-lg ">
+					<h2 class="font-comic text-xl md:text-3xl text-secondary">QUI SOMMES NOUS ?</h2>
+					<p class="py-6 md:text-lg select-">
 						Depuis notre création en <span class="bg-accent text-accent-content px-2">2009</span>, Supercar s'efforce d'offrir une nouvelle approche de la location et de l'essai de voitures haut de gamme.
 						Fondée par des passionnés d'automobile, notre entreprise s'engage à proposer des services
 						de qualité exceptionnelle, en mettant un point d'honneur à la satisfaction de nos clients.
@@ -107,13 +110,13 @@
 		</section>
 
 		<!-- how it works section -->
-		<section class="how-it-work px-8 py-10">
-			<div class="flex flex-col items-center justify-center mb-8 gap-y-2">
-				<h2 class="font-comic text-xl text-primary">Comment ça fonctionne ?</h2>
-				<p class="font-bold font-default text-center">Essayer une voiture en 3 étapes</p>
+		<section class="how-it-work px-8 md:px-16 lg:px-28 py-10 md:py-20">
+			<div class="flex flex-col items-center justify-center mb-8 gap-y-4">
+				<h2 class="font-comic text-xl md:text-4xl text-primary">Essayer une voiture en 3 étapes</h2>
+				<p class="font-bold font-default text-center md:text-lg">Comment ça fonctionne ? </p>
 			</div>
-			<div class="test-drive-steps flex flex-col items-center justify-center gap-y-4">
-				<div class="step-card border shadow-lg rounded-lg p-8 flex flex-col justify-center items-center gap-y-3">
+			<div class="test-drive-steps grid grid-cols-3 gap-x-8 items-center justify-center gap-y-4">
+				<div class="step-card border shadow-lg rounded-lg p-8 flex flex-col justify-center items-center gap-y-3 hover:bg-primary">
 					<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-16 text-primary">
 						<path stroke-linecap="round" stroke-linejoin="round" d="M15 9h3.75M15 12h3.75M15 15h3.75M4.5 19.5h15a2.25 2.25 0 0 0 2.25-2.25V6.75A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25v10.5A2.25 2.25 0 0 0 4.5 19.5Zm6-10.125a1.875 1.875 0 1 1-3.75 0 1.875 1.875 0 0 1 3.75 0Zm1.294 6.336a6.721 6.721 0 0 1-3.17.789 6.721 6.721 0 0 1-3.168-.789 3.376 3.376 0 0 1 6.338 0Z" />
 					</svg>
@@ -195,6 +198,7 @@
 				<a href="" class="btn btn-primary min-h-0 h-8">plus de voitures</a>
 			</div>
 		</section>
+
 		<section class="upcoming-events bg-base-200 px-8 flex flex-col items-center py-8">
 			<template id="upcoming-vents-template">
 				<div class="card bg-base-100 image-full w-96 shadow-xl">

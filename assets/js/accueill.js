@@ -14,24 +14,64 @@ function toggleActiveClass(activeEl, allSiblings, activeClass) {
     activeEl.classList.add(activeClass);
 }
 
-function displayCars(cars, template, container){
-    cars.forEach(car => {
-        const cardClone  = template.content.cloneNode(true);
-        const carBrandImg = cardClone.querySelector(".brand-logo");
-        carBrandImg.src = "/supercar/public/logos/" + car.brandName + ".webp";
-        const brandName = cardClone.querySelector(".brand-name");
-        brandName.textContent = car.brandName;
-        const modeleName = cardClone.querySelector(".model-name");
-        modeleName.textContent = car.model;
-        const modelImg = cardClone.querySelector(".model-img");
-        modelImg.src = car.image;
-        const year = cardClone.querySelector(".year");
-        year.textContent = car.year;
-        const price = cardClone.querySelector(".price");
-        price.textContent = car.price + " €";
-        container.append(cardClone);
-    })
+function displayCars(cars, template, container) {
+    const carousel = container.querySelector(".carousel");  // On récupère le carousel existant
+    const carsGrid = container.querySelector(".cars");      // On récupère la grille existante
 
+    cars.forEach(car => {
+        // Clonage du template pour la vue grille
+        const cardCloneGrid = template.content.cloneNode(true);
+
+        // Remplissage des informations pour la grille
+        const carBrandImgGrid = cardCloneGrid.querySelector(".brand-logo");
+        carBrandImgGrid.src = "/supercar/public/logos/" + car.brandName + ".webp";
+
+        const brandNameGrid = cardCloneGrid.querySelector(".brand-name");
+        brandNameGrid.textContent = car.brandName;
+
+        const modeleNameGrid = cardCloneGrid.querySelector(".model-name");
+        modeleNameGrid.textContent = car.model;
+
+        const modelImgGrid = cardCloneGrid.querySelector(".model-img");
+        modelImgGrid.src = car.image;
+
+        const yearGrid = cardCloneGrid.querySelector(".year");
+        yearGrid.textContent = car.year;
+
+        const priceGrid = cardCloneGrid.querySelector(".price");
+        priceGrid.textContent = car.price + "€";
+
+        // Ajout de la carte à la grille
+        carsGrid.append(cardCloneGrid);
+
+        // Clonage du template pour le carrousel
+        const cardCloneCarousel = template.content.cloneNode(true);
+
+        // Remplissage des informations pour le carrousel
+        const carBrandImgCarousel = cardCloneCarousel.querySelector(".brand-logo");
+        carBrandImgCarousel.src = "/supercar/public/logos/" + car.brandName + ".webp";
+
+        const brandNameCarousel = cardCloneCarousel.querySelector(".brand-name");
+        brandNameCarousel.textContent = car.brandName;
+
+        const modeleNameCarousel = cardCloneCarousel.querySelector(".model-name");
+        modeleNameCarousel.textContent = car.model;
+
+        const modelImgCarousel = cardCloneCarousel.querySelector(".model-img");
+        modelImgCarousel.src = car.image;
+
+        const yearCarousel = cardCloneCarousel.querySelector(".year");
+        yearCarousel.textContent = car.year;
+
+        const priceCarousel = cardCloneCarousel.querySelector(".price");
+        priceCarousel.textContent = car.price + "€";
+
+        // Ajout de la carte au carrousel
+        const carouselItem = document.createElement("div");
+        carouselItem.className = "carousel-item";
+        carouselItem.append(cardCloneCarousel);
+        carousel.appendChild(carouselItem);
+    });
 }
 
 document.addEventListener("DOMContentLoaded", function() {

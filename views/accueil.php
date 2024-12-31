@@ -112,10 +112,10 @@
 		<!-- how it works section -->
 		<section class="how-it-work px-8 md:px-16 lg:px-28 py-10 md:py-20">
 			<div class="flex flex-col items-center justify-center mb-8 gap-y-4">
-				<h2 class="font-comic text-xl md:text-4xl text-primary">Essayer une voiture en 3 étapes</h2>
+				<h2 class="font-comic text-xl md:text-4xl text-primary text-center">Essayer une voiture en 3 étapes</h2>
 				<p class="font-bold font-default text-center md:text-lg">Comment ça fonctionne ? </p>
 			</div>
-			<div class="test-drive-steps grid grid-cols-3 gap-x-8 items-center justify-center gap-y-4">
+			<div class="test-drive-steps grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 items-center justify-center gap-y-4">
 				<div class="step-card border shadow-lg rounded-lg p-8 flex flex-col justify-center items-center gap-y-3 hover:bg-primary">
 					<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-16 text-primary">
 						<path stroke-linecap="round" stroke-linejoin="round" d="M15 9h3.75M15 12h3.75M15 15h3.75M4.5 19.5h15a2.25 2.25 0 0 0 2.25-2.25V6.75A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25v10.5A2.25 2.25 0 0 0 4.5 19.5Zm6-10.125a1.875 1.875 0 1 1-3.75 0 1.875 1.875 0 0 1 3.75 0Zm1.294 6.336a6.721 6.721 0 0 1-3.17.789 6.721 6.721 0 0 1-3.168-.789 3.376 3.376 0 0 1 6.338 0Z" />
@@ -141,15 +141,15 @@
 		</section>
 
 		<!-- car collection section -->
-		<section class="cars px-8 flex flex-col items-center py-8">
-			<h2 class="font-comic text-xl text-primary mb-6">Decouvrez nos voitures</h2>
+		<section class="cars px-8 md:px-16 lg:px-28 pt-10 pb-16 flex flex-col gap-y-4 items-center w-full">
+			<h2 class="font-comic text-xl md:text-4xl text-primary mb-6">Decouvrez nos voitures</h2>
 			<div class="category-list flex justify-center gap-4 flex-wrap">
 				<button class="btn min-h-0 h-8 engine-type-btn combustion-btn btn-primary" data-engine="combustion">Combustions</button>
 				<button class="btn min-h-0 h-8 engine-type-btn electric-btn" data-engine="electric">Éléctriques</button>
 				<button class="btn min-h-0 h-8 engine-type-btn hybrid-btn" data-engine="hybrid">Hybrides</button>
 			</div>
 			<h3 class="text-lg my-4 engine-type-title text-secondary font-comic font-bold">Combustions</h3>
-			<div class="cars-container">
+			<div class="cars-container w-full">
 				<template id="car-card-template">
 					<div class="border rounded-xl bg-base-200 shadow-lg max-w-xs px-4 py-4">
 						<div class="header-card flex flex-col gap-y-2 w-full pb-6">
@@ -187,11 +187,30 @@
 						</div>
 					</div>
 				</template>
-				<div class="combustion-container cars-by-engine flex flex-col gap-y-6">
+				<div class="combustion-container cars-by-engine">
+					<div class="carousel max-w-full carousel-center bg-primary md:hidden rounded-box space-x-4 p-4">
+						<div class="carousel-item"></div>
+					</div>
+					<div class="cars hidden md:grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-x-6 gap-y-6">
+
+					</div>
 				</div>
-				<div class="electric-container cars-by-engine hidden flex flex-col gap-y-6">
+				<div class="electric-container cars-by-engine hidden">
+					<div class="carousel max-w-full carousel-center bg-primary md:hidden rounded-box space-x-4 p-4">
+						<div class="carousel-item"></div>
+
+					</div>
+					<div class="cars hidden md:grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-x-6 gap-y-6">
+
+					</div>
 				</div>
-				<div class="hybrid-container cars-by-engine hidden flex flex-col gap-y-6">
+				<div class="hybrid-container cars-by-engine hidden">
+					<div class="carousel max-w-full carousel-center bg-primary md:hidden rounded-box space-x-4 p-4">
+						<div class="carousel-item"></div>
+					</div>
+					<div class="cars hidden md:grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-x-6 gap-y-6">
+
+					</div>
 				</div>
 			</div>
 			<div class="pt-6 flex justify-end">
@@ -199,7 +218,8 @@
 			</div>
 		</section>
 
-		<section class="upcoming-events bg-base-200 px-8 flex flex-col items-center py-8">
+		<!-- upcoming events-->
+		<section class="upcoming-events bg-base-200 flex flex-col items-center px-8 md:px-16 lg:px-28 py-10 md:py-16 lg:py-32">
 			<template id="upcoming-vents-template">
 				<div class="card bg-base-100 image-full w-96 shadow-xl">
 					<figure>
@@ -216,8 +236,8 @@
 					</div>
 				</div>
 			</template>
-			<h2 class="font-comic text-xl text-primary mb-6">À ne pas manquer</h2>
-			<div class="events-container flex flex-col gap-y-6">
+			<h2 class="font-comic text-xl md:text-4xl text-primary mb-6 py-6">À ne pas manquer</h2>
+			<div class="events-container grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-x-6 gap-y-6">
 				<div class="card bg-base-100 image-full w-full shadow-xl">
 					<figure>
 						<img

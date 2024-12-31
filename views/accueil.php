@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" data-theme="bumblebee">
+<html lang="en" data-theme="bumblebee" class="scroll-smooth">
 	<head>
 		<meta charset="UTF-8">
 		<meta name="viewport"
@@ -16,27 +16,33 @@
 	</head>
 	<body>
 		<!-- hero section -->
-		<section class="hero-section flex flex-col-reverse lg:flex-row items-center justify-center
-			px-8 pt-8 pb-12 md:px-px-16 lg:px-28 lg:py-36 gap-y-6 lg:gap-x-6 bg-base-200">
-			<div class="hero-section__header flex flex-col gap-y-4 md:py-6 lg:py-8 md:px-6 justify-center items-start lg:px-14">
-				<div class="flex flex-col gap-y-4">
-					<h1 class="hero-title font-comic text-2xl md:text-4xl">Trouvez la voiture de vos rêves</h1>
-					<p class="font-default text-primary-content lg:text-xl">Explorez notre gamme de véhicules exceptionnels et réservez dès maintenant votre essai gratuit</p>
-				</div>
-				<div class="">
-					<button class="btn btn-primary min-h-0 h-10">Reservez un essai gratuit</button>
-				</div>
+		<section class="hero-section
+			px-8 pt-8 pb-12 md:px-px-16 lg:px-28 lg:py-20 lg:gap-x-6 bg-base-200 scroll-mt-20" id="hero">
+			<div>
+				<h1 class="text-center text-3xl md:text-6xl text-primary font-comic">Supercar</h1>
 			</div>
-			<div class="lg:w-[1200px] flex justify-center items-center py-3 lg:py-8">
-				<div class="hero-mask"></div>
-				<div class="hero-img h-full">
-					<img src="http://localhost/supercar/public/images/hero-image.png" class="h-full" alt="">
+			<div class="flex flex-col-reverse lg:flex-row items-center justify-cente">
+				<div class="hero-section__header flex flex-col gap-y-4 md:py-6
+					lg:py-8 md:px-6 justify-center items-start lg:px-14">
+					<div class="flex flex-col gap-y-4">
+						<h2 class="hero-title font-comic text-2xl md:text-4xl text-secondary">Trouvez la voiture de vos rêves</h2>
+						<p class="font-default text-primary-content lg:text-xl">Explorez notre gamme de véhicules exceptionnels et réservez dès maintenant votre essai gratuit</p>
+					</div>
+					<div class="">
+						<button class="btn btn-primary min-h-0 h-10">Reservez un essai gratuit</button>
+					</div>
+				</div>
+				<div class="lg:w-[1200px] flex justify-center items-center py-3 lg:py-8">
+					<div class="hero-mask"></div>
+					<div class="hero-img h-full">
+						<img src="http://localhost/supercar/public/images/hero-image.png" class="h-full" alt="">
+					</div>
 				</div>
 			</div>
 		</section>
 
 		<!-- experience section-->
-		<section class="experience px-8 md:px-16 lg:px-28 py-10 md:py-16 w-screen">
+		<section class="experience px-8 md:px-16 lg:px-28 py-10 md:py-16 w-screen scroll-mt-20" id="experience">
 			<div class="experience__header flex flex-col gap-y-2 items-center pb-6">
 				<h3 class="font-comic text-xl text-primary md:text-4xl md:my-6">Experience</h3>
 			</div>
@@ -90,7 +96,8 @@
 		</section>
 
 		<!-- About section -->
-		<section class="about flex flex-col px-8 md:px-16 lg:px-28 py-10 md:py-20 bg-base-200 w-screen">
+		<section class="about flex flex-col px-8 md:px-16 lg:px-28 py-10
+		md:py-20 bg-base-200 w-screen scroll-mt-20" id="about">
 			<div class="experience__header flex flex-col gap-y-2 items-center pb-6">
 				<h3 class="font-default text-xl md:text-4xl text-primary mb-4">Apropos</h3>
 			</div>
@@ -110,7 +117,7 @@
 		</section>
 
 		<!-- how it works section -->
-		<section class="how-it-work px-8 md:px-16 lg:px-28 py-10 md:py-20">
+		<section class="how-it-work px-8 md:px-16 lg:px-28 py-10 md:py-20 scroll-mt-20" id="test-steps">
 			<div class="flex flex-col items-center justify-center mb-8 gap-y-4">
 				<h2 class="font-comic text-xl md:text-4xl text-primary text-center">Essayer une voiture en 3 étapes</h2>
 				<p class="font-bold font-default text-center md:text-lg">Comment ça fonctionne ? </p>
@@ -138,10 +145,14 @@
 					<p class="text-md font-default">Profitez d'une expérience de conduite mémorable avant de prendre votre décision.</p>
 				</div>
 			</div>
+			<div class="flex justify-center pt-8">
+				<a href="" class="btn btn-primary">Passez à l'action</a>
+			</div>
 		</section>
 
 		<!-- car collection section -->
-		<section class="cars px-8 md:px-16 lg:px-28 pt-10 pb-16 flex flex-col gap-y-4 items-center w-full">
+		<section class="cars px-8 md:px-16 lg:px-28 pt-10 pb-16
+		flex flex-col gap-y-4 items-center w-full scroll-mt-20" id="cars">
 			<h2 class="font-comic text-xl md:text-4xl text-primary mb-6">Decouvrez nos voitures</h2>
 			<div class="category-list flex justify-center gap-4 flex-wrap">
 				<button class="btn min-h-0 h-8 engine-type-btn combustion-btn btn-primary" data-engine="combustion">Combustions</button>
@@ -219,7 +230,8 @@
 		</section>
 
 		<!-- upcoming events-->
-		<section class="upcoming-events bg-base-200 flex flex-col items-center px-8 md:px-16 lg:px-28 py-10 md:py-16 lg:py-32">
+		<section class="upcoming-events bg-base-200 flex flex-col items-center
+		px-8 md:px-16 lg:px-28 py-10 md:py-16 lg:py-32 scroll-mt-20" id="upcoming">
 			<template id="upcoming-vents-template">
 				<div class="card bg-base-100 image-full w-96 shadow-xl">
 					<figure>
@@ -296,5 +308,17 @@
 				</div>
 			</div>
 		</section>
+
+		<script>
+            const hash = window.location.hash;
+
+            if (hash) {
+                const element = document.
+                getElementById(hash.replace('#', ''));
+                if (element) {
+                    element.scrollIntoView({ behavior: 'smooth' });
+                }
+            }
+		</script>
 	</body>
 </html>

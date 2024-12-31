@@ -10,11 +10,11 @@
 	</head>
 	<body>
 		<footer class="footer footer-center bg-neutral-content text-base-content rounded p-10">
-			<nav class="grid grid-cols-1 gap-4">
-				<a href="" class="link link-hover">Apropos</a>
-				<a href="" class="link link-hover">Contact</a>
-				<a href="" class="link link-hover">Politique de confidentialité</a>
-				<a href="" class="link link-hover">Mentions légales</a>
+			<nav class="flex flex-col md:flex-row md:gap-x-6 gap-y-4">
+				<a href="" class="link link-hover px-0">Apropos</a>
+				<a href="" class="link link-hover px-0">Contact</a>
+				<a href="" class="link link-hover px-0">Politique de confidentialité</a>
+				<a href="" class="link link-hover px-0">Mentions légales</a>
 			</nav>
 			<nav>
 				<div class="grid grid-flow-col gap-4">

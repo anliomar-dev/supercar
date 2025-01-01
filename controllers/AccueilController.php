@@ -5,10 +5,14 @@ namespace controllers;
 use app\MainController;
 
 class AccueilController extends MainController {
+    private $imageModele;
+
+    public function __construct(){
+        $this->imageModele = $this->loadModel("Image");
+    }
+
     public function index(): void
     {
-        $imageModel = $this->loadModel("Image");
-        require_once ROOT.'views\accueil.php';
         $this->render("accueil");
     }
 

@@ -17,6 +17,9 @@ class ContactController extends MainController
     public function index(): void{
         if($_SERVER["REQUEST_METHOD"] == "GET"){
             $this->render("contact");
+        }elseif ($_SERVER["REQUEST_METHOD"] == "POST"){
+            extract($_POST);
+            var_dump($email);
         }
     }
 }

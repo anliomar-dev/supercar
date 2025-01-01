@@ -723,6 +723,12 @@ html {
   --er: 71.7858% 0.170255 13.11834;
 }
 
+.avatar.placeholder > div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 @media (hover:hover) {
   .link-hover:hover {
     text-decoration-line: underline;
@@ -1576,6 +1582,10 @@ html {
   line-height: 1em;
 }
 
+.input-bordered {
+  border-color: var(--fallback-bc,oklch(var(--bc)/0.2));
+}
+
 .input:focus,
   .input:focus-within {
   box-shadow: none;
@@ -2062,6 +2072,10 @@ html {
   height: 100%;
 }
 
+.h-4 {
+  height: 1rem;
+}
+
 .min-h-0 {
   min-height: 0px;
 }
@@ -2106,12 +2120,20 @@ html {
   width: 200px;
 }
 
+.w-4 {
+  width: 1rem;
+}
+
 .max-w-full {
   max-width: 100%;
 }
 
 .max-w-xs {
   max-width: 20rem;
+}
+
+.grow {
+  flex-grow: 1;
 }
 
 .translate-y-2 {
@@ -2515,6 +2537,10 @@ html {
 
 .opacity-50 {
   opacity: 0.5;
+}
+
+.opacity-70 {
+  opacity: 0.7;
 }
 
 .shadow {

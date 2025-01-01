@@ -34,7 +34,7 @@ abstract class MainController
      * This function renders a view located in the 'views/admin' or 'views/client' folder.
      *
      * @param string $viewName The name of the view to render (without extension)
-     * @param string $path where the folder views is located: (either /views or /admin/views),
+     * @param string $path where the folder views is located: (either /views or /admin/views).
      * by default, it's an empty string(the root folder)
      * @param array $data
      * @return void

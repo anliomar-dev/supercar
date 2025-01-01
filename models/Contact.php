@@ -1,10 +1,10 @@
 <?php
 
-    namespace models;
+namespace models;
 
-    use app\MainModel;
+use app\MainModel;
 
-    class Contact extends MainModel
-    {
+class Contact extends MainModel
+{
 
-    }
+}

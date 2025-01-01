@@ -231,7 +231,7 @@
 
 		<!-- upcoming events-->
 		<section class="upcoming-events bg-base-200 flex flex-col items-center
-		px-8 md:px-16 lg:px-28 py-10 md:py-16 lg:py-32 scroll-mt-20" id="upcoming">
+		px-8 md:px-16 lg:px-28 py-10 md:py-16 lg:py-20 scroll-mt-20" id="upcoming">
 			<template id="upcoming-vents-template">
 				<div class="card bg-base-100 image-full w-96 shadow-xl">
 					<figure>
@@ -248,7 +248,7 @@
 					</div>
 				</div>
 			</template>
-			<h2 class="font-comic text-xl md:text-4xl text-primary mb-6 py-6">À ne pas manquer</h2>
+			<h2 class="font-comic text-xl md:text-4xl text-primary mb-6 pb-6">À ne pas manquer</h2>
 			<div class="events-container grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-x-6 gap-y-6">
 				<div class="card bg-base-100 image-full w-full shadow-xl">
 					<figure>
@@ -311,7 +311,6 @@
 
 		<script>
             const hash = window.location.hash;
-
             if (hash) {
                 const element = document.
                 getElementById(hash.replace('#', ''));

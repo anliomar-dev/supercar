@@ -7,3 +7,9 @@
 
     }
 }
+a:not(.logo){
+    transform: translateY(-3px);
+}
+li{
+    width: auto!important;
+}

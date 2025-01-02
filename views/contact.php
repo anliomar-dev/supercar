@@ -6,6 +6,7 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<link rel="stylesheet" href="/supercar/assets/css/styles.css">
+	<script src="/supercar/assets/js/contact.js" type="module" defer></script>
     <title></title>
 	<script>
         document.addEventListener('DOMContentLoaded', function() {
@@ -45,7 +46,7 @@
 		</div>
 	<?php endif; ?>
 	<div class="fixed top-24 flex justify-center w-full px-6">
-		<div role="alert" class="alert alert-success w-full md:w-1/2 lg:w-2/5 flex flex-col md:flex-row justify-between">
+		<div role="alert" class="alert hidden alert-success w-full md:w-1/2 lg:w-2/5 flex flex-col md:flex-row justify-between">
 			<div class="flex flex-col items-center md:flex-row gap-4">
 				<svg
 					xmlns="http://www.w3.org/2000/svg"

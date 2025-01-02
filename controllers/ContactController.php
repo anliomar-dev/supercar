@@ -19,7 +19,24 @@ class ContactController extends MainController
             $this->render("contact");
         }elseif ($_SERVER["REQUEST_METHOD"] == "POST"){
             extract($_POST);
-            var_dump($email);
+            $firstname = htmlspecialchars($firstname);
+            $lastname = htmlspecialchars($lastname);
+            $phone = htmlspecialchars($phone);
+            $email = htmlspecialchars($email);
+            $subject = htmlspecialchars($subject);
+            $message = htmlspecialchars($message);
+            $data = [$firstname,$lastname,$phone,$email,$subject,$message];
+
+            $all_fields_not_empty =array_reduce($data, function($result, $item){
+                return $result && !empty(trim($item));
+            }, true);
+
+            if($all_fields_not_empty){
+                $message = "Votre message a été envoyé ! Nous vous contacterons bientôt";
+                $this->render("contact", "",  ['message' => $message]);
+            }else{
+                echo "tous les champs doivent être correctement remplis";
+            }
         }
     }
 }

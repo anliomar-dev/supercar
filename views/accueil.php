@@ -99,7 +99,7 @@
 		<section class="about flex flex-col px-8 md:px-16 lg:px-28 py-10
 		md:py-20 bg-base-200 w-screen scroll-mt-20" id="about">
 			<div class="experience__header flex flex-col gap-y-2 items-center pb-6">
-				<h3 class="font-default text-xl md:text-4xl text-primary mb-4">Apropos</h3>
+				<h3 class="font-comic text-xl md:text-4xl text-primary mb-4">Apropos</h3>
 			</div>
 			<div class="flex flex-col md:flex-row md:gap-x-8 gap-y-6 w-full">
 				<div class="rounded-lg md:w-1/2">

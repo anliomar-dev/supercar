@@ -38,40 +38,13 @@
 						 fill="none" viewBox="0 0 24 24"
 						 stroke-width="1.5"
 						 stroke="currentColor"
-						 class="size-6 font-bold hover:cursor-pointer">
+						 class="size-6 font-bold hover:cursor-pointer remove-alert-icon">
 						<path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
 					</svg>
 				</div>
 			</div>
 		</div>
 	<?php endif; ?>
-	<div class="fixed top-24 flex justify-center w-full px-6">
-		<div role="alert" class="alert hidden alert-success w-full md:w-1/2 lg:w-2/5 flex flex-col md:flex-row justify-between">
-			<div class="flex flex-col items-center md:flex-row gap-4">
-				<svg
-					xmlns="http://www.w3.org/2000/svg"
-					class="h-6 w-6 shrink-0 stroke-current text-white"
-					fill="none"
-					viewBox="0 0 24 24">
-					<path
-						stroke-linecap="round"
-						stroke-linejoin="round"
-						stroke-width="2"
-						d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-				</svg>
-				<span class="text-white">Votre message a été envoyé ! Nous vous contacterons bientôt</span>
-			</div>
-			<div>
-				<svg xmlns="http://www.w3.org/2000/svg"
-					 fill="none" viewBox="0 0 24 24"
-					 stroke-width="1.5"
-					 stroke="currentColor"
-					 class="size-6 font-bold hover:cursor-pointer">
-					<path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
-				</svg>
-			</div>
-		</div>
-	</div>
     <h1 class="text-2xl md:text-4xl lg:text-5xl text-primary text-center font-comic py-8">Contactez nous</h1>
 	<div class="w-full flex flex-col gap-y-6 items-center py-6 px-6 md:px-0">
 		<div class="w-full md:w-auto flex flex-col md:flex-row gap-4 bg-base-100 border rounded-lg shadow-lg p-2 md:p-6">

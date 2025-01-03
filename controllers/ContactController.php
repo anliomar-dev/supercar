@@ -41,8 +41,6 @@ class ContactController extends MainController
             }else{
                 echo "tous les champs doivent être correctement remplis";
             }
-        }else{
-            echo "bad request";
         }
     }
 }

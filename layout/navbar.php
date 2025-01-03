@@ -102,7 +102,7 @@
 		</ul>
 	</div>
 	<div class="hidden lg:flex">
-		<a href="" class="btn btn-primary h-10 min-h-0">login</a>
+		<a href="/supercar/login" class="btn btn-primary h-10 min-h-0">login</a>
 	</div>
 	<label class="btn btn-primary min-h-0 h-10 btn-circle swap swap-rotate lg:hidden">
 		<!-- this hidden checkbox controls the state -->

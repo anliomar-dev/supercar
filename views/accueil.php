@@ -8,11 +8,6 @@
 		<link rel="stylesheet" href="/supercar/assets/css/styles.css">
 		<script src="/supercar/assets/js/accueill.js" type="module" defer></script>
 		<title>Accueil</title>
-		<script>
-            document.addEventListener('DOMContentLoaded', function() {
-                document.title = "accueil";
-            });
-		</script>
 	</head>
 	<body>
 		<!-- hero section -->
@@ -66,24 +61,33 @@
 						<h3 class="text-secondary text-lg md:text-xl py-2 underline">Nos objectifs</h3>
 						<ul class="">
 							<li class="flex gap-x-2 items-start py-2">
-								<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-7">
-									<path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+								<svg xmlns="http://www.w3.org/2000/svg" fill="none"
+									 viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+									 class="size-9 bg-base-200 rounded-lg p-2 text-secondary">
+									<path stroke-linecap="round" stroke-linejoin="round"
+										  d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
 								</svg>
 								<span class="md:text-lg">
 								  Vous aider à trouver la voiture qui correspond à vos besoins
 								</span>
 							</li>
 							<li class="flex gap-x-2 items-start py-2">
-								<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-7">
-									<path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+								<svg xmlns="http://www.w3.org/2000/svg" fill="none"
+									 viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+									 class="size-9 bg-base-200 rounded-lg p-2 text-secondary">
+									<path stroke-linecap="round" stroke-linejoin="round"
+										  d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
 								</svg>
 								<span class="md:text-lg">
 								  Offrir un service personnalisé à chaque client
 								</span>
 							</li>
 							<li class="flex gap-x-2 items-start pt-2">
-								<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-7">
-									<path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+								<svg xmlns="http://www.w3.org/2000/svg" fill="none"
+									 viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+									 class="size-9 bg-base-200 rounded-lg p-2 text-secondary">
+									<path stroke-linecap="round" stroke-linejoin="round"
+										  d="M11.48 3.499a.562.562 0 0 1 1.04 0l2.125 5.111a.563.563 0 0 0 .475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 0 0-.182.557l1.285 5.385a.562.562 0 0 1-.84.61l-4.725-2.885a.562.562 0 0 0-.586 0L6.982 20.54a.562.562 0 0 1-.84-.61l1.285-5.386a.562.562 0 0 0-.182-.557l-4.204-3.602a.562.562 0 0 1 .321-.988l5.518-.442a.563.563 0 0 0 .475-.345L11.48 3.5Z" />
 								</svg>
 								<span class="md:text-lg">
 								  Proposer les meilleures options automobiles.

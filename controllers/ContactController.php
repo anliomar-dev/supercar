@@ -13,7 +13,11 @@ class ContactController extends MainController
         $this->contactModel = $this->loadModel("Contact");
     }
 
-
+    /**
+     * render the contact form when the http method is GET
+     * and treat the form while posting data then render the contact form with a message
+     * @return void
+     */
     public function index(): void{
         if($_SERVER["REQUEST_METHOD"] == "GET"){
             $this->render("contact");
@@ -37,6 +41,8 @@ class ContactController extends MainController
             }else{
                 echo "tous les champs doivent être correctement remplis";
             }
+        }else{
+            echo "bad request";
         }
     }
 }

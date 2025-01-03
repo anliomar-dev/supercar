@@ -7,12 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<link rel="stylesheet" href="/supercar/assets/css/styles.css">
 	<script src="/supercar/assets/js/contact.js" type="module" defer></script>
-    <title></title>
-	<script>
-        document.addEventListener('DOMContentLoaded', function() {
-            document.title = "contact";
-        });
-	</script>
+    <title>Contact</title>
 </head>
 <body class="">
 	<div class="bg-base-200 fixed top-0 start-0 h-2/3 w-full z-[-1]"></div>

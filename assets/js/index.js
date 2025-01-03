@@ -3,6 +3,7 @@
  */
 export function toogleNavbar(){
     const checkBoxToggleMenu = document.getElementById("toggleMenuCheckbox");
+    const homeAnchores = document.querySelectorAll(".anchore");
     const overlay = document.querySelector(".overlay");
     const navMenu = document.querySelector(".nav-menu");
     const toggleMenu = () =>{
@@ -23,4 +24,12 @@ export function toogleNavbar(){
         checkBoxToggleMenu.checked = false;
         toggleMenu();
     }
+    homeAnchores.forEach(anchor =>{
+        anchor.addEventListener("click",()=>{
+            if(checkBoxToggleMenu.checked){
+                checkBoxToggleMenu.checked = false;
+                toggleMenu();
+            }
+        })
+    })
 }

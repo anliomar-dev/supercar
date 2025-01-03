@@ -1,5 +1,5 @@
 import { toogleNavbar } from "./index.js";
-import { animate, scroll } from "https://cdn.jsdelivr.net/npm/motion@11.11.13/+esm"
+import { animate } from "https://cdn.jsdelivr.net/npm/motion@11.11.13/+esm"
 
 document.addEventListener("DOMContentLoaded", () => {
     toogleNavbar();
@@ -10,7 +10,8 @@ document.addEventListener("DOMContentLoaded", () => {
         animate(
             alertSuccess,
             { scale: [0.4, 1], opacity: [0, 1] },
-            { ease: "circInOut", duration: 0.8 }
+            { ease: "circInOut", duration: 0.8 },
+
         );
     }
 

@@ -41,12 +41,14 @@
     </div>
 <?php endif; ?>
 <div class="w-full flex flex-col gap-y-6 items-center py-6 md:py-16 px-6 md:px-0">
-    <div class="w-full md:w-auto bg-primary border rounded-lg shadow-lg p-2 md:p-4">
+    <div class="w-full md:w-auto bg-primary border rounded-lg shadow-lg p-2 md:p-3 md:pb-0">
         <!-- contact form -->
 		<form action="/supercar/login" method="POST" class="w-auto md:w-[320px] flex flex-col gap-y-2 bg-base-100 p-5 rounded-lg">
 			<div class="login-form-title flex justify-center">
 				<h2 class="text-xl font-bold font-comic py-4">CONNEXION</h2>
 			</div>
+
+			<!-- input fields -->
 			<div class="fields flex flex-col gap-y-3">
 				<label class="input input-bordered flex items-center gap-2">
 					<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-5 opacity-70 text-secondary">
@@ -80,13 +82,14 @@
 				</label>
 				<div class="flex justify-end"><a href="" class="text-secondary">Mot de passe oublié</a></div>
 			</div>
-			<button class="btn btn-primary min-h-0 h-10 font-bold my-2">login</button>
+
+			<button class="btn btn-primary min-h-0 h-10 font-bold my-2">Se connecter</button>
 			<hr class="my-2" style="height: 2px;">
 			<div class="w-full flex flex-col items-center gap-y-3">
 				<h3 class="font-bold">Ou se connecter avec</h3>
-				<button class="btn btn-block bg-red-500 hover:bg-red-600 text-white min-h-0 h-10">Google</button>
+				<a href="" class="btn btn-block bg-red-500 hover:bg-red-600 text-white min-h-0 h-10">Google</a>
 			</div>
-			<p class="text-sm">Pas encore inscrit ? <a href="" class="text-secondary">s'inscrire</a></p>
+			<p class="text-sm">Pas encore inscrit ? <a href="/supercar/signup" class="text-secondary">s'inscrire</a></p>
 		</form>
     </div>
 </div>

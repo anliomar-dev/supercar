@@ -56,3 +56,18 @@ export function togglePassword(){
         })
     })
 }
+
+export function toggleTheme(){
+    const htmlElement = document.documentElement;
+    const checkboxThemeController = document.querySelector(".theme-controller");
+    if(!localStorage.getItem("currentTheme")){
+        localStorage.setItem("currentTheme", "bumbelbee");
+    }
+    const currentTheme = localStorage.getItem("currentTheme");
+    checkboxThemeController.checked = currentTheme === "night";
+    htmlElement.setAttribute("data-theme", currentTheme);
+    checkboxThemeController.addEventListener("change", (e) => {
+        e.target.checked ? localStorage.setItem("currentTheme", "night") : localStorage.setItem("currentTheme", "bumblebee");
+        htmlElement.dataset.theme = e.target.checked ? "night" : "bumbelbee";
+    })
+}

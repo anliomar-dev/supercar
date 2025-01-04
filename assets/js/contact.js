@@ -1,8 +1,9 @@
-import { toogleNavbar } from "./index.js";
+import { toogleNavbar, toggleTheme } from "./index.js";
 import { animate } from "https://cdn.jsdelivr.net/npm/motion@11.11.13/+esm"
 
 document.addEventListener("DOMContentLoaded", () => {
     toogleNavbar();
+    toggleTheme();
 
     const alertSuccess = document.querySelector(".alert-success");
 

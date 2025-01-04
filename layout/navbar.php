@@ -10,12 +10,12 @@
 		</a>
 	</div>
 	<div class="nav-menu fixed lg:static top-14 w-full px-6 h-auto py-3 hidden lg:flex lg:justify-center">
-		<ul class="flex flex-col lg:flex-row lg:justify-center gap-3 bg-primary lg:bg-transparent py-[55px] lg:py-0 h-full rounded-lg px-10" id="">
+		<ul class="flex flex-col lg:flex-row lg:justify-center gap-3 bg-base-100 lg:bg-transparent py-[55px] lg:py-0 h-full rounded-lg px-10" id="">
 			<!-- dropdown -->
 			<li class="w-full">
 				<div class="dropdown dropdown-hover w-full">
-					<a class="flex gap-2 w-full justify-center py-2 font-medium btn btn-primary
-						lg:bg-transparent min-h-0 h-8 m-1 border-none" style="transform: translateX(-17px);">
+					<a class="flex gap-2 w-full justify-center py-2 font-medium btn lg:btn-primary
+						bg-transparent min-h-0 h-8 m-1 border-none" ">
 						<div tabindex="0" role="button" class="flex items-center gap-x-2" style="font-weight: 750;">
 							<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-5">
 								<path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
@@ -67,7 +67,7 @@
 					</ul>
 				</div>
 			</li>
-			<li class="btn btn-primary lg:bg-transparent min-h-0 h-8 m-1 border-none flex items-center">
+			<li class="btn lg:btn-primary bg-transparent min-h-0 h-8 m-1 border-none flex items-center">
 				<a href="/supercar/#experience" class="flex gap-2 w-auto justify-start py-2 font-medium anchore">
 					<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-5">
 						<path stroke-linecap="round" stroke-linejoin="round" d="M2.25 18 9 11.25l4.306 4.306a11.95 11.95 0 0 1 5.814-5.518l2.74-1.22m0 0-5.94-2.281m5.94 2.28-2.28 5.941" />
@@ -75,7 +75,7 @@
 					<span class="pt-1">Expérience</span>
 				</a>
 			</li>
-			<li class="btn btn-primary lg:bg-transparent min-h-0 h-8 m-1 border-none flex items-center">
+			<li class="btn lg:btn-primary bg-transparent min-h-0 h-8 m-1 border-none flex items-center">
 				<a href="/supercar/#about" class="flex gap-1 w-auto justify-start py-2 font-medium anchore">
 					<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-5">
 						<path stroke-linecap="round" stroke-linejoin="round" d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z" />
@@ -83,7 +83,7 @@
 					<span class="pt-1">Apropos</span>
 				</a>
 			</li>
-			<li class="btn btn-primary lg:bg-transparent min-h-0 h-8 m-1 border-none flex items-center">
+			<li class="btn lg:btn-primary bg-transparent min-h-0 h-8 m-1 border-none flex items-center">
 				<a href="/supercar/#test-steps" class="flex gap-2 w-auto justify-start py-2 font-medium anchore">
 					<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-5">
 						<path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 7.5v11.25m-18 0A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75m-18 0v-7.5A2.25 2.25 0 0 1 5.25 9h13.5A2.25 2.25 0 0 1 21 11.25v7.5m-9-6h.008v.008H12v-.008ZM12 15h.008v.008H12V15Zm0 2.25h.008v.008H12v-.008ZM9.75 15h.008v.008H9.75V15Zm0 2.25h.008v.008H9.75v-.008ZM7.5 15h.008v.008H7.5V15Zm0 2.25h.008v.008H7.5v-.008Zm6.75-4.5h.008v.008h-.008v-.008Zm0 2.25h.008v.008h-.008V15Zm0 2.25h.008v.008h-.008v-.008Zm2.25-4.5h.008v.008H16.5v-.008Zm0 2.25h.008v.008H16.5V15Z" />
@@ -91,13 +91,19 @@
 					<span class="pt-1">Réservtion</span>
 				</a>
 			</li>
-			<li class="btn btn-primary lg:bg-transparent min-h-0 h-8 m-1 border-none flex items-center">
+			<li class="btn lg:btn-primary bg-transparent min-h-0 h-8 m-1 border-none flex items-center">
 				<a href="/supercar/#cars" class="flex gap-2 w-auto justify-start py-2 font-medium anchore">
 					<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-5">
 						<path stroke-linecap="round" stroke-linejoin="round" d="M8.25 18.75a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 0 1-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m3 0h1.125c.621 0 1.129-.504 1.09-1.124a17.902 17.902 0 0 0-3.213-9.193 2.056 2.056 0 0 0-1.58-.86H14.25M16.5 18.75h-2.25m0-11.177v-.958c0-.568-.422-1.048-.987-1.106a48.554 48.554 0 0 0-10.026 0 1.106 1.106 0 0 0-.987 1.106v7.635m12-6.677v6.677m0 4.5v-4.5m0 0h-12" />
 					</svg>
 					<span class="pt-1">Voitures</span>
 				</a>
+			</li>
+			<li class="btn btn-primary lg:hidden min-h-0 h-8 m-1 border-none flex items-center">
+				<a href="/supercar/login" class="">login</a>
+			</li>
+			<li class="min-h-0 h-8 m-1 border-none flex items-center justify-center">
+				<?php include_once("theme-controller.php") ?>
 			</li>
 		</ul>
 	</div>

@@ -9,7 +9,7 @@
 		<script src="/supercar/assets/js/accueill.js" type="module" defer></script>
 		<title>Accueil</title>
 	</head>
-	<body>
+	<body class="relative">
 		<!-- hero section -->
 		<section class="hero-section
 			px-8 pt-8 pb-12 md:px-px-16 lg:px-28 lg:py-20 lg:gap-x-6 bg-base-200 scroll-mt-20" id="hero">

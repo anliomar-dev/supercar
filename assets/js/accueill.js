@@ -82,6 +82,15 @@ document.addEventListener("DOMContentLoaded", function() {
     // tabs btn for engine type( electrics, hybrid or combustion)
     const engineTypeBtns = document.querySelectorAll(".engine-type-btn");
 
+    const scrollToTopBtn = document.querySelector(".scroll-to-top-btn");
+    window.addEventListener("scroll", ()=>{
+        if(window.innerHeight + window.scrollY >= document.documentElement.scrollHeight){
+            scrollToTopBtn.classList.remove("hidden");
+        }else{
+            scrollToTopBtn.classList.add("hidden");
+        }
+    })
+
     // cars containers by engine type
     const carsByEngineContainers = document.querySelectorAll(".cars-by-engine");
     engineTypeBtns.forEach(el => {
@@ -90,8 +99,10 @@ document.addEventListener("DOMContentLoaded", function() {
             carsByEngineContainers.forEach(container => {
                 container.classList.add("hidden")
             })
+            // show cars container related to the clicked button
+            // (e.g: if the attribute data-engire fo the clicked button is hubride, we're gonna select the div with class hybrid-container)
             document.querySelector(`.${e.target.dataset.engine}-container`).classList.remove("hidden");
-            document.querySelector(".engine-type-title").textContent = e.target.textContent;
+            document.querySelector(".engine-type-title").textContent = e.target.textContent; // set the title to current engire(hybrid)
         })
     })
 
@@ -99,6 +110,7 @@ document.addEventListener("DOMContentLoaded", function() {
     displayCars(electricCars, carCardTemplate, document.querySelector(".electric-container"));
     displayCars(hybridCars, carCardTemplate, document.querySelector(".hybrid-container"));
 
+    // animate step-card on mousehover
     const setpCards = document.querySelectorAll(".step-card");
     setpCards.forEach(el => {
         el.addEventListener("mouseover", (e) => {

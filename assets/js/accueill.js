@@ -99,4 +99,18 @@ document.addEventListener("DOMContentLoaded", function() {
     displayCars(electricCars, carCardTemplate, document.querySelector(".electric-container"));
     displayCars(hybridCars, carCardTemplate, document.querySelector(".hybrid-container"));
 
+    const setpCards = document.querySelectorAll(".step-card");
+    setpCards.forEach(el => {
+        el.addEventListener("mouseover", (e) => {
+            toggleTheme();
+           if(document.documentElement.dataset.theme === "bumblebee"){
+               el.classList.add("step-card-light");
+               el.classList.remove("step-card-dark");
+           }else{
+               el.classList.add("step-card-dark");
+               el.classList.remove("step-card-light");
+           }
+            toggleTheme();
+        })
+    })
 })

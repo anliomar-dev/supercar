@@ -17,7 +17,7 @@ if (!empty($_GET['p'])) {
         $controllerClass = 'controllers\\' . $controller.'Controller';
 
         if(class_exists($controllerClass)) {
-            require_once ROOT . 'layout/navbar.php';
+            require_once ROOT . 'components/navbar.php';
             // load controller
             require_once(ROOT . 'controllers/' . $controller.'Controller' . '.php');
             // controller instance
@@ -36,18 +36,18 @@ if (!empty($_GET['p'])) {
                     $controllerInstance->getByColumn($params[0], "slug", $params[1]);
                 }
             }
-            require_once ROOT . 'layout/footer.php';
+            require_once ROOT . 'components/footer.php';
         }else{
             echo "404";
         }
     }
 } else {
-    require_once ROOT . 'layout/navbar.php';
+    require_once ROOT . 'components/navbar.php';
     require_once(ROOT . 'controllers/AccueilController.php');
     $controllerClass = 'controllers\\AccueilController';
     $controllerInstance = new $controllerClass();
     $controllerInstance->index();
-    require_once ROOT . 'layout/footer.php';
+    require_once ROOT . 'components/footer.php';
 }
 
 

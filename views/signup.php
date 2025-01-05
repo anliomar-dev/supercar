@@ -13,20 +13,14 @@
 <div class="bg-base-200 fixed top-0 start-0 h-3/5 w-full z-[-1]"></div>
 <?php if(isset($message)): ?>
 	<div class="fixed top-24 flex justify-center w-full px-6">
-		<div role="alert" class="alert alert-success w-full md:w-1/2 lg:w-2/5 flex flex-col md:flex-row justify-between">
+		<div role="alert" class="alert <?php if(isset($type)){echo $type;}?> w-full md:w-1/2 lg:w-2/5 flex flex-col md:flex-row justify-between">
 			<div class="flex flex-col items-center md:flex-row gap-4">
-				<svg
-					xmlns="http://www.w3.org/2000/svg"
-					class="h-6 w-6 shrink-0 stroke-current text-white"
-					fill="none"
-					viewBox="0 0 24 24">
-					<path
-						stroke-linecap="round"
-						stroke-linejoin="round"
-						stroke-width="2"
-						d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-				</svg>
-				<span class="text-white">Votre message a été envoyé ! Nous vous contacterons bientôt</span>
+				<?php
+					require_once ROOT."components/icon-alert.php";
+					;
+                    if(isset($type)){displayAlertIconByType($type);};
+				?>
+				<span class="text-white"><?php echo $message; ?></span>
 			</div>
 			<div>
 				<svg xmlns="http://www.w3.org/2000/svg"
@@ -43,7 +37,7 @@
 <div class="w-full flex flex-col gap-y-6 items-center py-6 md:py-16 px-6 md:px-0">
 	<div class="w-full md:w-auto bg-primary border rounded-lg shadow-lg p-2 md:p-3 md:pb-0">
 		<!-- contact form -->
-		<form action="/supercar/login" method="POST" class="w-auto flex flex-col gap-y-2 bg-base-100 p-5 rounded-lg">
+		<form action="/supercar/signup" method="POST" class="w-auto flex flex-col gap-y-2 bg-base-100 p-5 rounded-lg">
 			<div class="login-form-title flex justify-center">
 				<h2 class="text-xl font-bold font-comic py-4">Inscription</h2>
 			</div>
@@ -74,7 +68,7 @@
 							<path stroke-linecap="round" stroke-linejoin="round"
 								  d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z" />
 						</svg>
-						<input type="text" placeholder="Adresse" name="adresse" required title="minimum 5 caractères" pattern="^(?!\s*$).{2,}$" class="grow" />
+						<input type="text" placeholder="Adresse" name="address" required title="minimum 5 caractères" pattern="^(?!\s*$).{2,}$" class="grow" />
 					</label>
 				</div>
 
@@ -130,7 +124,7 @@
 							<path stroke-linecap="round" stroke-linejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 1 0-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 0 0 2.25-2.25v-6.75a2.25 2.25 0 0 0-2.25-2.25H6.75a2.25 2.25 0 0 0-2.25 2.25v6.75a2.25 2.25 0 0 0 2.25 2.25Z" />
 						</svg>
 						<!-- input password filed -->
-						<input type="password" placeholder="Mot de passe" name="confirm-password"
+						<input type="password" placeholder="Mot de passe" name="confirm_password"
 							   required class="grow password-field" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$"
 							   title="Le mot de passe doit contenir au moins 8 caractères, dont une majuscule, une minuscule, un chiffre, et un caractère spécial."
 						/>

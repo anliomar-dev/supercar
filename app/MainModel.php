@@ -98,6 +98,31 @@ abstract class MainModel
             echo 'error while connecting to the database: '. $exception->getMessage();
             return null;
         }
+    }
+
+    /**
+     * Verifies if a row exists in the database and returns true if the row exists
+     * (e.g., when a user creates a new account, it verifies if the entered email already exists in the user table).
+     *
+     * @param string $table The name of the table where we are searching for the row.
+     * @param string $column The name of the column to check for the value.
+     * @param string|int $value The value of the column we want to verify the existence of.
+     * @return bool Returns true if the row exists in the database, false otherwise.
+     */
+    public function isRowExists(string $table, string $column, string|int $value): bool {
+        try{
+            if($this->_connection == null){
+                $this->getConnection();
+            }
+            $query = "SELECT * FROM $table WHERE $column = :$column";
+            $statement = $this->_connection->prepare($query);
+            $statement->bindValue(':'.$column, $value);
+            $statement->execute();
+            return $statement->fetch(PDO::FETCH_ASSOC) != false;
+        }catch(PDOException $exception){
+            echo 'error while connecting to the database: '. $exception->getMessage();
+            return false;
+        }
 
     }
 

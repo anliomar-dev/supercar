@@ -116,11 +116,11 @@ document.addEventListener("DOMContentLoaded", function() {
         el.addEventListener("mouseover", (e) => {
             toggleTheme();
            if(document.documentElement.dataset.theme === "bumblebee"){
-               el.classList.add("step-card-light");
                el.classList.remove("step-card-dark");
+               el.classList.add("step-card-light");
            }else{
-               el.classList.add("step-card-dark");
                el.classList.remove("step-card-light");
+               el.classList.add("step-card-dark");
            }
             toggleTheme();
         })

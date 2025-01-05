@@ -1,3 +1,5 @@
+import { animate } from "https://cdn.jsdelivr.net/npm/motion@11.11.13/+esm"
+
 /**
  * this function handle navbar in small screen
  */
@@ -70,4 +72,24 @@ export function toggleTheme(){
         e.target.checked ? localStorage.setItem("currentTheme", "night") : localStorage.setItem("currentTheme", "bumblebee");
         htmlElement.dataset.theme = e.target.checked ? "night" : "bumbelbee";
     })
+}
+
+export function  animateAndRemoveAlert(){
+    const alertSuccess = document.querySelector(".alert");
+
+    if (alertSuccess) {
+        animate(
+            alertSuccess,
+            { scale: [0.4, 1], opacity: [0, 1] },
+            { ease: "circInOut", duration: 0.8 },
+
+        );
+    }
+
+    const removeAlertIcon = document.querySelector(".remove-alert-icon");
+    if (removeAlertIcon) {
+        removeAlertIcon.onclick = function () {
+            alertSuccess.classList.add('hidden')
+        }
+    }
 }

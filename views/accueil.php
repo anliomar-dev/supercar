@@ -183,7 +183,7 @@
 						</div>
 						<div class="body-card flex flex-col">
 							<div class="body-img">
-								<img src="" class="rounded-lg model-img" alt="">
+								<img src="" class="rounded-lg model-img hover:scale-110 hover:transition hover:duration-300" alt="">
 							</div>
 							<div class="details py-3">
 								<h3 class="text-xl font-bold py-2">Details</h3>

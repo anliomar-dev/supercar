@@ -11,16 +11,27 @@
 </head>
 <body class="">
 <div class="bg-base-200 fixed top-0 start-0 h-3/5 w-full z-[-1]"></div>
-<?php if(isset($message)): ?>
+<?php if(isset($_SESSION["flash_message"])): ?>
 	<div class="fixed top-24 flex justify-center w-full px-6">
-		<div role="alert" class="alert <?php if(isset($type)){echo $type;}?> w-full md:w-1/2 lg:w-2/5 flex flex-col md:flex-row justify-between">
+		<div role="alert" class="alert
+			<?php if(isset($_SESSION["flash_message"]["type"])){echo $_SESSION["flash_message"]["type"];}?>
+			w-full md:w-1/2 lg:w-2/5 flex flex-col md:flex-row justify-between">
 			<div class="flex flex-col items-center md:flex-row gap-4">
 				<?php
 					require_once ROOT."components/icon-alert.php";
 					;
-                    if(isset($type)){displayAlertIconByType($type);};
+                    if(isset($_SESSION["flash_message"]["type"])){
+						$type = $_SESSION["flash_message"]["type"];
+						displayAlertIconByType($type);
+					};
 				?>
-				<span class="text-white"><?php echo $message; ?></span>
+				<span class="text-white">
+					<?php
+						$message = $_SESSION["flash_message"]["message"];
+						echo $message;
+						unset($_SESSION["flash_message"]);
+					?>
+				</span>
 			</div>
 			<div>
 				<svg xmlns="http://www.w3.org/2000/svg"

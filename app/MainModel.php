@@ -32,7 +32,6 @@ abstract class MainModel
         $this->DBNAME = $_ENV['DB_NAME'] ?? null;
         $this->USER = $_ENV['USER_DB'] ?? null;
         $this->PASSWORD = $_ENV['PASSWORD_DB'] ?? null;
-
         foreach ($attributes as $key => $value) {
             $this->attributes[$key] = $value;
         }
@@ -142,18 +141,25 @@ abstract class MainModel
      *
      * @return static|null The instance of the class (either the current class or a subclass) with the attributes initialized.
      */
-    public static function create(array $attributes): static|null
+    public static function create(array $attributes): array|null
     {
-        // Create an instance and attempt to save
-        $instance = new static($attributes);
-        $saved = $instance->save();
-        return $saved ? $instance : null;
+        try {
+            // Check if the connection is established
+            // Create an instance and attempt to save
+            $instance = new static($attributes);
+            $saved = $instance->save();
+            return $saved ? $instance->attributes : null;
+        }catch (PDOException $exception) {
+            // Log the error to a file rather than displaying it
+            error_log('Database error: ' . $exception->getMessage());
+            return null;
+        }
     }
 
 
     /**
      * the function insert or update a row in a table
-     * @return $this|null
+     * @return array|null
      */
     public function save(): static|null
     {
@@ -162,15 +168,13 @@ abstract class MainModel
             if ($this->_connection === null) {
                 $this->getConnection();
             }
-
             // If ID is set, perform an update, otherwise perform an insertion
-            if (isset($this->attributes['id']) && !empty($this->attributes['id'])) {
+            if (isset($this->attributes["id_$this->tableName"]) && !empty($this->attributes["id_$this->tableName"])) {
                 return $this->update();
             } else {
                 return $this->insert();
             }
         } catch (PDOException $exception) {
-            // Log the error to a file rather than displaying it
             error_log('Database error: ' . $exception->getMessage());
             return null;
         }
@@ -178,53 +182,55 @@ abstract class MainModel
 
     private function insert(): static|null
     {
-        // Prepare the insert query
-        $fields = implode(', ', array_keys($this->attributes));
-        $placeholders = ":" . implode(", :", array_keys($this->attributes));
-        $query = "INSERT INTO {$this->tableName} ({$fields}) VALUES ({$placeholders})";
+        try {
+            if ($this->_connection === null) {
+                $this->getConnection();
+            }
 
-        $stmt = $this->getConnection()->prepare($query);
+            $fields = implode(', ', array_keys($this->attributes));
+            $placeholders = ":" . implode(", :", array_keys($this->attributes));
+            $query = "INSERT INTO {$this->tableName} ({$fields}) VALUES ({$placeholders})";
+            $stmt = $this->getConnection()->prepare($query);
 
-        // Bind the attribute values to the placeholders
-        foreach ($this->attributes as $key => $value) {
-            $stmt->bindValue(":$key", $value);
+            foreach ($this->attributes as $key => $value) {
+                $stmt->bindValue(":$key", $value);
+            }
+            if ($stmt->execute()) {
+                // If it's a new row insertion, this assigns the last inserted ID from
+                // the database to the id_<tableName> attribute and returns the current instance.
+                $this->attributes["id_$this->tableName"] = $this->_connection->lastInsertId();
+                return $this;
+            } else {
+                error_log('Échec de l\'insertion dans la base de données: ' . implode(', ', $stmt->errorInfo()));
+                return null;
+            }
+        } catch (PDOException $exception) {
+            error_log('Erreur de la base de données: ' . $exception->getMessage());
+            return null;
         }
-
-        // Execute the query
-        if ($stmt->execute()) {
-            // If it's a new row, set the ID
-            $this->attributes['id'] = $this->_connection->lastInsertId();
-            return $this;
-        }
-
-        return null;
     }
+
 
     private function update(): static|null
     {
         // Prepare the update query
         $fields = [];
         foreach ($this->attributes as $key => $value) {
-            if ($key !== 'id') {  // Don't update the ID
+            if ($key !== "id_$this->tableName") {  // Don't update the ID
                 $fields[] = "$key = :$key";
             }
         }
-
         $setClause = implode(", ", $fields);
         $query = "UPDATE {$this->tableName} SET {$setClause} WHERE id = :id";
-
         $stmt = $this->getConnection()->prepare($query);
-
         // Bind the attribute values to the placeholders
         foreach ($this->attributes as $key => $value) {
             $stmt->bindValue(":$key", $value);
         }
-
         // Execute the query
         if ($stmt->execute()) {
             return $this;
         }
-
         return null;
     }
 

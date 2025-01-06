@@ -54,5 +54,11 @@ abstract class MainController
         }
     }
 
+    public function setFlashMessage(string $message, string $type): void
+    {
+        $_SESSION['flash_message'] = ['message' => $message, 'type' => $type];
+    }
+
+
 }
 

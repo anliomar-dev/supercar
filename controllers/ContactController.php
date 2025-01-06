@@ -36,8 +36,9 @@ class ContactController extends MainController
             }, true);
 
             if($all_fields_not_empty){
-                $message = "Votre message a été envoyé ! Nous vous contacterons bientôt";
-                $this->render("contact", "",  ['message' => $message]);
+                $success_message = "Votre message a été envoyé ! Nous vous contacterons bientôt";
+                $this->setFlashMessage($success_message, "alert-success");
+                $this->render("contact");
             }else{
                 echo "tous les champs doivent être correctement remplis";
             }

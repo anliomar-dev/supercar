@@ -39,8 +39,10 @@ class MarqueController extends MainController
 
     }
 
-    public function getByColumn(string $table, string $column, string|int $value): void {
-        $marque = $this->marqueModel->getByColumn($table, $column, $value);
+    public function getByColumn(array $params): void {
+        $column_name = key($params);
+        $value = $params[$column_name];
+        $marque = $this->marqueModel->getByColumn([$column_name => $value]);
         var_dump($marque);
     }
 

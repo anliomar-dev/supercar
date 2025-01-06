@@ -29,11 +29,11 @@ if (!empty($_GET['p'])) {
                 // to get a specific row by id if $params[1] is int else by slug
                 if (filter_var($params[1], FILTER_VALIDATE_INT)) {
                     $id = intval($params[1]);
-                    $controllerInstance->getByColumn($params[0], "id_$params[0]", $id);
+                    $controllerInstance->getByColumn(["id_$params[0]" => $id]);
                 }
                 // $params[1] is not int: call get by slug
                 else {
-                    $controllerInstance->getByColumn($params[0], "slug", $params[1]);
+                    $controllerInstance->getByColumn(["slug" => $params[1]]);
                 }
             }
             require_once ROOT . 'components/footer.php';

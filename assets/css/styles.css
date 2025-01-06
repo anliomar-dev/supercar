@@ -2892,11 +2892,6 @@ html {
   line-height: 1.5rem;
 }
 
-.text-accent-content {
-  --tw-text-opacity: 1;
-  color: var(--fallback-ac,oklch(var(--ac)/var(--tw-text-opacity, 1)));
-}
-
 .text-base-content {
   --tw-text-opacity: 1;
   color: var(--fallback-bc,oklch(var(--bc)/var(--tw-text-opacity, 1)));
@@ -2905,11 +2900,6 @@ html {
 .text-primary {
   --tw-text-opacity: 1;
   color: var(--fallback-p,oklch(var(--p)/var(--tw-text-opacity, 1)));
-}
-
-.text-primary-content {
-  --tw-text-opacity: 1;
-  color: var(--fallback-pc,oklch(var(--pc)/var(--tw-text-opacity, 1)));
 }
 
 .text-secondary {
@@ -3032,7 +3022,7 @@ li{
 }
 
 * {
-  transition: background-color 0.3s, color 0.3s;
+  transition: background-color 0.5s;
 }
 
 @media (min-width: 1024px) {

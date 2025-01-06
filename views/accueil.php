@@ -53,8 +53,8 @@
 				</div>
 				<div class="experience__description pb-4 md:px-8 pt-6 lg:pt-0">
 					<h2 class="font-comic text-xl md:text-4xl text-secondary pb-8">Pourquoi nous choisir ?</h2>
-					<p class="font-default text-primary-content md:text-lg">
-						Chez <span class="bg-accent text-accent-content font-bold px-2">Supercar</span>, nous nous engageons à offrir à nos clients une expérience de conduite inoubliable
+					<p class="font-default md:text-lg">
+						Chez <span class="bg-accent font-bold px-2">Supercar</span>, nous nous engageons à offrir à nos clients une expérience de conduite inoubliable
 						Avec une large sélection de véhicules de marques renommées.
 					</p>
 					<div class="description__main-goals py-3 md:py-6">
@@ -111,8 +111,8 @@
 				</div>
 				<div class="bg-base-100 border-neutral-700 p-3 md:px-8 md:py-6 md:w-1/2 rounded-lg ">
 					<h2 class="font-comic text-xl md:text-3xl text-secondary">QUI SOMMES NOUS ?</h2>
-					<p class="py-6 md:text-lg select-">
-						Depuis notre création en <span class="bg-accent text-accent-content px-2">2009</span>, Supercar s'efforce d'offrir une nouvelle approche de la location et de l'essai de voitures haut de gamme.
+					<p class="py-6 md:text-lg">
+						Depuis notre création en <span class="bg-accent px-2">2009</span>, Supercar s'efforce d'offrir une nouvelle approche de la location et de l'essai de voitures haut de gamme.
 						Fondée par des passionnés d'automobile, notre entreprise s'engage à proposer des services
 						de qualité exceptionnelle, en mettant un point d'honneur à la satisfaction de nos clients.
 					</p>

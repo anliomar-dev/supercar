@@ -16,21 +16,26 @@ $dotenv->load();
 
 abstract class MainModel
 {
-    private ?string $HOST;
-    private ?string $DBNAME;
-    private ?string $USER;
-    private ?string $PASSWORD;
+    // database
+    private ?string $HOST, $DBNAME, $USER, $PASSWORD;
     /**
-     * @var ?object
+     * @var ?PDO
      */
-    protected ?object $_connection = null;
+    protected ?PDO $_connection = null;
+    private mixed $attributes; // An associative array that contains key-value pairs, where each key represents a column of the table.
 
-    public function __construct() {
+    protected string $tableName; // The name of the table where we want to insert a new row.
+
+    public function __construct(array $attributes = []) {
         // load environnement variables
         $this->HOST = $_ENV['HOST_DB'] ?? null;
         $this->DBNAME = $_ENV['DB_NAME'] ?? null;
         $this->USER = $_ENV['USER_DB'] ?? null;
         $this->PASSWORD = $_ENV['PASSWORD_DB'] ?? null;
+
+        foreach ($attributes as $key => $value) {
+            $this->attributes[$key] = $value;
+        }
     }
 
     /**
@@ -63,7 +68,7 @@ abstract class MainModel
             if($this->_connection == null){
                 $this->getConnection();
             }
-            $query = "SELECT * FROM $table";
+            $query = "SELECT * FROM $this->tableName";
             $statement = $this->_connection->query($query);
             return $statement->fetchAll(PDO::FETCH_ASSOC);
         }catch(PDOException $exception){
@@ -74,19 +79,20 @@ abstract class MainModel
 
     /**
      * this function get a record from a specific table by a specific column (exp: id)
-     * @param $table string the name of the table we want to fetch data
-     * @param $column string the name of column we want select by
-     * @param $value string|int the value of column
+     * @param array $params
      * @return ?array
      */
-    public function getByColumn(string $table, string $column, string|int $value): ?array {
+    public function getByColumn(array $params): ?array {
         try{
             if($this->_connection == null){
                 $this->getConnection();
             }
-            $query = "SELECT * FROM $table WHERE $column = :$column";
+            $column = key($params); // La clé du tableau, c'est le nom de la colonne
+            $value = $params[$column];
+
+            $query = "SELECT * FROM $this->tableName WHERE $column = :value";
             $statement = $this->_connection->prepare($query);
-            $statement->bindValue(':'.$column, $value);
+            $statement->bindValue(':value', $value);
             $statement->execute();
 
             $result = $statement->fetch(PDO::FETCH_ASSOC);
@@ -123,7 +129,110 @@ abstract class MainModel
             echo 'error while connecting to the database: '. $exception->getMessage();
             return false;
         }
-
     }
 
+    /**
+     * Creates a new instance of the class with the provided attributes and saves it to the database.
+     *
+     * This method is static and uses "late static binding" to return an instance of the class
+     * that calls the method (either the parent class or a subclass).
+     *
+     * @param array $attributes An associative array containing the attributes to initialize for the instance.
+     *                          Each key in the array corresponds to an attribute name, and each value to its value.
+     *
+     * @return static|null The instance of the class (either the current class or a subclass) with the attributes initialized.
+     */
+    public static function create(array $attributes): static|null
+    {
+        // Create an instance and attempt to save
+        $instance = new static($attributes);
+        $saved = $instance->save();
+        return $saved ? $instance : null;
+    }
+
+
+    /**
+     * the function insert or update a row in a table
+     * @return $this|null
+     */
+    public function save(): static|null
+    {
+        try {
+            // Check if the connection is established
+            if ($this->_connection === null) {
+                $this->getConnection();
+            }
+
+            // If ID is set, perform an update, otherwise perform an insertion
+            if (isset($this->attributes['id']) && !empty($this->attributes['id'])) {
+                return $this->update();
+            } else {
+                return $this->insert();
+            }
+        } catch (PDOException $exception) {
+            // Log the error to a file rather than displaying it
+            error_log('Database error: ' . $exception->getMessage());
+            return null;
+        }
+    }
+
+    private function insert(): static|null
+    {
+        // Prepare the insert query
+        $fields = implode(', ', array_keys($this->attributes));
+        $placeholders = ":" . implode(", :", array_keys($this->attributes));
+        $query = "INSERT INTO {$this->tableName} ({$fields}) VALUES ({$placeholders})";
+
+        $stmt = $this->getConnection()->prepare($query);
+
+        // Bind the attribute values to the placeholders
+        foreach ($this->attributes as $key => $value) {
+            $stmt->bindValue(":$key", $value);
+        }
+
+        // Execute the query
+        if ($stmt->execute()) {
+            // If it's a new row, set the ID
+            $this->attributes['id'] = $this->_connection->lastInsertId();
+            return $this;
+        }
+
+        return null;
+    }
+
+    private function update(): static|null
+    {
+        // Prepare the update query
+        $fields = [];
+        foreach ($this->attributes as $key => $value) {
+            if ($key !== 'id') {  // Don't update the ID
+                $fields[] = "$key = :$key";
+            }
+        }
+
+        $setClause = implode(", ", $fields);
+        $query = "UPDATE {$this->tableName} SET {$setClause} WHERE id = :id";
+
+        $stmt = $this->getConnection()->prepare($query);
+
+        // Bind the attribute values to the placeholders
+        foreach ($this->attributes as $key => $value) {
+            $stmt->bindValue(":$key", $value);
+        }
+
+        // Execute the query
+        if ($stmt->execute()) {
+            return $this;
+        }
+
+        return null;
+    }
+
+    public function delete(): bool{
+        return true;
+    }
+
+    public function filter(array $filters): void{
+        //
+    }
 }

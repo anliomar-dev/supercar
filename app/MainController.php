@@ -17,7 +17,7 @@ abstract class MainController
      * @param string $modelName The name of the model to load (without the '.php' extension).
      * @return object An instance of the specified model class.
      */
-    public function loadModel(string $modelName): object
+    protected function loadModel(string $modelName): object
     {
         // Check if the model is already loaded
         if (!isset($this->models[$modelName])) {
@@ -39,7 +39,7 @@ abstract class MainController
      * @param array $data
      * @return void
      */
-    public function render(string $viewName, string $path = "", array $data=[]): void {
+    protected static function render(string $viewName, string $path = "", array $data=[]): void {
 
         // Attempt to include the view file
         $viewPath = ROOT . $path. '/views/' . $viewName . '.php';
@@ -54,11 +54,16 @@ abstract class MainController
         }
     }
 
-    public function setFlashMessage(string $message, string $type): void
+    protected static function setFlashMessage(string $message, string $type): void
     {
         $_SESSION['flash_message'] = ['message' => $message, 'type' => $type];
     }
 
+
+    protected static function setFlashMessageAndRender($message,$alert_type, $view_file):void{
+        self::setFlashMessage($message, $alert_type);
+        self::render($view_file);
+    }
 
 }
 

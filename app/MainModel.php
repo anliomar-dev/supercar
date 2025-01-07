@@ -16,14 +16,42 @@ $dotenv->load();
 
 abstract class MainModel
 {
+    /**
+     * Get the value of the attribute specified by the key.
+     *
+     * This method retrieves the value of an attribute stored in the `attributes` array
+     * using the provided key.
+     *
+     * @param string $key The key of the attribute to retrieve.
+     * @return mixed The value of the attribute, or null if the key does not exist.
+     */
+    public function getAttribute(string $key): mixed {
+        return $this->attributes[$key] ?? null;  // To handle cases where the key doesn't exist
+    }
+
+    /**
+     * Set the value of the attribute specified by the key.
+     *
+     * This method updates the value of an attribute stored in the `attributes` array
+     * using the provided key. The new value can be any type (string, numeric, etc.).
+     *
+     * @param string $key The key of the attribute to update.
+     * @param mixed $new_value The new value to set for the specified attribute.
+     * @return void
+     */
+    public function setAttribute(string $key, mixed $new_value): void
+    {
+        $this->attributes[$key] = $new_value;
+    }
+
     // database
     private ?string $HOST, $DBNAME, $USER, $PASSWORD;
     /**
      * @var ?PDO
      */
     protected ?PDO $_connection = null;
-    private mixed $attributes; // An associative array that contains key-value pairs, where each key represents a column of the table.
-
+    private array $attributes; // An associative array that contains key-value pairs,
+    // where each key represents a column of the table.
     protected string $tableName; // The name of the table where we want to insert a new row.
 
     public function __construct(array $attributes = []) {
@@ -56,6 +84,7 @@ abstract class MainModel
         return $this->_connection;
     }
 
+
     /**
      * this function fetch all rows from a specific table
      * @param $table string the name of table we want to fetch data
@@ -76,6 +105,7 @@ abstract class MainModel
         }
     }
 
+
     /**
      * this function get a record from a specific table by a specific column (exp: id)
      * @param array $params
@@ -88,7 +118,6 @@ abstract class MainModel
             }
             $column = key($params); // La clé du tableau, c'est le nom de la colonne
             $value = $params[$column];
-
             $query = "SELECT * FROM $this->tableName WHERE $column = :value";
             $statement = $this->_connection->prepare($query);
             $statement->bindValue(':value', $value);
@@ -104,6 +133,7 @@ abstract class MainModel
             return null;
         }
     }
+
 
     /**
      * Verifies if a row exists in the database and returns true if the row exists
@@ -129,6 +159,7 @@ abstract class MainModel
             return false;
         }
     }
+
 
     /**
      * Creates a new instance of the class with the provided attributes and saves it to the database.
@@ -159,7 +190,7 @@ abstract class MainModel
 
     /**
      * the function insert or update a row in a table
-     * @return array|null
+     * @return static|null
      */
     public function save(): static|null
     {
@@ -180,6 +211,18 @@ abstract class MainModel
         }
     }
 
+
+    /**
+     * Insert a new row into the database table.
+     *
+     * This method prepares and executes an SQL query to insert a new row into the database table
+     * using the attributes provided in the current instance. If the insertion is successful,
+     * it assigns the last inserted ID to the `id_<tableName>` attribute and returns the current
+     * instance. If an error occurs, it logs the error and returns `null`.
+     *
+     * @return static|null Returns the current instance if the insert is successful;
+     *                     returns `null` if the insertion fails.
+     */
     private function insert(): static|null
     {
         try {
@@ -211,32 +254,46 @@ abstract class MainModel
     }
 
 
+    /**
+     * Update an existing row in the database table.
+     *
+     * This method prepares and executes an SQL query to update an existing row in the database table
+     * based on the current values in the attributes array. The query updates all fields except for the
+     * `id_<tableName>` field. If the update is successful, it returns the current instance. If the update
+     * fails, it returns `null`.
+     *
+     * @return static|null Returns the current instance if the update is successful;
+     *                     returns `null` if the update fails.
+     */
     private function update(): static|null
     {
-        // Prepare the update query
         $fields = [];
+        /**
+         * create the placeholders for each key of the attributes aray
+         * e.g: fileds = ["email = :email", "phone = :phone"]
+         */
         foreach ($this->attributes as $key => $value) {
-            if ($key !== "id_$this->tableName") {  // Don't update the ID
+            if ($key !== "id_$this->tableName") {
                 $fields[] = "$key = :$key";
             }
         }
+        // create the set CLAUSE. e.g(email = :email, phone = :phone)
         $setClause = implode(", ", $fields);
-        $query = "UPDATE {$this->tableName} SET {$setClause} WHERE id = :id";
+        $idColumn = "id_" . $this->tableName;
+        $query = "UPDATE {$this->tableName} SET {$setClause} WHERE {$idColumn} = :{$idColumn}";
         $stmt = $this->getConnection()->prepare($query);
-        // Bind the attribute values to the placeholders
-        foreach ($this->attributes as $key => $value) {
-            $stmt->bindValue(":$key", $value);
-        }
-        // Execute the query
-        if ($stmt->execute()) {
+
+        if ($stmt->execute($this->attributes)) {
             return $this;
         }
         return null;
     }
 
+
     public function delete(): bool{
         return true;
     }
+
 
     public function filter(array $filters): void{
         //

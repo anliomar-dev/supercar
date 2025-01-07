@@ -63,6 +63,7 @@ abstract class MainModel
         foreach ($attributes as $key => $value) {
             $this->attributes[$key] = $value;
         }
+        $this->getConnection();
     }
 
     /**
@@ -77,7 +78,7 @@ abstract class MainModel
                 $this->_connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
                 $this->_connection->exec("SET CHARACTER SET utf8");
             } catch (PDOException $exception) {
-                echo 'Error while connecting to the database: ' . $exception->getMessage();
+                error_log('Database error: ' . $exception->getMessage());
                 return null;
             }
         }
@@ -93,14 +94,11 @@ abstract class MainModel
     public function getAll(string $table): ?array
     {
         try{
-            if($this->_connection == null){
-                $this->getConnection();
-            }
             $query = "SELECT * FROM $this->tableName";
             $statement = $this->_connection->query($query);
             return $statement->fetchAll(PDO::FETCH_ASSOC);
         }catch(PDOException $exception){
-            echo 'error while connecting to the database: '. $exception->getMessage();
+            error_log('Database error: ' . $exception->getMessage());
             return null;
         }
     }
@@ -113,9 +111,6 @@ abstract class MainModel
      */
     public function getByColumn(array $params): ?array {
         try{
-            if($this->_connection == null){
-                $this->getConnection();
-            }
             $column = key($params); // La clé du tableau, c'est le nom de la colonne
             $value = $params[$column];
             $query = "SELECT * FROM $this->tableName WHERE $column = :value";
@@ -129,7 +124,7 @@ abstract class MainModel
             }
             return $result;
         }catch(PDOException $exception){
-            echo 'error while connecting to the database: '. $exception->getMessage();
+            error_log('Database error: ' . $exception->getMessage());
             return null;
         }
     }
@@ -146,16 +141,13 @@ abstract class MainModel
      */
     public function isRowExists(string $table, string $column, string|int $value): bool {
         try{
-            if($this->_connection == null){
-                $this->getConnection();
-            }
             $query = "SELECT * FROM $table WHERE $column = :$column";
             $statement = $this->_connection->prepare($query);
             $statement->bindValue(':'.$column, $value);
             $statement->execute();
             return $statement->fetch(PDO::FETCH_ASSOC) != false;
         }catch(PDOException $exception){
-            echo 'error while connecting to the database: '. $exception->getMessage();
+            error_log('Database error: ' . $exception->getMessage());
             return false;
         }
     }
@@ -195,10 +187,6 @@ abstract class MainModel
     public function save(): static|null
     {
         try {
-            // Check if the connection is established
-            if ($this->_connection === null) {
-                $this->getConnection();
-            }
             // If ID is set, perform an update, otherwise perform an insertion
             if (isset($this->attributes["id_$this->tableName"]) && !empty($this->attributes["id_$this->tableName"])) {
                 return $this->update();
@@ -226,25 +214,21 @@ abstract class MainModel
     private function insert(): static|null
     {
         try {
-            if ($this->_connection === null) {
-                $this->getConnection();
-            }
-
             $fields = implode(', ', array_keys($this->attributes));
             $placeholders = ":" . implode(", :", array_keys($this->attributes));
             $query = "INSERT INTO {$this->tableName} ({$fields}) VALUES ({$placeholders})";
-            $stmt = $this->getConnection()->prepare($query);
+            $statement = $this->getConnection()->prepare($query);
 
             foreach ($this->attributes as $key => $value) {
-                $stmt->bindValue(":$key", $value);
+                $statement->bindValue(":$key", $value);
             }
-            if ($stmt->execute()) {
+            if ($statement->execute()) {
                 // If it's a new row insertion, this assigns the last inserted ID from
                 // the database to the id_<tableName> attribute and returns the current instance.
                 $this->attributes["id_$this->tableName"] = $this->_connection->lastInsertId();
                 return $this;
             } else {
-                error_log('Échec de l\'insertion dans la base de données: ' . implode(', ', $stmt->errorInfo()));
+                error_log('Échec de l\'insertion dans la base de données: ' . implode(', ', $statement->errorInfo()));
                 return null;
             }
         } catch (PDOException $exception) {
@@ -281,9 +265,9 @@ abstract class MainModel
         $setClause = implode(", ", $fields);
         $idColumn = "id_" . $this->tableName;
         $query = "UPDATE {$this->tableName} SET {$setClause} WHERE {$idColumn} = :{$idColumn}";
-        $stmt = $this->getConnection()->prepare($query);
+        $statement = $this->getConnection()->prepare($query);
 
-        if ($stmt->execute($this->attributes)) {
+        if ($statement->execute($this->attributes)) {
             return $this;
         }
         return null;

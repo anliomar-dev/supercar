@@ -1,4 +1,7 @@
 <?php
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
 // Define a constant to store the root directory
 define('ROOT', str_replace('index.php', '', $_SERVER['SCRIPT_FILENAME']));
 
@@ -17,7 +20,6 @@ if (!empty($_GET['p'])) {
         $controllerClass = 'controllers\\' . $controller.'Controller';
 
         if(class_exists($controllerClass)) {
-            require_once ROOT . 'components/navbar.php';
             // load controller
             require_once(ROOT . 'controllers/' . $controller.'Controller' . '.php');
             // controller instance
@@ -42,7 +44,6 @@ if (!empty($_GET['p'])) {
         }
     }
 } else {
-    require_once ROOT . 'components/navbar.php';
     require_once(ROOT . 'controllers/AccueilController.php');
     $controllerClass = 'controllers\\AccueilController';
     $controllerInstance = new $controllerClass();

@@ -2,13 +2,12 @@
 
 namespace controllers;
 
+use AllowDynamicProperties;
 use app\MainController;
 use models\Contact;
 
-class ContactController extends MainController
+#[AllowDynamicProperties] class ContactController extends MainController
 {
-    private Contact $contactModel;
-
     public function __construct(){
         $this->contactModel = $this->loadModel("Contact");
     }

@@ -17,13 +17,27 @@ if (!empty($_GET['p'])) {
         $arguments = array_slice($params, 2);
 
         // Namespace for the controller
-        $controllerClass = 'controllers\\' . $controller.'Controller';
-
+        if($controller == 'Authentication'){
+            $controllerClass = 'app\\' . $controller;
+        }else{
+            $controllerClass = 'controllers\\' . $controller.'Controller';
+        }
+        // check if the contollerr exist
         if(class_exists($controllerClass)) {
             // load controller
-            require_once(ROOT . 'controllers/' . $controller.'Controller' . '.php');
-            // controller instance
+            if($controller == 'Authentication'){
+                require_once(ROOT . 'app/' . $controller. '.php');
+            }else{
+                require_once(ROOT . 'controllers/' . $controller.'Controller' . '.php');
+            }
+            // create a controller instance
             $controllerInstance = new $controllerClass();
+            // if the contoller is authentication, a method is required, else return to 404
+            if($controller == 'Authentication' && !method_exists($controllerInstance, $action)){
+                echo "404";
+                exit();
+            }
+
             if (method_exists($controllerInstance, $action)) {
                 $controllerInstance->$action();
             } else {

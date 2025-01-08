@@ -36,15 +36,36 @@ class Authentication extends MainController
 
     public function logout(): void
     {
+        $this->destroySession();
+        header("Location: /supercar/login");
+    }
+
+    public function destroySession(): void{
         session_unset();
         session_destroy();
-        // redirect user to the signin page
-        header("Location: /supercar/login");
-        exit();
     }
 
-    public function is_authenticated(){
+    public function session_expired():void{
+        $this->render("session_expired");
 
     }
+
+    public function is_authenticated(): void
+    {
+        if (empty($_SESSION["user_id"]) || empty($_SESSION["csrf_token"])) {
+            header("Location: /supercar/login");
+            exit();
+        }
+        $session_timeout = 60;
+        if (isset($_SESSION["last_activity"]) && (time() - $_SESSION["last_activity"]) > $session_timeout) {
+            $this->destroySession();
+            // redirect user to the signin page
+            header("Location: /supercar/authentication/session_expired");
+            exit();
+
+        }
+        $_SESSION["last_activity"] = time();
+    }
+
 
 }

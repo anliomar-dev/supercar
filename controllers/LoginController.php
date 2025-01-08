@@ -24,7 +24,7 @@ class LoginController extends MainController
             $user = $auth->authenticate($email, $password);
             if($user && is_array($user)){
                 $auth->login($user);
-                header("Location: /supercar/essai");
+                header("Location: /supercar/dashboard");
                 exit();
             }
             $error_message = "Email et/ou mot de passe incorrect";

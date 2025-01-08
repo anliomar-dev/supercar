@@ -50,7 +50,7 @@ abstract class MainController
             require_once ROOT . 'components/navbar.php';
             require_once($viewPath);
         } else {
-            // Handle the error if the file doesn't exist (you could display a 404 or log it)
+            // Handle the error if the file doesn't exist
             echo "View file '$viewPath' not found.";
         }
     }

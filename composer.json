@@ -10,5 +10,8 @@
       "models\\": "models/",
       "app\\": "app/"
     }
+  },
+  "require-dev": {
+    "phpunit/phpunit": "9.5"
   }
 }

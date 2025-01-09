@@ -15,6 +15,6 @@ class CsrfProtection
     }
 
     public function validateToken($token): bool{
-        return $_SESSION['scrf_token'] === $token;
+        return isset($_SESSION['csrf_token']) && $_SESSION['csrf_token'] === $token;
     }
 }

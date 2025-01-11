@@ -76,7 +76,7 @@ abstract class MainModel
         if ($this->_connection === null) {
             try {
                 if($this->TESTS_MODE === "true"){
-                    $this->_connection = new PDO('sqlite:' . ROOT. 'tests_db.sqlite3');
+                    $this->_connection = new PDO('sqlite:' . dirname(__DIR__) . '/tests_db.sqlite3');
                 }else{
                     $this->_connection = new PDO("mysql:host=$this->HOST;dbname=$this->DBNAME", $this->USER, $this->PASSWORD);
                 }

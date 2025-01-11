@@ -1,0 +1,1 @@
+C:37:"PHPUnit\Runner\DefaultTestResultCache":161:{a:2:{s:7:"defects";a:0:{}s:5:"times";a:2:{s:49:"CsrfProtectionTest::testValidateCsrfTokenBehavior";d:0.028;s:37:"CsrfProtectionTest::testGenerateToken";d:0.01;}}}

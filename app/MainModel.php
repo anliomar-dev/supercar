@@ -45,7 +45,7 @@ abstract class MainModel
     }
 
     // database
-    private ?string $HOST, $DBNAME, $USER, $PASSWORD;
+    private ?string $HOST, $DBNAME, $USER, $PASSWORD, $TESTS_MODE;
     /**
      * @var ?PDO
      */
@@ -60,6 +60,7 @@ abstract class MainModel
         $this->DBNAME = $_ENV['DB_NAME'] ?? null;
         $this->USER = $_ENV['USER_DB'] ?? null;
         $this->PASSWORD = $_ENV['PASSWORD_DB'] ?? null;
+        $this->TESTS_MODE = $_ENV['TESTS_MODE'] ?? null;
         foreach ($attributes as $key => $value) {
             $this->attributes[$key] = $value;
         }
@@ -74,7 +75,11 @@ abstract class MainModel
     {
         if ($this->_connection === null) {
             try {
-                $this->_connection = new PDO("mysql:host=$this->HOST;dbname=$this->DBNAME", $this->USER, $this->PASSWORD);
+                if($this->TESTS_MODE === "true"){
+                    $this->_connection = new PDO('sqlite:' . ROOT. 'tests_db.sqlite3');
+                }else{
+                    $this->_connection = new PDO("mysql:host=$this->HOST;dbname=$this->DBNAME", $this->USER, $this->PASSWORD);
+                }
                 $this->_connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
                 $this->_connection->exec("SET CHARACTER SET utf8");
             } catch (PDOException $exception) {
@@ -82,6 +87,7 @@ abstract class MainModel
                 return null;
             }
         }
+
         return $this->_connection;
     }
 

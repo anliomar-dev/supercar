@@ -280,7 +280,7 @@ abstract class MainModel
     }
 
 
-    public function delete(): bool{
+    public function delete(int $id): bool{
         return true;
     }
 

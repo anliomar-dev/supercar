@@ -1,6 +1,7 @@
 <?php
 
-    use app\CsrfProtection;
+    namespace app;
+
     use PHPUnit\Framework\TestCase;
     use Random\RandomException;
 

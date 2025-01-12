@@ -26,7 +26,7 @@ class DashboardController extends MainController
             echo "posted from compte view";
             exit();
         }
-        $this->render("dashboard", "", ["ui" => "Compte"]);
+        $this->render("compte", "", ["ui" => "Compte"]);
     }
 
     public function mes_donnees():void{
@@ -44,7 +44,7 @@ class DashboardController extends MainController
             echo "posted from mes_essais";
             exit();
         }
-        $this->render("dashboard", "", ["ui" => "Mes essais"]);
+        $this->render("mes_essais", "", ["ui" => "Mes essais"]);
     }
 
     public function demande_essai():void{

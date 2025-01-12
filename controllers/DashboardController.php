@@ -13,7 +13,6 @@ class DashboardController extends MainController
     }
 
     public function index():void{
-        $this->auth->is_authenticated();
         if($_SERVER["REQUEST_METHOD"] == "POST"){
             echo "post";
             exit();

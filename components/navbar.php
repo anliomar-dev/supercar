@@ -99,16 +99,48 @@
 					<span class="pt-1">Voitures</span>
 				</a>
 			</li>
-			<li class="btn btn-primary lg:hidden min-h-0 h-8 m-1 border-none flex items-center">
-				<a href="/supercar/login" class="">login</a>
-			</li>
+            <?php if(isset($_SESSION["user_id"])):?>
+				<li class="lg:hidden min-h-0 h-8 m-1 border-none flex items-center justify-center">
+					<div class="dropdown dropdown-bottom dropdown-end">
+						<div tabindex="0" role="button" class="btn m-1 rounded-full min-h-0 min-w-0 w-10 h-10">
+							O
+						</div>
+						<ul tabindex="0" class="dropdown-content menu bg-base-100 rounded-box z-[1] w-52 p-2 shadow">
+							<li><a href="/supercar/dashboard/compte">Mon compte</a></li>
+							<li><a href="/supercar/dashboard/mes_donnees">Mes données</a></li>
+							<li><a href="/supercar/dashboard/mes_essais">Mes essais</a></li>
+							<li><a href="/supercar/dashboard/demande_essai">Réserver un essai</a></li>
+							<li><a href="/supercar/authentication/logout">Se deconnecter</a></li>
+						</ul>
+					</div>
+				</li>
+            <?php else :?>
+				<li class="btn btn-primary lg:hidden min-h-0 h-8 m-1 border-none flex items-center">
+					<a href="/supercar/login" class="">login</a>
+				</li>
+            <?php endif ;?>
 			<li class="min-h-0 h-8 m-1 border-none flex items-center justify-center">
-				<?php include_once("theme-controller.php") ?>
+                <?php include_once("theme-controller.php") ?>
 			</li>
 		</ul>
 	</div>
 	<div class="hidden lg:flex">
-		<a href="/supercar/login" class="btn btn-primary h-10 min-h-0">login</a>
+        <?php if(isset($_SESSION["user_id"])):?>
+			<div class="dropdown dropdown-bottom dropdown-end">
+				<div tabindex="0" role="button" class="btn m-1 rounded-full min-h-0 min-w-0 w-10 h-10">
+					O
+				</div>
+				<ul tabindex="0" class="dropdown-content menu bg-base-100 rounded-box z-[1] w-52 p-2 shadow">
+					<li><a href="/supercar/dashboard/compte">Mon compte</a></li>
+					<li><a href="/supercar/dashboard/mes_donnees">Mes données</a></li>
+					<li><a href="/supercar/dashboard/mes_essais">Mes essais</a></li>
+					<li><a href="/supercar/dashboard/demande_essai">Réserver un essai</a></li>
+					<li><a href="/supercar/authentication/logout">Se deconnecter</a></li>
+				</ul>
+			</div>
+        <?php else :?>
+			<a href="/supercar/login" class="btn btn-primary h-10 min-h-0">login</a>
+        <?php endif ;?>
 	</div>
 	<label class="btn btn-primary min-h-0 h-10 btn-circle swap swap-rotate lg:hidden">
 		<!-- this hidden checkbox controls the state -->

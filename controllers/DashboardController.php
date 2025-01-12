@@ -18,7 +18,7 @@ class DashboardController extends MainController
             echo "post";
             exit();
         }
-        $this->render("dashboard", "", ["ui" => "Dashboard"]);
+        $this->render("mes_donnees", "", ["ui" => "Mes données"]);
     }
     public function compte():void{
         $this->auth->is_authenticated();
@@ -30,7 +30,7 @@ class DashboardController extends MainController
     }
 
     public function mes_donnees():void{
-        $this->auth->is_authenticated();
+        //$this->auth->is_authenticated();
         if($_SERVER["REQUEST_METHOD"] == "POST"){
             echo "posted from mes_donnees";
             exit();

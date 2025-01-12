@@ -35,7 +35,7 @@ class DashboardController extends MainController
             echo "posted from mes_donnees";
             exit();
         }
-        $this->render("dashboard", "", ["ui" => "Mes données"]);
+        $this->render("mes_donnees", "", ["ui" => "Mes données"]);
     }
 
     public function mes_essais():void{

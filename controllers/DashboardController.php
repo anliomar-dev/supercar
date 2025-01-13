@@ -13,14 +13,11 @@ class DashboardController extends MainController
     }
 
     public function index():void{
-        if($_SERVER["REQUEST_METHOD"] == "POST"){
-            echo "post";
-            exit();
-        }
-        $this->render("mes_donnees", "", ["ui" => "Mes données"]);
+        header('Location: /supercar/dashboard/mes_donnees');
     }
+
     public function compte():void{
-        $this->auth->is_authenticated();
+        //$this->auth->is_authenticated();
         if($_SERVER["REQUEST_METHOD"] == "POST"){
             echo "posted from compte view";
             exit();
@@ -38,7 +35,7 @@ class DashboardController extends MainController
     }
 
     public function mes_essais():void{
-        $this->auth->is_authenticated();
+        //$this->auth->is_authenticated();
         if($_SERVER["REQUEST_METHOD"] == "POST"){
             echo "posted from mes_essais";
             exit();
@@ -47,7 +44,7 @@ class DashboardController extends MainController
     }
 
     public function demande_essai():void{
-        $this->auth->is_authenticated();
+        //$this->auth->is_authenticated();
         if($_SERVER["REQUEST_METHOD"] == "POST"){
             echo "posted from mes_essais";
             exit();

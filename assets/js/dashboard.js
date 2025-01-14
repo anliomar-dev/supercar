@@ -9,5 +9,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const currentPage = path[path.length - 1];
     document.querySelectorAll(`.${currentPage}`).forEach((element) => {
         element.classList.add("bg-primary");
+        element.classList.add("text-black");
     })
 });

@@ -4,7 +4,7 @@ namespace models;
 
 use app\MainModel;
 
-class Modele extends MainModel
+class voiture extends MainModel
 {
 
 }

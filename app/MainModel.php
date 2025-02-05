@@ -279,13 +279,16 @@ abstract class MainModel
         return null;
     }
 
-
+    /**
+     * @param int $id the id(primary_key) of the row we want to delete in the table
+     * @return bool true if the deletion successfull, false otherwise
+     */
     public function delete(int $id): bool{
         return true;
     }
 
 
-    public function filter(array $filters): void{
-        //
+    public function filter(array $filters):void{
+        //rien
     }
 }

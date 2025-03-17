@@ -7,8 +7,6 @@
 		<meta http-equiv="X-UA-Compatible" content="ie=edge">
 		<link rel="stylesheet" href="/supercar/assets/css/styles.css">
 		<script src="/supercar/assets/js/accueill.js" type="module" defer></script>
-		<link rel="stylesheet" href="/assets/css/styles.css">
-		<script src="/assets/js/accueill.js" type="module" defer></script>
 		<title>Accueil</title>
 	</head>
 	<body class="relative">

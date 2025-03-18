@@ -56,7 +56,7 @@ abstract class MainModel
 
     public function __construct(array $attributes = []) {
         // load environnement variables
-        $this->HOST = $_ENV['HOST_DB'] ?? null;
+        $this->HOST = $_ENV['DB_HOST'] ?? null;
         $this->DBNAME = $_ENV['DB_NAME'] ?? null;
         $this->USER = $_ENV['USER_DB'] ?? null;
         $this->PASSWORD = $_ENV['PASSWORD_DB'] ?? null;

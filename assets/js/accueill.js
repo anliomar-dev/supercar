@@ -1,5 +1,5 @@
 import {combustionCars, electricCars, hybridCars} from "./homepage-cars.js";
-import {toogleNavbar, toggleTheme} from "./index.js";
+import {toggleNavbar, toggleTheme} from "./index.js";
 
 /**
  * Adds an active class to an element and removes this class from all its siblings.
@@ -76,7 +76,7 @@ function displayCars(cars, template, container) {
 }
 
 document.addEventListener("DOMContentLoaded", function() {
-    toogleNavbar();
+    toggleNavbar();
     toggleTheme();
     const carCardTemplate = document.getElementById("car-card-template");
     // tabs btn for engine type( electrics, hybrid or combustion)

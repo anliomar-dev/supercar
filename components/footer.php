@@ -44,7 +44,7 @@
 	</nav>
 	<aside>
 		<p class="leading-6">
-			Copyright © <?php $date = new DateTime(); echo $date->format("Y"); ?> - All right reserved by ACME Industries Ltd
+			Copyright © <?php $date = new DateTime(); echo $date->format("Y"); ?> - All right reserved by Supercar
 		</p>
 	</aside>
 </footer>

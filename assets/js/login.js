@@ -1,7 +1,7 @@
-import {toogleNavbar, togglePassword, toggleTheme, animateAndRemoveAlert} from "./index.js";
+import {toggleNavbar, togglePassword, toggleTheme, animateAndRemoveAlert} from "./index.js";
 
 document.addEventListener("DOMContentLoaded", () => {
-    toogleNavbar();
+    toggleNavbar();
     togglePassword();
     toggleTheme();
     animateAndRemoveAlert();

@@ -3,7 +3,7 @@ import { animate } from "https://cdn.jsdelivr.net/npm/motion@11.11.13/+esm"
 /**
  * this function handle navbar in small screen
  */
-export function toogleNavbar(){
+export function toggleNavbar(){
     const checkBoxToggleMenu = document.getElementById("toggleMenuCheckbox");
     const homeAnchores = document.querySelectorAll(".anchore");
     const overlay = document.querySelector(".overlay");

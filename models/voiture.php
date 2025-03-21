@@ -26,6 +26,7 @@ class Voiture extends MainModel
         voiture.moteur, 
         voiture.transmission, 
         marque.nom AS nom_marque,
+        marque.logo AS marque_logo,
         MIN(image_voiture.url) AS url_image
       FROM voiture
       JOIN marque ON voiture.id_marque = marque.id_marque

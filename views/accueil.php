@@ -205,6 +205,8 @@
 						</div>
 					</div>
 				</template>
+				<!--cars are by display dinamicly with js-->
+				
 				<div class="combustion-container cars-by-engine">
 					<div class="carousel max-w-full carousel-center bg-primary md:hidden rounded-box space-x-4 p-4">
 						<div class="carousel-item"></div>

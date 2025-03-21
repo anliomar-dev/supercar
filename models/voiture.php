@@ -25,14 +25,16 @@ class Voiture extends MainModel
         voiture.prix, 
         voiture.moteur, 
         voiture.transmission, 
-        marque.nom AS nom_marque 
-      FROM voiture 
-      JOIN marque 
-      ON voiture.id_marque = marque.id_marque
+        marque.nom AS nom_marque,
+        MIN(image_voiture.url) AS url_image
+      FROM voiture
+      JOIN marque ON voiture.id_marque = marque.id_marque
+      LEFT JOIN image_voiture ON voiture.id_voiture = image_voiture.id_voiture
     ";
     if (!empty($marque)) {
       $query .= " WHERE marque.nom = '" . addslashes($marque) . "'"; 
     }
+    $query .= " GROUP BY voiture.id_voiture";
     return $query;
   }
 }

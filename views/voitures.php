@@ -9,6 +9,10 @@
 	<title>voitures</title>
 </head>
 <body>
-    <h1>Hello bienvenue sur la page des voitures</h1>
+	<?php
+		if(isset($paginatedCars) && !empty($paginatedCars)){
+			var_dump($paginatedCars);
+		}
+	?>
 </body>
 </html>

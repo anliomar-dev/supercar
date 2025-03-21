@@ -4,6 +4,7 @@ namespace controllers;
 
 use app\MainController;
 use models\Voiture; // Import the 'models\Voiture' class
+use app\Paginator;
 
 class VoituresController extends MainController
 {
@@ -23,9 +24,13 @@ class VoituresController extends MainController
      */
     public function index(): void
     {
-        $param = $_GET["marque"];
-        $all_voitures = $this->voitureModel->getAll("voiture");
-        echo 'param'. $param . '<br/>';
-        var_dump($all_voitures);
+        $marque = isset($_GET["marque"]) ? $_GET["marque"] : "";
+        $queryCars = $this->voitureModel->all($marque);
+        $currentPage = $_GET['page'] ?? 1;
+        $perPage = 5;
+        $paginator = new Paginator($this->voitureModel->getConnection(), $queryCars, $perPage, $currentPage);
+        $paginatedCars = $paginator->getPaginationData();
+        //var_dump($paginationData);
+        $this->render("voitures", "", ['paginatedCars' => $paginatedCars]);
     }
 }

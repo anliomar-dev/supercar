@@ -33,7 +33,7 @@ class MarqueController extends MainController
         $currentPage = $_GET['page'] ?? 1;
         $perPage = 2;
         //$all_marques = $marqueModel->getAll("marque");
-        $paginator = new Paginator($this->marqueModel->getConnection(), $query, $perPage, $currentPage);
+        $paginator = new Paginator($this->voitureModel->getConnection(), $query, $perPage, $currentPage);
         $paginationData = $paginator->getPaginationData();
         var_dump($paginationData);
 

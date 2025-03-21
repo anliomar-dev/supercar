@@ -41,28 +41,28 @@ class SignupController extends MainController
                 self::setFlashMessageAndRender($warning_message, "alert-warning", "signup");
                 exit();
             }
-             try{
-                 // Data coming from the POST request
-                 $new_user = $this->userModele::create([
-                     "prenom" => $firstname,
-                     "nom" => $lastname,
-                     "adresse" => $address,
-                     "telephone" => $phone,
-                     "email" => $email,
-                     "mot_de_passe" => password_hash($password, PASSWORD_BCRYPT)
-                 ]);
-                 if(is_array($new_user)){
-                     $success_message = "Votre compte a été créé, vous pouvez désormais vous connecter";
-                     $this->setFlashMessage($success_message, "alert-success");
-                 }else{
-                     $error_message = "Un problème est survenur lors de la création de votre compte ! veuillez réassayer plus tard";
-                     $this->setFlashMessage($error_message, "alert-error");
-                 }
-             }catch (PDOException $exception) {
-                 error_log('Database error: ' . $exception->getMessage());
-                 $error_message = "Un problème est survenur lors de la création de votre compte ! veuillez réassayer plus tard";
-                 $this->setFlashMessage($error_message, "alert-error");
-             }
+            try{
+                // Data coming from the POST request
+                $new_user = $this->userModele::create([
+                    "prenom" => $firstname,
+                    "nom" => $lastname,
+                    "adresse" => $address,
+                    "telephone" => $phone,
+                    "email" => $email,
+                    "mot_de_passe" => password_hash($password, PASSWORD_BCRYPT)
+                ]);
+                if(is_array($new_user)){
+                    $success_message = "Votre compte a été créé, vous pouvez désormais vous connecter";
+                    $this->setFlashMessage($success_message, "alert-success");
+                }else{
+                    $error_message = "Un problème est survenur lors de la création de votre compte ! veuillez réassayer plus tard";
+                    $this->setFlashMessage($error_message, "alert-error");
+                }
+            }catch (PDOException $exception) {
+                error_log('Database error: ' . $exception->getMessage());
+                $error_message = "Un problème est survenur lors de la création de votre compte ! veuillez réassayer plus tard";
+                $this->setFlashMessage($error_message, "alert-error");
+            }
             $this->render("signup");
         }
         $this->render("signup");

@@ -60,7 +60,7 @@
 	<div class="personal-data-page bg-base-100 h-full w-full md:w-[900px] rounded-lg flex border">
 		<!-- sidebar -->
 		<div class="sidbar-container w-3/12 h-full shadow-lg hidden md:block">
-            <?php require_once ROOT . 'components/sidebar.php'; ?>
+      <?php require_once ROOT . 'components/sidebar.php'; ?>
 		</div>
 		<div class="personal-data-wrapper p-6 w-full md:w-9/12">
 			<div class="persona-data__header w-full flex justify-center">
@@ -86,15 +86,15 @@
 							</svg>
 							<!-- input password filed -->
 							<input type="password" placeholder="Ancien mot de passe" name="old_password"
-								   required class="grow password-field" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$"
-								   title="Le mot de passe doit contenir au moins 8 caractères, dont une majuscule, une minuscule, un chiffre, et un caractère spécial."
+								required class="grow password-field" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$"
+								title="Le mot de passe doit contenir au moins 8 caractères, dont une majuscule, une minuscule, un chiffre, et un caractère spécial."
 							/>
 
 							<!-- show password-->
 							<svg xmlns="http://www.w3.org/2000/svg" fill="none"
-								 viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-								 class="size-6 hover:text-secondary hover:cursor-pointer toggle-password-svg"
-								 data-password-input-type="text">
+								viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+								class="size-6 hover:text-secondary hover:cursor-pointer toggle-password-svg"
+								data-password-input-type="text">
 								<path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 0 1 0-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178Z" />
 								<path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
 							</svg>

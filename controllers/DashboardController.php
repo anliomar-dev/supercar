@@ -4,12 +4,16 @@ namespace controllers;
 
 use app\MainController;
 use app\Authentication;
+use models\Marque;
 
 class DashboardController extends MainController
 {
     private Authentication $auth;
+    private Marque $marqueModel; 
+    
     public function __construct(){
         $this->auth = new Authentication();
+        $this->marqueModel = new Marque();
     }
 
     public function index():void{
@@ -49,6 +53,7 @@ class DashboardController extends MainController
             echo "posted from mes_essais";
             exit();
         }
-        $this->render("demande_essai", "", ["ui" => "Nouvelle demande d'essai"]);
+        $all_brands = $this->marqueModel->getAllBrands();
+        $this->render("demande_essai", "", ["all_brands" => $all_brands]);
     }
 }

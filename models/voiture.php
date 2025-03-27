@@ -3,6 +3,7 @@
 namespace models;
 
 use app\MainModel;
+use PDO;
 
 class Voiture extends MainModel
 {
@@ -12,13 +13,14 @@ class Voiture extends MainModel
     $this->tableName = "voiture";
   }
 
-  /**
-   * Function to retrieve all cars, with an optional filter by brand.
-   * 
-   * @param $marque string (optional) The name of the brand to filter the results.
-   * @return array
-   */
-  public function all(string $marque = ""){
+    /**
+     * Function to retrieve all cars, with an optional filter by brand.
+     *
+     * @param $marque string (optional) The name of the brand to filter the results.
+     * @return array|string
+     */
+  public function all(string $marque = ""): array|string
+  {
     $query = "
       SELECT voiture.id_voiture, 
         voiture.nom AS nom_model, 
@@ -38,4 +40,19 @@ class Voiture extends MainModel
     $query .= " GROUP BY voiture.id_voiture";
     return $query;
   }
+
+    /**
+     * Function to retrieve all cars, with an optional filter by brand.
+     *
+     * @param int $brandId of the brand we want to get all cars
+     * @return array|string
+     */
+    public function allCarsByBrand(int $brandId): array|string
+    {
+        $query = "SELECT voiture.id_voiture, voiture.nom
+          FROM voiture
+          WHERE id_marque = $brandId;";
+        $statement = $this->_connection->query($query);
+        return $statement->fetchAll(PDO::FETCH_ASSOC);
+    }
 }

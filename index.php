@@ -53,7 +53,9 @@ if (!empty($_GET['p'])) {
                     $controllerInstance->getByColumn(["slug" => $params[1]]);
                 }
             }
-            require_once ROOT . 'components/footer.php';
+            if(!str_starts_with($controller, "Api")){
+                require_once ROOT . 'components/footer.php';
+            }
         }else{
             echo "404";
         }

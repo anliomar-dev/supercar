@@ -6,7 +6,6 @@
 		content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<link rel="stylesheet" href="/supercar/assets/css/styles.css">
-	<script src="/supercar/assets/js/dashboard.js" type="module" defer></script>
 	<title>Demande d'éssai</title>
 </head>
 <body>
@@ -85,19 +84,15 @@
 						</label>
 
 						<!-- brands -->
-						<select class="select input-bordered" name="marque" required>
-							<option disabled selected>choisir une marque</option>							
+						<select class="select input-bordered" id="brand" name="brand" required>
 							<?php foreach($all_brands as $brand):?>
 								<option value=<?php echo $brand["id_marque"]?>><?php echo $brand["nom"]?></option>
 							<?php endforeach; ?>	
 						</select>
 
 						<!-- cars -->
-						<select class="select input-bordered" name="marque" required>
-							<option disabled selected>choisir une voiture</option>							
-							<?php foreach($all_brands as $brand):?>
-								<option value=<?php echo $brand["id_marque"]?>><?php echo $brand["nom"]?></option>
-							<?php endforeach; ?>	
+						<select class="select input-bordered" id="car"  name="car" required>
+
 						</select>
 					</div>
 					<div class="buttons flex gap-x-2">
@@ -109,6 +104,8 @@
 		</div>
 	</div>
 </div>
+<script src="/supercar/assets/js/dashboard.js" type="module" defer></script>
+<script src="/supercar/assets/js/demande_essai.js" type="module" defer></script>
 </body>
 </html>
 

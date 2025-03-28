@@ -5,6 +5,7 @@ document.addEventListener("DOMContentLoaded", () => {
     toggleNavbar();
     togglePassword();
     toggleTheme();
+    animateAndRemoveAlert();
     const path = window.location.href.split('/');
     const currentPage = path[path.length - 1];
     document.querySelectorAll(`.${currentPage}`).forEach((element) => {

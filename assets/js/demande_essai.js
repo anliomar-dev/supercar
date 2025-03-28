@@ -1,3 +1,5 @@
+import {toggleNavbar, togglePassword, toggleTheme, animateAndRemoveAlert} from "./index.js";
+
 async function getCarsBybrand(brandId){
     try{
         const res = await fetch(`http://localhost/supercar/apicars?brand=${brandId}`, {

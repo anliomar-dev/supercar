@@ -55,13 +55,40 @@ abstract class MainController
         }
     }
 
+
+    /**
+     * Store an alert message in the session with its type.
+     *
+     * This method stores a flash message and its type (e.g., success, error, etc.)
+     * in the session, so it can be displayed on the next page load.
+     *
+     * @param string $message The alert message to store.
+     * @param string $type The type of the alert (e.g., 'warning', 'error', 'success', 'info').
+     *
+     * @return void
+     */
     protected static function setFlashMessage(string $message, string $type): void
     {
         $_SESSION['flash_message'] = ['message' => $message, 'type' => $type];
     }
 
-
-    protected static function setFlashMessageAndRender($message,$alert_type, $view_file):void{
+    /**
+     * Store an alert message in the session and render a view.
+     *
+     * This method first stores a flash message in the session using
+     * the `setFlashMessage` method, then renders the specified view file.
+     *
+     * @param string $message The alert message to store.
+     * @param string $alert_type The type of the alert (e.g., 'warning', 'error', 'success', 'info').
+     * @param string $view_file The name of the view file to render after storing the flash message.
+     *
+     * @return void
+     */
+    protected static function setFlashMessageAndRender(
+        string $message,
+        string $alert_type,
+        string $view_file):void
+    {
         self::setFlashMessage($message, $alert_type);
         self::render($view_file);
     }

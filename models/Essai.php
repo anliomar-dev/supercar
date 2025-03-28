@@ -6,11 +6,8 @@ use app\MainModel;
 
 class Essai extends MainModel
 {
-    public function __construct()
-    {
-        parent::__construct();
-        $this->tableName = "essais";
+    protected string $tableName = 'demande_essai';
+    public function __construct(array $attributes = []) {
+        parent::__construct($attributes);
     }
-
-
 }

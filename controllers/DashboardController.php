@@ -6,16 +6,20 @@ use app\MainController;
 use app\Authentication;
 use DateTime;
 use Exception;
+use models\Essai;
 use models\Marque;
+use PDOException;
 
 class DashboardController extends MainController
 {
     private Authentication $auth;
-    private Marque $marqueModel; 
+    private Marque $marqueModel;
+    private Essai $essaiModel;
     
     public function __construct(){
         $this->auth = new Authentication();
         $this->marqueModel = new Marque();
+        $this->essaiModel = new Essai();
     }
 
     public function index():void{
@@ -53,7 +57,7 @@ class DashboardController extends MainController
      * @throws Exception
      */
     public function demande_essai():void{
-        //$this->auth->is_authenticated();
+        $this->auth->is_authenticated();
         $all_brands = $this->marqueModel->getAllBrands();
         if($_SERVER["REQUEST_METHOD"] == "POST"){
             $date = $_POST["date"];
@@ -90,6 +94,29 @@ class DashboardController extends MainController
                 header('Location: demande_essai');
                 exit();
             }
+            try{
+                // Data coming from the POST request
+                $new_demande_essai = $this->essaiModel::create([
+                    "date_essai" => $date,
+                    "heure" => $time,
+                    "id_marque" => $brand,
+                    "id_voiture" => $car,
+                    "id_utilisateur" => $_SESSION["user_id"]
+                ]);
+                if(is_array($new_demande_essai)){
+                    $success_message = "Votre demande a été enregistré.";
+                    $this->setFlashMessage($success_message, "alert-success");
+                }else{
+                    $error_message = "Un problème est survenur lors de l'enregistrement de votre demande ! veuillez réassayer plus tard";
+                    $this->setFlashMessage($error_message, "alert-error");
+                }
+            }catch (PDOException $exception) {
+                error_log('Database error: ' . $exception->getMessage());
+                $error_message = "Un problème est survenur lors de l'enregistrement de votre demande ! veuillez réassayer plus tard";
+                $this->setFlashMessage($error_message, "alert-error");
+            }
+            header('Location: demande_essai');
+            exit();
         }
         $this->render("demande_essai", "", ["all_brands" => $all_brands]);
     }

@@ -14,7 +14,7 @@ class Marque extends MainModel
         $this->tableName = "marque";
     }
 
-    public function getAllBrands() {
+    public function getAllBrands(): array {
         $query = "SELECT * FROM marque";
         $statement = $this->_connection->query($query);
         return $statement->fetchAll(PDO::FETCH_ASSOC);

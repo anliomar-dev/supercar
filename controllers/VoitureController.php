@@ -6,11 +6,13 @@ use app\MainController;
 use models\Voiture; // Import the 'models\Voiture' class
 use app\Paginator;
 use models\Marque;
+use models\Image;
 
-class VoituresController extends MainController
+class VoitureController extends MainController
 {
     private Voiture $voitureModel;
-    private Marque $marqueModel; 
+    private Marque $marqueModel;
+    private Image $imageModel;
 
     /**
      * Constructor for initializing model "Voiture".
@@ -20,6 +22,7 @@ class VoituresController extends MainController
         // Ensure loadModel returns an instance of models\Voiture
         $this->voitureModel = $this->loadModel("Voiture");
         $this->marqueModel = new Marque();
+        $this->imageModel = new Image();
     }
 
     /**
@@ -63,4 +66,22 @@ class VoituresController extends MainController
         );
     }
 
+    public function getByColumn(array $params): void {
+        $column_name = key($params);
+        $value = $params[$column_name];
+        $car = $this->voitureModel->getByColumn([$column_name => $value]);
+        $brand = $this->marqueModel->getByColumn(["id_marque" => $car["id_marque"]]) ?? "";
+        $images = $this->imageModel->getCarImages($car["id_voiture"]);
+        //var_dump($car);
+        //var_dump($brand);
+        //var_dump($images);
+        $this->render(
+            "voiture-details", "",
+            [
+                "car" => $car,
+                "brand" => $brand,
+                "images" => $images
+            ]
+        );
+    }
 }

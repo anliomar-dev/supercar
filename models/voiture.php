@@ -14,7 +14,7 @@ class Voiture extends MainModel
   }
 
     /**
-     * Function to retrieve all cars, with an optional filter by brand.
+     * This function return a query that retrieve all cars, with an optional filter by brand.
      *
      * @param $marque string (optional) The name of the brand to filter the results.
      * @return array|string

@@ -75,6 +75,7 @@ abstract class MainModel
     {
         if ($this->_connection === null) {
             try {
+                // if test mode is true, use sqlite database to run tests
                 if($this->TESTS_MODE === "true"){
                     $this->_connection = new PDO('sqlite:' . dirname(__DIR__) . '/tests_db.sqlite3');
                 }else{
@@ -173,7 +174,6 @@ abstract class MainModel
     public static function create(array $attributes): array|null
     {
         try {
-            // Check if the connection is established
             // Create an instance and attempt to save
             $instance = new static($attributes);
             $saved = $instance->save();

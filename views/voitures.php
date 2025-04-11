@@ -60,7 +60,7 @@
 					<?php endif; ?>
 				</div>
 				<div class="cars-container w-full">
-					<div class="combustion-container cars-by-engine">
+					<div class="cars-by-engine">
 						<div class="cars grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-6 gap-y-6">
 							<?php foreach($paginated_cars["data"] as $car): ?>
 								<div class="border rounded-xl bg-base-200 shadow-lg max-w-xs px-4 py-4 mx-auto sm:mx-0">

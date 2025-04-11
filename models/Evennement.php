@@ -11,5 +11,7 @@
             parent::__construct();
             $this->tableName = "evennement";
         }
-
+        public function all(): array{
+            return $this->getAll('evennement');
+        }
     }

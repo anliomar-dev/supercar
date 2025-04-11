@@ -51,13 +51,6 @@ class VoituresController extends MainController
         }
 
         $all_brands = $this->marqueModel->getAllBrands();
-        /***$data = [
-            "paginated_cars" => $paginated_cars, 
-            "all_brands" => $all_brands,
-            "prev_url" => $prev_url,
-            "next_url" => $next_url
-        ];
-        var_dump($data);*/
 
         $this->render(
             "voitures", "", 

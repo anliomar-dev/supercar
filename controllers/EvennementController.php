@@ -14,7 +14,7 @@ class EvennementController extends MainController
      */
     public function __construct()
     {
-        $this->evennementModel = $this->loadModel("evennement");
+        $this->evennementModel = $this->loadModel("Evennement");
     }
 
     public function index():void{

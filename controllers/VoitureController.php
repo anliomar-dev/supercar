@@ -20,7 +20,7 @@ class VoitureController extends MainController
     public function __construct()
     {
         // Ensure loadModel returns an instance of models\Voiture
-        $this->voitureModel = $this->loadModel("Voiture");
+        $this->voitureModel = $this->loadModel("voiture");
         $this->marqueModel = new Marque();
         $this->imageModel = new Image();
     }

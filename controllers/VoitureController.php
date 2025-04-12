@@ -35,7 +35,7 @@ class VoitureController extends MainController
         $per_page = 5;
         $paginator = new Paginator($this->voitureModel->getConnection(), $query_cars, $per_page, $current_page);
         $paginated_cars = $paginator->getPaginationData();
-        $base_url = empty($marque) ? "/supercar/voitures" : "/supercar/voitures?marque=$marque";
+        $base_url = empty($marque) ? "/supercar/voiture" : "/supercar/voiture?marque=$marque";
         
         $total_pages = $paginated_cars["total_page"];
         $next_url = null;

@@ -25,10 +25,10 @@
 								?>
 							</div>
 							<ul tabindex="0" class="dropdown-content menu bg-base-100 rounded-box z-1 w-52 p-2 shadow-sm">
-								<li><a href="/supercar/voitures">Toutes</a></li>						
+								<li><a href="/supercar/voiture">Toutes</a></li>						
 								<?php foreach($all_brands as $brand):?>
 									<li>
-										<a href=<?php echo '/supercar/voitures?marque='.$brand['nom'];?>> 
+										<a href=<?php echo '/supercar/voiture?marque='.$brand['nom'];?>> 
 											<?php echo $brand["nom"]?>
 										</a>
 									</li>

@@ -30,7 +30,7 @@
 				<div class="lg:w-[1200px] flex justify-center items-center py-3 lg:py-8">
 					<div class="hero-mask"></div>
 					<div class="hero-img h-full">
-						<img src="http://localhost/supercar/public/images/hero-image.png" class="h-full" alt="">
+						<img src="/supercar/public/images/hero-image.png" class="h-full" alt="">
 					</div>
 				</div>
 			</div>

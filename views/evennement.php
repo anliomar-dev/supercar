@@ -27,7 +27,6 @@
 							</div>
 						</div>
 					</div>
-					
         <?php endforeach; ?>
 			<?php else: ?>
 				<div class="w-full flex justify-center items-center pb-52">

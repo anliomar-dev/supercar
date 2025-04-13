@@ -57,7 +57,11 @@ if (!empty($_GET['p'])) {
                 require_once ROOT . 'components/footer.php';
             }
         }else{
-            echo "404";
+            if($params[0] == 'api'){
+                echo "On est dans l'api";
+            }else{
+                echo "404";
+            }
         }
     }
 } else {

@@ -53,7 +53,9 @@ class Authentication extends MainController
     public function is_authenticated(): void
     {
         if (empty($_SESSION["user_id"]) || empty($_SESSION["csrf_token"])) {
-            header("Location: /supercar/login");
+            $next = $_SERVER['REQUEST_URI'];
+            $next = str_replace('/supercar/', '', $next); // on enlève le préfixe
+            header("Location: /supercar/login?next=" . $next);
             exit();
         }
         $session_timeout = 60;

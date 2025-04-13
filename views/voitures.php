@@ -78,7 +78,7 @@
 									</div>
 									<div class="body-card flex flex-col">
 										<div class="body-img">
-											<img src=<?php echo $car["url_image"] ? $car["url_image"] : "https://www.testo.com/images/not-available.jpg";?> class="rounded-lg model-img hover:scale-110 hover:transition hover:duration-300" alt="">
+											<img src='<?php echo $car["url_image"] ? $car["url_image"] : "https://www.testo.com/images/not-available.jpg";?>' class="rounded-lg model-img hover:scale-110 hover:transition hover:duration-300" alt="">
 										</div>
 										<div class="details py-3">
 											<h3 class="text-md font-bold py-2">Details</h3>
@@ -101,9 +101,10 @@
 											</div>
 										</div>
 									</div>
-									<div class="footer-card flex gap-y-2 box-border">
+									<div class="footer-card flex gap-y-2 gap-x-2 box-border">
 										<a href="#" class="btn btn-primary w-1/2 min-h-0 h-8">Essayer</a>
-										<a href="#" class="btn w-1/2 min-h-0 h-8 text-secondary">voir plus</a>
+										<a href="<?php echo '/supercar/voiture/'. $car["id_voiture"]; ?>"
+										   class="btn w-1/2 min-h-0 h-8 text-secondary bg-base-100">Details</a>
 									</div>
 								</div>
 							<?php endforeach; ?>

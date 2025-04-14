@@ -7,6 +7,6 @@
     class Dashboard extends MainController
     {
         public function index(): void {
-            echo "salut";
+            $this->render('dashboard', 'admin');
         }
     }

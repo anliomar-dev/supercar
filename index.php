@@ -9,69 +9,71 @@ define('ROOT', str_replace('index.php', '', $_SERVER['SCRIPT_FILENAME']));
 require_once(ROOT . 'app/MainModel.php');
 require_once(ROOT . 'app/MainController.php');
 
-if (!empty($_GET['p'])) {
-    $params = explode('/', $_GET['p']);
-    // if there is no param
-    if ($params[0] != '' && $params[0] != 'admin') {
-        $controller = ucfirst($params[0]);
-        $action = $params[1] ?? 'index';
-        $arguments = array_slice($params, 2);
+    if (!empty($_GET['p'])) {
+        $params = explode('/', $_GET['p']);
 
-        // Namespace for the controller
-        if($controller == 'Authentication'){
-            $controllerClass = 'app\\' . $controller;
-        } else{
-            $controllerClass = 'controllers\\' . $controller.'Controller';
-        }
-        // check if the contollerr exist
-        if(class_exists($controllerClass)) {
-            // load controller
-            if($controller == 'Authentication'){
-                require_once(ROOT . 'app/' . $controller. '.php');
-            }else{
-                require_once(ROOT . 'controllers/' . $controller.'Controller' . '.php');
-            }
-            // create a controller instance
-            $controllerInstance = new $controllerClass();
-            // if the contoller is authentication, a method is required, else return to 404
-            if(($controller == 'Authentication') && !method_exists($controllerInstance, $action)){
-                echo "404";
-                exit();
-            }
-
-            if (method_exists($controllerInstance, $action)) {
-                $controllerInstance->$action();
+        if ($params[0] != '') {
+            if ($params[0] == "admin") {
+                $controller = ucfirst($params[1]) ?? "Dashboard";
+                $action = $params[2] ?? 'index';
+                $arguments = array_slice($params, 3);
+                $controllerClass = 'admin\\' . $controller;
+                $controllerPath = ROOT . 'admin/' . $controller . '.php';
             } else {
-                // if the method does not exist we call getByColumn method
-                // to get a specific row by id if $params[1] is int else by slug
-                if (filter_var($params[1], FILTER_VALIDATE_INT)) {
-                    $id = intval($params[1]);
-                    $controllerInstance->getByColumn(["id_$params[0]" => $id]);
-                }
-                // $params[1] is not int: call get by slug
-                else {
-                    $controllerInstance->getByColumn(["slug" => $params[1]]);
+                $controller = ucfirst($params[0]);
+                $action = $params[1] ?? 'index';
+                $arguments = array_slice($params, 2);
+                if ($controller == 'Authentication') {
+                    $controllerClass = 'app\\' . $controller;
+                    $controllerPath = ROOT . 'app/' . $controller . '.php';
+                } else {
+                    $controllerClass = 'controllers\\' . $controller . 'Controller';
+                    $controllerPath = ROOT . 'controllers/' . $controller . 'Controller.php';
                 }
             }
-            if(!str_starts_with($controller, "Api")){
-                require_once ROOT . 'components/footer.php';
+
+            // check if the file exist before include it
+            if (file_exists($controllerPath)) {
+                require_once($controllerPath);
+
+                // check if the class exist before create the instance
+                if (class_exists($controllerClass)) {
+                    $controllerInstance = new $controllerClass();
+
+                    if (($controller == 'Authentication') && !method_exists($controllerInstance, $action)) {
+                        echo "404";
+                        exit();
+                    }
+
+                    if (method_exists($controllerInstance, $action)) {
+                        $controllerInstance->$action();
+                    } else {
+                        if (isset($params[1]) && filter_var($params[1], FILTER_VALIDATE_INT)) {
+                            $id = intval($params[1]);
+                            $controllerInstance->getByColumn(["id_$params[0]" => $id]);
+                        } else {
+                            $controllerInstance->getByColumn(["slug" => $params[1]]);
+                        }
+                    }
+
+                    if (!str_starts_with($controller, "Api") && $params[0] !== "admin") {
+                        require_once ROOT . 'components/footer.php';
+                    }
+
+                } else {
+                    echo "404 Not Found (class does not exist)";
+                }
+
+            } else {
+                echo "404 Not Found (file does not exist)";
             }
         }
-    }elseif($params[0] == 'admin'){
-        $controller = ucfirst($params[1]) ?? "Dashboard";
-        $action = $params[2] ?? 'index';
-        $arguments = array_slice($params, 3);
-        var_dump([$controller, $action, $arguments]);
-        require_once(ROOT . 'admin/' . $controller. '.php');
-        $controllerClass = 'admin\\' . $controller;
-        echo "l'interface d'administration";
+    } else {
+        require_once(ROOT . 'controllers/AccueilController.php');
+        $controllerClass = 'controllers\\AccueilController';
+        $controllerInstance = new $controllerClass();
+        $controllerInstance->index();
+        require_once ROOT . 'components/footer.php';
     }
-} else {
-    require_once(ROOT . 'controllers/AccueilController.php');
-    $controllerClass = 'controllers\\AccueilController';
-    $controllerInstance = new $controllerClass();
-    $controllerInstance->index();
-    require_once ROOT . 'components/footer.php';
-}
 
 

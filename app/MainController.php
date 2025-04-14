@@ -50,7 +50,9 @@ abstract class MainController
 
         // Check if the file exists before requiring it
         if (file_exists($viewPath)) {
-            require_once ROOT . 'components/navbar.php';
+            if($path != "admin"){
+                require_once ROOT . 'components/navbar.php';
+            }
             require_once($viewPath);
         } else {
             // Handle the error if the file doesn't exist

@@ -42,7 +42,10 @@ abstract class MainController
     protected static function render(string $viewName, string $path = "", array $data=[]): void {
 
         // Attempt to include the view file
-        $viewPath = ROOT . $path. '/views/' . $viewName . '.php';
+        $viewPath = ROOT . 'views/' . $viewName . '.php';
+        if($path != ""){
+            $viewPath = ROOT . 'views/'. $path . '/' . $viewName . '.php';
+        }
         extract($data);
 
         // Check if the file exists before requiring it

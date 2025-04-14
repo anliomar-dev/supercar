@@ -12,7 +12,7 @@ require_once(ROOT . 'app/MainController.php');
 if (!empty($_GET['p'])) {
     $params = explode('/', $_GET['p']);
     // if there is no param
-    if ($params[0] != '') {
+    if ($params[0] != '' && $params[0] != 'admin') {
         $controller = ucfirst($params[0]);
         $action = $params[1] ?? 'index';
         $arguments = array_slice($params, 2);
@@ -20,7 +20,7 @@ if (!empty($_GET['p'])) {
         // Namespace for the controller
         if($controller == 'Authentication'){
             $controllerClass = 'app\\' . $controller;
-        }else{
+        } else{
             $controllerClass = 'controllers\\' . $controller.'Controller';
         }
         // check if the contollerr exist
@@ -34,7 +34,7 @@ if (!empty($_GET['p'])) {
             // create a controller instance
             $controllerInstance = new $controllerClass();
             // if the contoller is authentication, a method is required, else return to 404
-            if($controller == 'Authentication' && !method_exists($controllerInstance, $action)){
+            if(($controller == 'Authentication') && !method_exists($controllerInstance, $action)){
                 echo "404";
                 exit();
             }
@@ -56,13 +56,15 @@ if (!empty($_GET['p'])) {
             if(!str_starts_with($controller, "Api")){
                 require_once ROOT . 'components/footer.php';
             }
-        }else{
-            if($params[0] == 'api'){
-                echo "On est dans l'api";
-            }else{
-                echo "404";
-            }
         }
+    }elseif($params[0] == 'admin'){
+        $controller = ucfirst($params[1]) ?? "Dashboard";
+        $action = $params[2] ?? 'index';
+        $arguments = array_slice($params, 3);
+        var_dump([$controller, $action, $arguments]);
+        require_once(ROOT . 'admin/' . $controller. '.php');
+        $controllerClass = 'admin\\' . $controller;
+        echo "l'interface d'administration";
     }
 } else {
     require_once(ROOT . 'controllers/AccueilController.php');

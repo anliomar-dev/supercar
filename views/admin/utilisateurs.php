@@ -145,9 +145,13 @@
 			</form>
         <?php else: ?>
         <?php endif; ?>
-		<form action="" class="add-form section hidden">
+		<!-- add form -->
+		<?php include_once (ROOT.'forms/adduser-form.php'); ?>
 
-		</form>
+		<!-- add form -->
+        <?php if(!empty($curent_user)): ?>
+            <?php include_once (ROOT.'forms/edituser-form.php'); ?>
+		<?php endif; ?>
 		<form action="" class="edit-form section hidden">salut les fraudes. edit</form>
 	</div>
 	<label for="my-drawer-2" aria-label="close sidebar" class="drawer-overlay z-10"></label>

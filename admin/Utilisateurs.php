@@ -62,7 +62,7 @@
                 $this->render(
                     "utilisateurs", "admin",
                     [
-                        "curent_user" => $paginated_users["data"][0],
+                        "current_user" => $paginated_users["data"][0],
                     ]
                 );
             }

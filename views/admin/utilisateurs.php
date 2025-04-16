@@ -9,7 +9,7 @@
 	<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 	<link href="https://cdn.jsdelivr.net/npm/daisyui@5/themes.css" rel="stylesheet" type="text/css" />
 	<script src="/supercar/assets/js/base.js" type="module" defer></script>
-	<title>Accueil</title>
+	<title>Utilisateurs</title>
 	<style>
         .drawer-side {
             overflow: auto;
@@ -148,11 +148,10 @@
 		<!-- add form -->
 		<?php include_once (ROOT.'forms/adduser-form.php'); ?>
 
-		<!-- add form -->
-        <?php if(!empty($curent_user)): ?>
+		<!-- aditform -->
+        <?php if(!empty($current_user)): ?>
             <?php include_once (ROOT.'forms/edituser-form.php'); ?>
 		<?php endif; ?>
-		<form action="" class="edit-form section hidden">salut les fraudes. edit</form>
 	</div>
 	<label for="my-drawer-2" aria-label="close sidebar" class="drawer-overlay z-10"></label>
     <?php include_once ("sidebar.php");?>

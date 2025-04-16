@@ -25,7 +25,7 @@
             if($brand_slug == ""){
                 $query = "SELECT * FROM marque";
             }else{
-                $query = "SELECT * FROM marque WHERE slug = $brand_slug";
+                $query = "SELECT * FROM marque WHERE slug = '$brand_slug'";
             }
             $current_page = $_GET['page'] ?? 1;
             $per_page = 6;
@@ -53,7 +53,7 @@
                 $this->render(
                     "marques", "admin",
                     [
-                        "paginated_users" => $paginated_brands,
+                        "paginated_brands" => $paginated_brands,
                         "prev_url" => $prev_url,
                         "next_url" => $next_url
                     ]
@@ -62,7 +62,7 @@
                 $this->render(
                     "marques", "admin",
                     [
-                        "curent_brand" => $paginated_brands["data"][0],
+                        "current_brand" => $paginated_brands["data"][0],
                     ]
                 );
             }

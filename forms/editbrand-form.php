@@ -4,6 +4,7 @@
             <div class="login-form-title flex justify-center">
                 <h2 class="text-xl font-bold font-comic py-4">Modifier</h2>
             </div>
+			<input type="hidden" name="action" value="edit">
             <div class="flex justify-center w-full">
                 <img src="<?php echo $current_brand["logo"]; ?>" class="max-w-[200px]" alt="<?php echo 'logo '. $current_brand["logo"]; ?>">
             </div>

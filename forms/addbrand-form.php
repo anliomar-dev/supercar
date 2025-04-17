@@ -3,6 +3,7 @@
         <div class="login-form-title flex justify-center">
             <h2 class="text-xl font-bold font-comic py-4">Ajouter une marque</h2>
         </div>
+		<input type="hidden" name="action" value="add">
         <div class="fields flex flex-col gap-y-3">
             <!-- /.fullname-fields -->
             <div class="fullname-fields grid grid-cols-1 md:grid-cols-2 gap-3">

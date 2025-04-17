@@ -88,7 +88,6 @@
 													</span>
 												</div>
 											</div>
-
 											<div>
 												<div class="font-bold"><?php echo ucfirst($user["nom"]); ?></div>
 												<div class="text-sm opacity-50"><?php echo ucfirst($user["prenom"]); ?></div>

@@ -1,7 +1,7 @@
 <div class="hidden add-form section w-full flex justify-center bg-base-100 py-10 rounded-lg">
     <form action="" method="POST" class="w-1/2 flex flex-col gap-y-2 bg-base-100 p-5 rounded-lg shadow-md">
         <div class="login-form-title flex justify-center">
-            <h2 class="text-xl font-bold font-comic py-4">Modifier</h2>
+            <h2 class="text-xl font-bold font-comic py-4">Ajouter une nouvelle voiture</h2>
         </div>
         <input type="hidden" name="action" value="add">
         <div class="fields flex flex-col gap-y-3">
@@ -15,9 +15,11 @@
                 </label>
                 <select class="select" name="id_marque">
                     <option disabled selected value="0">Choisis une marque</option>
-                    <option>Crimson</option>
-                    <option>Amber</option>
-                    <option>Velvet</option>
+                    <?php if(!empty($all_brands)): ?>
+						<?php foreach($all_brands as $brand): ?>
+							<option value=<?php echo $brand["id_marque"]; ?>><?php echo $brand["nom"]; ?></option>
+						<?php endforeach; ?>
+					<?php endif;?>
                 </select>
             </div>
 
@@ -67,6 +69,6 @@
                 </label>
             </fieldset>
         </div>
-        <button class="btn btn-primary min-h-0 h-10 font-bold my-2"><S>Modifier</S></button>
+        <button class="btn btn-primary min-h-0 h-10 font-bold my-2">Ajouter</button>
     </form>
 </div>

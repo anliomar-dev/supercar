@@ -4,11 +4,13 @@
 
     use app\MainController;
     use app\Paginator;
+    use models\Marque;
     use models\Voiture;
 
     class Voitures extends MainController
     {
         private Voiture $voitureModele;
+        private Marque $marqueModel;
 
 
         /**
@@ -18,6 +20,7 @@
         {
             // Ensure loadModel returns an instance of models\Voiture
             $this->voitureModele = $this->loadModel("voiture");
+            $this->marqueModel = new Marque();
 
         }
         public function index(): void {
@@ -55,10 +58,13 @@
                     $base_url . "&page=$prev_page";
             }
 
+            $all_brands = $this->marqueModel->getAllBrands();
+
             if ($slug == ""){
                 $this->render(
                     "voitures", "admin",
                     [
+                        "all_brands" => $all_brands,
                         "paginated_cars" => $paginated_cars,
                         "prev_url" => $prev_url,
                         "next_url" => $next_url
@@ -68,6 +74,7 @@
                 $this->render(
                     "voitures", "admin",
                     [
+                        "all_brands" => $all_brands,
                         "current_car" => $paginated_cars["data"][0],
                     ]
                 );

@@ -1,6 +1,6 @@
 <footer class="footer footer-center bg-base-300 text-base-content rounded p-10">
 	<nav class="flex flex-col md:flex-row md:gap-x-6 gap-y-4">
-		<a href="#about" class="link link-hover px-0">Apropos</a>
+		<a href="/supercar#about" class="link link-hover px-0">Apropos</a>
 		<a href="/supercar/contact" class="link link-hover px-0">Contact</a>
 		<a href="" class="link link-hover px-0">Politique de confidentialité</a>
 		<a href="" class="link link-hover px-0">Mentions légales</a>

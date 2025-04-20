@@ -15,6 +15,9 @@ require_once(ROOT . 'app/MainController.php');
         if ($params[0] != '') {
             if ($params[0] == "admin") {
                 $controller = ucfirst($params[1]) ?? "Dashboard";
+                if(empty($controller)){
+                    $controller = "Dashboard";
+                }
                 $action = $params[2] ?? 'index';
                 $arguments = array_slice($params, 3);
                 $controllerClass = 'admin\\' . $controller;
@@ -48,11 +51,15 @@ require_once(ROOT . 'app/MainController.php');
                     if (method_exists($controllerInstance, $action)) {
                         $controllerInstance->$action();
                     } else {
-                        if (isset($params[1]) && filter_var($params[1], FILTER_VALIDATE_INT)) {
-                            $id = intval($params[1]);
-                            $controllerInstance->getByColumn(["id_$params[0]" => $id]);
-                        } else {
-                            $controllerInstance->getByColumn(["slug" => $params[1]]);
+                        if(!empty($params[1])){
+                            if (isset($params[1]) && filter_var($params[1], FILTER_VALIDATE_INT)) {
+                                $id = intval($params[1]);
+                                $controllerInstance->getByColumn(["id_$params[0]" => $id]);
+                            } else {
+                                $controllerInstance->getByColumn(["slug" => $params[1]]);
+                            }
+                        }else{
+                            $controllerInstance->index();
                         }
                     }
 

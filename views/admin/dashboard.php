@@ -57,7 +57,9 @@
 			</div>
 		</a>
 
-		<div class="card py-3 shadow-md bg-gradient-to-r from-orange-100 to-white">
+		<a href="#" class="card py-3 shadow-md bg-gradient-to-r from-orange-100 to-white
+			hover:from-orange-200 hover:to-base-200 hover:scale-105 hover:shadow-md
+			hover:-translate-y-3 transition-all duration-400 ease-in-out">
 			<div class="card-body items-center justify-center">
 				<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-images-icon lucide-images">
 					<path d="M18 22H4a2 2 0 0 1-2-2V6"/>
@@ -67,9 +69,11 @@
 				</svg>
 				<h2 class="font-bold text-lg">Voitures images</h2>
 			</div>
-		</div>
+		</a>
 
-		<div class="card py-3 shadow-md bg-gradient-to-r from-orange-100 to-white">
+		<a class="card py-3 shadow-md bg-gradient-to-r from-orange-100 to-white
+			hover:from-orange-200 hover:to-base-200 hover:scale-105 hover:shadow-md
+			hover:-translate-y-3 transition-all duration-400 ease-in-out">
 			<div class="card-body items-center justify-center">
 				<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-file-stack-icon lucide-file-stack">
 					<path d="M21 7h-3a2 2 0 0 1-2-2V2"/>
@@ -79,9 +83,11 @@
 				</svg>
 				<h2 class="font-bold text-lg">Demandes essai</h2>
 			</div>
-		</div>
+		</a>
 
-		<div class="card py-6 shadow-md bg-gradient-to-r from-orange-100 to-white">
+		<a class="card py-3 shadow-md bg-gradient-to-r from-orange-100 to-white
+			hover:from-orange-200 hover:to-base-200 hover:scale-105 hover:shadow-md
+			hover:-translate-y-3 transition-all duration-400 ease-in-out">
 			<div class="card-body items-center justify-center">
 				<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-calendar-days-icon lucide-calendar-days">
 					<path d="M8 2v4"/>
@@ -97,9 +103,11 @@
 				</svg>
 				<h2 class="font-bold text-lg">Evennements</h2>
 			</div>
-		</div>
+		</a>
 
-		<div class="card py-3 shadow-md bg-gradient-to-r from-orange-100 to-white">
+		<a class="card py-3 shadow-md bg-gradient-to-r from-orange-100 to-white
+			hover:from-orange-200 hover:to-base-200 hover:scale-105 hover:shadow-md
+			hover:-translate-y-3 transition-all duration-400 ease-in-out">
 			<div class="card-body items-center justify-center">
 				<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-mails-icon lucide-mails">
 					<rect width="16" height="13" x="6" y="4" rx="2"/>
@@ -108,14 +116,14 @@
 				</svg>
 				<h2 class="font-bold text-lg">Contacts</h2>
 			</div>
-		</div>
+		</a>
 
 	</div>
 </div>
 
 <!-- Pied de page -->
 <footer class="text-center text-md bg-base-300 text-base-content py-8">
-	Copyright © 2025 - All right reserved by ACME Industries Ltd
+	Copyright © <?php $date = new DateTime(); echo $date->format("Y"); ?> - All right reserved by Supercar
 </footer>
 
 </body>

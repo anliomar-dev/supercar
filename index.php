@@ -51,15 +51,28 @@ require_once(ROOT . 'app/MainController.php');
                     if (method_exists($controllerInstance, $action)) {
                         $controllerInstance->$action();
                     } else {
-                        if(!empty($params[1])){
-                            if (isset($params[1]) && filter_var($params[1], FILTER_VALIDATE_INT)) {
-                                $id = intval($params[1]);
-                                $controllerInstance->getByColumn(["id_$params[0]" => $id]);
-                            } else {
-                                $controllerInstance->getByColumn(["slug" => $params[1]]);
+                        if($params[0] == "admin"){
+                            if(!empty($params[2])){
+                                if (isset($params[2]) && filter_var($params[2], FILTER_VALIDATE_INT)) {
+                                    $id = intval($params[2]);
+                                    $controllerInstance->getByColumn(["id_$params[1]" => $id]);
+                                } else {
+                                    $controllerInstance->getByColumn(["slug" => $params[2]]);
+                                }
+                            }else{
+                                $controllerInstance->index();
                             }
                         }else{
-                            $controllerInstance->index();
+                            if(!empty($params[1])){
+                                if (isset($params[1]) && filter_var($params[1], FILTER_VALIDATE_INT)) {
+                                    $id = intval($params[1]);
+                                    $controllerInstance->getByColumn(["id_$params[0]" => $id]);
+                                } else {
+                                    $controllerInstance->getByColumn(["slug" => $params[1]]);
+                                }
+                            }else{
+                                $controllerInstance->index();
+                            }
                         }
                     }
 

@@ -8,7 +8,7 @@
     <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <link href="https://cdn.jsdelivr.net/npm/daisyui@5/themes.css" rel="stylesheet" type="text/css" />
-    <script src="/supercar/assets/js/base.js" type="module" defer></script>
+    <script src="/supercar/assets/js/admin/base.js" type="module" defer></script>
     <title>Marques</title>
     <style>
         .drawer-side {
@@ -29,18 +29,18 @@
         <!-- Page content here -->
         <?php include_once ("navbar.php");?>
         <div class="flex justify-between items-center w-full mt-5 py-3">
-            <?php if(isset($_GET["slug"])): ?>
+            <?php if(isset($_GET["essai"])): ?>
                 <div class="join">
-                    <a href="/supercar/admin/voitures" class="btn btn-accent btn-outline rounded-lg">
+                    <a href="/supercar/admin/demande_essais" class="btn btn-accent btn-outline rounded-lg">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18" />
                         </svg>
-                        Liste des voitures
+                        Liste des demandes d'essais
                     </a>
                 </div>
             <?php else: ?>
                 <div class="join">
-                    <input class="join-item btn section-btn" data-section="list-form" type="radio" name="options" value="1" aria-label="Voitures" checked />
+                    <input class="join-item btn section-btn" data-section="list-form" type="radio" name="options" value="1" aria-label="liste des demandes" checked />
                     <input class="join-item btn section-btn" data-section="add-form" type="radio" name="options" value="2" aria-label="Ajouter" />
                 </div>
             <?php endif; ?>
@@ -52,7 +52,7 @@
                 </button>
             </div>
         </div>
-        <?php if(isset($paginated_cars["data"])): ?>
+        <?php if(isset($paginated_tests["data"])): ?>
             <form class="overflow-x-auto w-full bg-base-100 rounded-lg shadow-sm section list-form">
                 <table class="table">
                     <!-- head -->
@@ -63,42 +63,46 @@
                                 <input type="checkbox" class="checkbox" />
                             </label>
                         </th>
-                        <th>Marque</th>
-                        <th>Modèle</th>
-                        <th>Prix (euro)</th>
+                        <th>Date et heure</th>
+                        <th>Voiture</th>
+                        <th>Utilisateur</th>
                         <th></th>
                     </tr>
                     </thead>
                     <tbody>
 
                     <?php $i = 1; ?>
-                    <?php foreach($paginated_cars["data"] as $car): ?>
+                    <?php foreach($paginated_tests["data"] as $test): ?>
                         <tr>
                             <th>
                                 <label>
                                     <input type="checkbox" name="<?= $i ?>" class="checkbox" />
                                 </label>
                             </th>
+							<td>
+								<div class="flex items-center gap-3">
+									<div>
+										<div class="font-bold"><?php echo $test["date_essai"]; ?></div>
+										<div class="text-sm opacity-50"><?php echo $test["heure"]; ?></div>
+									</div>
+								</div>
+							</td>
                             <td>
-                                <div class="flex items-center gap-3">
-                                    <div class="avatar">
-                                        <div class="mask mask-squircle h-10 w-10">
-                                            <img
-                                                src="<?php echo $car["marque_logo"]; ?>"
-                                                alt="Avatar Tailwind CSS Component" />
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <div class="font-bold"><?php echo $car["nom_marque"]; ?></div>
-                                    </div>
-                                </div>
+                                <span><?php echo $test["voiture"]; ?></span>
                             </td>
                             <td>
-                                <span><?php echo $car["modele"]; ?></span>
-                            </td>
-                            <td><?php echo $car["prix"] . ' €'; ?></td>
+                                <?php if($test["status"] == "en_attente"): ?>
+									<div class="badge bg-blue-500 text-white"><?php echo "en attente"; ?></div>
+                                <?php elseif($test["status"] == "confirme"): ?>
+									<div class="badge bg-success text-white"><?php echo "confirmée"; ?></div>
+                                <?php elseif($test["status"] == "annule"): ?>
+									<div class="badge bg-error text-white"><?php echo "annulée"; ?></div>
+                                <?php elseif($test["status"] == "termine"): ?>
+									<div class="badge bg-base-300"><?php echo "terminée"; ?></div>
+                                <?php endif; ?>
+							</td>
                             <th>
-                                <a class="btn btn-ghost btn-xs" href="/supercar/admin/voitures?slug=<?php echo $car["modele_slug"]; ?>">
+                                <a class="btn btn-ghost btn-xs" href="/supercar/admin/demande_essais?essai=<?php echo $test["id_demande_essai"]; ?>">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
                                         <path stroke-linecap="round" stroke-linejoin="round" d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897l8.932-8.931Zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0 1 15.75 21H5.25A2.25 2.25 0 0 1 3 18.75V8.25A2.25 2.25 0 0 1 5.25 6H10" />
                                     </svg>
@@ -114,7 +118,7 @@
                         <td colspan="4">
                             <div class="flex justify-end p-4">
                                 <!-- Pagination -->
-                                <?php if($paginated_cars["total_page"] > 0):?>
+                                <?php if($paginated_tests["total_page"] > 1):?>
                                     <div class="join">
                                         <!--prev button-->
                                         <?php if(empty($prev_url) || $prev_url == null):?>
@@ -124,7 +128,7 @@
                                         <?php endif; ?>
 
                                         <a class="join-item btn btn-primary text-white">
-                                            <?php echo $paginated_cars["current_page"]; ?>/<?php echo $paginated_cars["total_page"]; ?>
+                                            <?php echo $paginated_tests["current_page"]; ?>/<?php echo $paginated_tests["total_page"]; ?>
                                         </a>
 
                                         <!--next button-->
@@ -146,8 +150,10 @@
         <!-- add form -->
         <?php include_once (ROOT.'forms/addcar-form.php'); ?>
         <!-- adit form -->
+
         <?php if(!empty($current_car)): ?>
-            <?php include_once (ROOT.'forms/editcar-form.php'); ?>
+			<!-- <?php include_once (ROOT.'forms/editcar-form.php'); ?> -->
+            <h2>edit form</h2>
         <?php endif; ?>
     </div>
     <label for="my-drawer-2" aria-label="close sidebar" class="drawer-overlay z-10"></label>

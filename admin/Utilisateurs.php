@@ -17,7 +17,7 @@
         public function __construct()
         {
             // Ensure loadModel returns an instance of models\Utilisateur
-            $this->utilisateurModele = $this->loadModel("utilisateur");
+            $this->utilisateurModele = $this->loadModel("Utilisateur");
 
         }
         public function index(): void {

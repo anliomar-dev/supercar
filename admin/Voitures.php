@@ -19,7 +19,7 @@
         public function __construct()
         {
             // Ensure loadModel returns an instance of models\Voiture
-            $this->voitureModele = $this->loadModel("voiture");
+            $this->voitureModele = $this->loadModel("Voiture");
             $this->marqueModel = new Marque();
 
         }

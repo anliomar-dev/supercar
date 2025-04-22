@@ -5,10 +5,12 @@
     use app\MainController;
     use app\Paginator;
     use models\DemandeEssai;
+    use models\Marque;
 
     class Demande_essais extends MainController
     {
         private DemandeEssai $demandeEssaiModel;
+        private Marque $marqueModel;
 
 
         /**
@@ -18,6 +20,7 @@
         {
             // Ensure loadModel returns an instance of models\Utilisateur
             $this->demandeEssaiModel = $this->loadModel("demandeEssai");
+            $this->marqueModel = new Marque;
 
         }
         public function index(): void {
@@ -56,6 +59,8 @@
                     $base_url . "&page=$prev_page";
             }
 
+            $all_brands = $this->marqueModel->getAllBrands();
+
             // If the parameter test_id is 0, it means it was not set in the URL, so we return all test drive requests (demandes d'essai).
             // Otherwise, we return the details of the test drive corresponding to the ID passed in the URL.
             if ($test_id == 0){
@@ -63,6 +68,7 @@
                     "demande_essais", "admin",
                     [
                         "paginated_tests" => $paginated_tests,
+                        "all_brands" => $all_brands,
                         "prev_url" => $prev_url,
                         "next_url" => $next_url
                     ]
@@ -71,6 +77,7 @@
                 $this->render(
                     "demande_essais", "admin",
                     [
+                        "all_brands" => $all_brands,
                         "current_test" => $paginated_tests["data"][0],
                     ]
                 );

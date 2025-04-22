@@ -9,7 +9,7 @@
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <link href="https://cdn.jsdelivr.net/npm/daisyui@5/themes.css" rel="stylesheet" type="text/css" />
     <script src="/supercar/assets/js/admin/base.js" type="module" defer></script>
-    <title>Marques</title>
+    <title>Demandes d'essais</title>
     <style>
         .drawer-side {
             overflow: auto;
@@ -148,7 +148,7 @@
         <?php else: ?>
         <?php endif; ?>
         <!-- add form -->
-        <?php include_once (ROOT.'forms/addcar-form.php'); ?>
+        <?php include_once(ROOT . 'forms/add-test-drive-form.php'); ?>
         <!-- adit form -->
 
         <?php if(!empty($current_car)): ?>

@@ -8,7 +8,8 @@
     "psr-4": {
       "controllers\\": "controllers/",
       "models\\": "models/",
-      "app\\": "app/"
+      "app\\": "app/",
+      "admin\\": "admin/"
     }
   },
   "require-dev": {

@@ -1,8 +1,10 @@
 import {toggleNavbar, togglePassword, toggleTheme, animateAndRemoveAlert} from "./index.js";
+const url = window.location.href;
+const baseUrl = url.split("/supercar/")[0];
 
 async function getCarsBybrand(brandId){
     try{
-        const res = await fetch(`http://localhost/supercar/apicars?brand=${brandId}`, {
+        const res = await fetch(`${baseUrl}/supercar/apicars?brand=${brandId}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',

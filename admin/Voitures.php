@@ -2,12 +2,13 @@
 
     namespace admin;
 
+    use AllowDynamicProperties;
     use app\MainController;
     use app\Paginator;
     use models\Marque;
-    use models\Voiture;
+    use models\Voiture; // Import the 'models\Voiture' class
 
-    class Voitures extends MainController
+    #[AllowDynamicProperties] class Voitures extends MainController
     {
         private Voiture $voitureModele;
         private Marque $marqueModel;
@@ -18,7 +19,7 @@
         public function __construct()
         {
             // Ensure loadModel returns an instance of models\Voiture
-            $this->voitureModele = new Voiture();
+            $this->voitureModele = $this->loadModel("voiture");
             $this->marqueModel = new Marque();
 
         }

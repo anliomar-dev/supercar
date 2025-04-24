@@ -14,7 +14,6 @@ async function getCarsBybrand(brandId){
         if(!res.ok){
             throw new Error(res.statusText);
         }
-        console.log(res.text())
         return res.json()
     }catch(err){
         console.log(err)

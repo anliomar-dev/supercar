@@ -4,7 +4,7 @@ if (session_status() == PHP_SESSION_NONE) {
 }
 // Define a constant to store the root directory
 define('ROOT', str_replace('index.php', '', $_SERVER['SCRIPT_FILENAME']));
-require_once __DIR__ . '/vendor/autoload.php';
+require_once __DIR__ . '/vendor/autoload.php'; //autoload
 
 
 require_once(ROOT . 'app/MainModel.php');

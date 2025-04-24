@@ -12,7 +12,6 @@
         private Voiture $voitureModele;
         private Marque $marqueModel;
 
-
         /**
          * Constructor for initializing model "Voiture".
          */

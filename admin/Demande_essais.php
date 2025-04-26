@@ -49,14 +49,12 @@
 
             if($total_pages > 1 && $current_page < $total_pages){
                 $next_page = $current_page + 1;
-                $next_url = empty($marque) ? $base_url . "?page=$next_page" :
-                    $base_url . "&page=$next_page";
+                $next_url = $base_url . "?page=$next_page";
             }
 
             if($total_pages > 1 && $current_page > 1){
                 $prev_page = $current_page - 1;
-                $prev_url = empty($marque) ? $base_url . "?page=$prev_page" :
-                    $base_url . "&page=$prev_page";
+                $prev_url = $base_url . "?page=$prev_page";
             }
 
             $all_brands = $this->marqueModel->getAllBrands();

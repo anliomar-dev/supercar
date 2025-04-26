@@ -1,8 +1,11 @@
 import {toggleNavbar, toggleTheme, animateAndRemoveAlert, togglePassword} from "../index.js";
 //import { animate } from "https://cdn.jsdelivr.net/npm/motion@11.11.13/+esm"
-console.log("ok");
 document.addEventListener("DOMContentLoaded", () => {
-    const path = window.location.href.split('/');
+    let path = window.location.href;
+    if (path.endsWith("/")) {
+        path = path.slice(0, -1); // supprime le dernier /
+    }
+    path = path.split('/');
     const currentPage = path[path.length - 1].split('?')[0];
     document.querySelectorAll(`.${currentPage}`).forEach((element) => {
         element.classList.add("bg-primary");

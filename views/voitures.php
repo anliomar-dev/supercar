@@ -103,7 +103,7 @@
 									</div>
 									<div class="footer-card flex gap-y-2 gap-x-2 box-border">
 										<a href="#" class="btn btn-primary w-1/2 min-h-0 h-8">Essayer</a>
-										<a href="<?php echo '/supercar/voiture/'. $car["id_voiture"]; ?>"
+										<a href="<?php echo '/supercar/voiture/'. $car["id_modele"]; ?>"
 										   class="btn w-1/2 min-h-0 h-8 text-secondary bg-base-100">Details</a>
 									</div>
 								</div>

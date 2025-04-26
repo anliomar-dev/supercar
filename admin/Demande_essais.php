@@ -4,12 +4,12 @@
 
     use app\MainController;
     use app\Paginator;
-    use models\DemandeEssai;
+    use models\Essai;
     use models\Marque;
 
     class Demande_essais extends MainController
     {
-        private DemandeEssai $demandeEssaiModel;
+        private Essai $demandeEssaiModel;
         private Marque $marqueModel;
 
 
@@ -19,7 +19,7 @@
         public function __construct()
         {
             // Ensure loadModel returns an instance of models\Utilisateur
-            $this->demandeEssaiModel = $this->loadModel("DemandeEssai");
+            $this->demandeEssaiModel = $this->loadModel("Essai");
             $this->marqueModel = new Marque;
 
         }
@@ -27,13 +27,13 @@
             // the id of the test drive (demande d'essai)
             $test_id = $_GET["essai"] ?? 0;
             if($test_id == 0){
-                $query = "SELECT demande_essai.id_demande_essai, demande_essai.date_essai, 
-                        demande_essai.heure, demande_essai.status, voiture.nom AS voiture
-                        FROM demande_essai
-                        JOIN voiture ON voiture.id_voiture = demande_essai.id_voiture
+                $query = "SELECT essai.id_demande_essai, essai.date_essai, 
+                        essai.heure, essai.status, modele.nom AS voiture
+                        FROM essai
+                        JOIN modele ON modele.id_modele = essai.id_modele
                      ";
             }else{
-                $query = "SELECT * FROM demande_essai WHERE id_demande_essai = $test_id";
+                $query = "SELECT * FROM essai WHERE id_demande_essai = $test_id";
             }
             $current_page = $_GET['page'] ?? 1;
             $per_page = 6;

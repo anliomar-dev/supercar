@@ -71,7 +71,7 @@ class VoitureController extends MainController
         $value = $params[$column_name];
         $car = $this->voitureModel->getByColumn([$column_name => $value]);
         $brand = $this->marqueModel->getByColumn(["id_marque" => $car["id_marque"]]) ?? "";
-        $images = $this->imageModel->getCarImages($car["id_voiture"]);
+        $images = $this->imageModel->getCarImages($car["id_modele"]);
         //var_dump($car);
         //var_dump($brand);
         //var_dump($images);

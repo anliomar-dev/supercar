@@ -28,13 +28,13 @@
             if($slug == ""){
                 $query = "
                     SELECT marque.nom AS nom_marque, marque.logo AS marque_logo, 
-                           voiture.id_voiture AS id_voiture, voiture.nom AS modele, 
-                           voiture.prix AS prix, voiture.slug AS modele_slug
-                    FROM voiture
-                    JOIN marque ON marque.id_marque = voiture.id_marque
+                           modele.id_modele AS id_modele, modele.nom AS modele, 
+                           modele.prix AS prix, modele.slug AS modele_slug
+                    FROM modele
+                    JOIN marque ON marque.id_marque = modele.id_marque
                 ";
             }else{
-                $query = "SELECT * FROM voiture WHERE slug = '$slug'";
+                $query = "SELECT * FROM modele WHERE slug = '$slug'";
             }
             $current_page = $_GET['page'] ?? 1;
             $per_page = 6;

@@ -19,8 +19,8 @@
 
         }
         public function index(): void {
-            $event = $_GET["event"] ?? "";
-            if($event == ""){
+            $contact = $_GET["contact"] ?? "";
+            if($contact == ""){
                 $query = "
                     SELECT evennement.id_evennement, evennement.titre, evennement.date_debut, evennement.date_fin, evennement.image, evennement.location
                     FROM evennement ORDER BY date_debut, date_fin

@@ -100,7 +100,7 @@ class DashboardController extends MainController
                     "date_essai" => $date,
                     "heure" => $time,
                     "id_marque" => $brand,
-                    "id_voiture" => $car,
+                    "id_modele" => $car,
                     "id_utilisateur" => $_SESSION["user_id"]
                 ]);
                 if(is_array($new_demande_essai)){

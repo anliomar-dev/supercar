@@ -22,19 +22,18 @@
             $contact = $_GET["contact"] ?? "";
             if($contact == ""){
                 $query = "
-                    SELECT evennement.id_evennement, evennement.titre, evennement.date_debut, evennement.date_fin, evennement.image, evennement.location
-                    FROM evennement ORDER BY date_debut, date_fin
+                    SELECT * FROM contact
                 ";
             }else{
-                $query = "SELECT * FROM evennement WHERE id_evennement = 'event'";
+                $query = "SELECT * FROM contact WHERE id_contact = $contact";
             }
             $current_page = $_GET['page'] ?? 1;
             $per_page = 6;
-            $paginator = new Paginator($this->eventModel->getConnection(), $query, $per_page, $current_page);
-            $paginated_events = $paginator->getPaginationData();
-            $base_url = "/supercar/admin/voitures";
+            $paginator = new Paginator($this->contactModel->getConnection(), $query, $per_page, $current_page);
+            $paginated_contacts = $paginator->getPaginationData();
+            $base_url = "/supercar/admin/contactes";
 
-            $total_pages = $paginated_events["total_page"];
+            $total_pages = $paginated_contacts["total_page"];
             $next_url = null;
             $prev_url = null;
 
@@ -50,20 +49,20 @@
                     $base_url . "&page=$prev_page";
             }
 
-            if ($event == ""){
+            if ($contact == ""){
                 $this->render(
-                    "evennements", "admin",
+                    "contacts", "admin",
                     [
-                        "paginated_events" => $paginated_events,
+                        "paginated_contacts" => $paginated_contacts,
                         "prev_url" => $prev_url,
                         "next_url" => $next_url,
                     ]
                 );
             }else{
                 $this->render(
-                    "evennements", "admin",
+                    "contacts", "admin",
                     [
-                        "current_event" => $paginated_events["data"][0],
+                        "current_contact" => $paginated_contacts["data"][0],
                     ]
                 );
             }

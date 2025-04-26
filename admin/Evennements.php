@@ -26,13 +26,13 @@
                     FROM evennement ORDER BY date_debut, date_fin
                 ";
             }else{
-                $query = "SELECT * FROM evennement WHERE id_evennement = 'event'";
+                $query = "SELECT * FROM evennement WHERE id_evennement = $event";
             }
             $current_page = $_GET['page'] ?? 1;
             $per_page = 6;
             $paginator = new Paginator($this->eventModel->getConnection(), $query, $per_page, $current_page);
             $paginated_events = $paginator->getPaginationData();
-            $base_url = "/supercar/admin/voitures";
+            $base_url = "/supercar/admin/evennements";
 
             $total_pages = $paginated_events["total_page"];
             $next_url = null;

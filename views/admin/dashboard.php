@@ -71,7 +71,7 @@
 			</div>
 		</a>
 
-		<a class="card py-3 shadow-md bg-gradient-to-r from-orange-100 to-white
+		<a href="/supercar/admin/demande_essais" class="card py-3 shadow-md bg-gradient-to-r from-orange-100 to-white
 			hover:from-orange-200 hover:to-base-200 hover:scale-105 hover:shadow-md
 			hover:-translate-y-3 transition-all duration-400 ease-in-out">
 			<div class="card-body items-center justify-center">
@@ -105,7 +105,7 @@
 			</div>
 		</a>
 
-		<a class="card py-3 shadow-md bg-gradient-to-r from-orange-100 to-white
+		<a href="/supercar/admin/contacts" class="card py-3 shadow-md bg-gradient-to-r from-orange-100 to-white
 			hover:from-orange-200 hover:to-base-200 hover:scale-105 hover:shadow-md
 			hover:-translate-y-3 transition-all duration-400 ease-in-out">
 			<div class="card-body items-center justify-center">

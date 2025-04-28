@@ -4,10 +4,12 @@
     use app\MainController;
     use app\Paginator;
     use models\Image;
+    use models\Voiture;
 
     class Images extends MainController
     {
         private Image $imageModele;
+        private Voiture $voitureModele;
 
         /**
          * Constructor for initializing model "Voiture".
@@ -16,6 +18,7 @@
         {
             // Ensure loadModel returns an instance of models\Evennement
             $this->imageModele = $this->loadModel("Image");
+            $this->voitureModele = new Voiture();
 
         }
         public function index(): void {
@@ -54,6 +57,7 @@
                         "paginated_images" => $paginated_images,
                         "prev_url" => $prev_url,
                         "next_url" => $next_url,
+                        "all_cars" => $this->voitureModele->getAll("modele"), //get all cars in table modele
                     ]
                 );
             }else{
@@ -61,6 +65,7 @@
                     "images", "admin",
                     [
                         "current_image" => $paginated_images["data"][0],
+                        "all_cars" => $this->voitureModele->getAll("modele"), //get all cars in table modele
                     ]
                 );
             }

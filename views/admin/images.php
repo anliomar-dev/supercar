@@ -146,8 +146,8 @@
         <!-- add form -->
         <?php include_once (ROOT.'forms/add-img-form.php'); ?>
         <!-- adit form -->
-        <?php if(!empty($current_event)): ?>
-            <?php include_once (ROOT.'forms/editcar-form.php'); ?>
+        <?php if(!empty($current_image)): ?>
+            <?php include_once (ROOT.'forms/edit-img-form.php'); ?>
         <?php endif; ?>
     </div>
     <label for="my-drawer-2" aria-label="close sidebar" class="drawer-overlay z-10"></label>

@@ -33,7 +33,9 @@
                         JOIN modele ON modele.id_modele = essai.id_modele
                      ";
             }else{
-                $query = "SELECT * FROM essai WHERE id_demande_essai = $test_id";
+                $query = "SELECT essai.*, modele.nom AS nom_modele FROM essai 
+                           JOIN modele ON modele.id_modele = essai.id_modele
+                           WHERE id_demande_essai = $test_id";
             }
             $current_page = $_GET['page'] ?? 1;
             $per_page = 6;

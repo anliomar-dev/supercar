@@ -151,14 +151,14 @@
         <?php include_once(ROOT . 'forms/add-test-drive-form.php'); ?>
         <!-- adit form -->
 
-        <?php if(!empty($current_car)): ?>
-			<!-- <?php include_once (ROOT.'forms/editcar-form.php'); ?> -->
-            <h2>edit form</h2>
+        <?php if(!empty($current_test)): ?>
+            <?php include_once(ROOT . 'forms/edit-test-drive-form.php'); ?>
         <?php endif; ?>
     </div>
     <label for="my-drawer-2" aria-label="close sidebar" class="drawer-overlay z-10"></label>
     <?php include_once ("sidebar.php");?>
 </div>
+<script src="/supercar/assets/js/demande_essai.js" type="module" defer></script>
 </body>
 </html>
 

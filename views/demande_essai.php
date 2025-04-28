@@ -106,7 +106,7 @@
 				<p>- L’heure doit être entre 8h30 et 16h, avec un intervalle de 30 minutes.</p>
 			</div>
 
-			<!-- sform -->
+			<!-- form -->
 			<div class="form p-4">
 				<form action="" method="POST" class="w-auto flex flex-col gap-y-2">
 					<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -136,7 +136,7 @@
 						</select>
 					</div>
 					<div class="buttons flex gap-x-2">
-						<button class="btn btn-primary min-h-0 h-10 w-1/2 md:w-1/3">Sauvegarder</button>
+						<button class="btn btn-primary min-h-0 h-10 w-1/2 md:w-1/3">Soumettre</button>
 						<button type="reset" class="btn min-h-0 h-10 w-1/2 md:w-1/3">Anuller</button>
 					</div>
 				</form>

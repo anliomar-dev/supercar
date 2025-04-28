@@ -2,7 +2,7 @@ import {toggleNavbar, togglePassword, toggleTheme, animateAndRemoveAlert} from "
 const url = window.location.href;
 const baseUrl = url.split("/supercar/")[0];
 
-async function getCarsBybrand(brandId){
+async function getCarsBybrand(brandId=1){
     try{
         const res = await fetch(`${baseUrl}/supercar/apicars?brand=${brandId}`, {
             method: 'GET',

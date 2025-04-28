@@ -144,7 +144,7 @@
         <?php else: ?>
         <?php endif; ?>
         <!-- add form -->
-        <?php include_once (ROOT.'forms/addcar-form.php'); ?>
+        <?php include_once (ROOT.'forms/add-img-form.php'); ?>
         <!-- adit form -->
         <?php if(!empty($current_event)): ?>
             <?php include_once (ROOT.'forms/editcar-form.php'); ?>

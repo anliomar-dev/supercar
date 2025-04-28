@@ -20,7 +20,7 @@
                 </label>
             </div>
             <div class=" grid grid-cols-1 md:grid-cols-2 gap-3">
-                <select class="select" name="brand" id="brand">
+                <select class="select" name="brand" id="test-drive-brand-edit-option">
                     <?php if(!empty($all_brands)): ?>
                         <?php foreach($all_brands as $brand): ?>
                             <option value=<?php echo $brand["id_marque"]; ?>><?php echo $brand["nom"]; ?></option>
@@ -28,7 +28,7 @@
                     <?php endif;?>
                 </select>
                 <!-- cars -->
-                <select class="select input-bordered" id="car"  name="car" required>
+                <select class="select input-bordered" id="test-drive-car-edit-option"  name="car" required>
 
                 </select>
             </div>

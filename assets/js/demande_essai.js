@@ -46,8 +46,17 @@ async function displayCars(brandId, carsOptions) {
 document.addEventListener('DOMContentLoaded', async()=>{
     const brandOption = document.getElementById('brand');
     const carOptions = document.getElementById('car');
-    await displayCars(parseInt(brandOption.value), carOptions)
+    const testDriveCarOptions = document.getElementById('test-drive-car-edit-option');
+    const testDriveBrandOptions = document.getElementById('test-drive-brand-edit-option');
+
+    await displayCars(parseInt(brandOption.value), carOptions);
+    await displayCars(parseInt(testDriveBrandOptions.value), testDriveCarOptions);
+
     brandOption.addEventListener('change', async function(){
         await displayCars(parseInt(this.value), carOptions)
+    });
+
+    testDriveBrandOptions.addEventListener('change', async function(){
+        await displayCars(parseInt(this.value), testDriveCarOptions);
     })
 })

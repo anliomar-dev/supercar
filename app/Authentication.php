@@ -27,8 +27,8 @@
         {
             $_SESSION["user_id"] = $user_data["id_utilisateur"];
             $_SESSION["username"] = $user_data["prenom"]." ".$user_data["nom"];
-            $_SESSION["is_admin"] = $user_data["peut_acceder_backoffice"];
-            $_SESSION["is_super_user"] = $user_data["est_super_utilisateur"];
+            $_SESSION["is_admin"] = $user_data["est_admin"];
+            $_SESSION["is_super_user"] = $user_data["est_superadmin"];
 
             $csrfProtection = new CsrfProtection();
             $_SESSION['csrf_token'] = $csrfProtection->generateToken();

@@ -22,7 +22,7 @@ class Utilisateur extends MainModel
     public function authenticate_user(string $email, string $password): ?array {
         try{
             $query = "SELECT 
-                    id_utilisateur, prenom, nom, email, peut_acceder_backoffice, est_super_utilisateur, mot_de_passe 
+                    id_utilisateur, prenom, nom, email, est_admin, est_superadmin, mot_de_passe 
                     FROM utilisateur WHERE email = :email";
 
             $statement = $this->_connection->prepare($query);

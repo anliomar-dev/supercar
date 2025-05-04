@@ -65,7 +65,7 @@
                         </th>
                         <th>Date et heure</th>
                         <th>Voiture</th>
-                        <th>Utilisateur</th>
+                        <th>Status</th>
                         <th></th>
                     </tr>
                     </thead>
@@ -82,7 +82,18 @@
 							<td>
 								<div class="flex items-center gap-3">
 									<div>
-										<div class="font-bold"><?php echo $test["date_essai"]; ?></div>
+										<div class="font-bold">
+											<?php
+                                                if (isset($test["date_essai"])) {
+                                                    $dateEssai = date('Y-m-d', strtotime($test["date_essai"]));
+                                                    $aujourdhui = date('Y-m-d');
+                                                    $demain = date('Y-m-d', strtotime('+1 day'));
+													echo $dateEssai == $aujourdhui ? "Aujourd'hui" :
+														($dateEssai == $demain ? "Demain" : $dateEssai);
+
+                                                }
+											?>
+										</div>
 										<div class="text-sm opacity-50"><?php echo $test["heure"]; ?></div>
 									</div>
 								</div>

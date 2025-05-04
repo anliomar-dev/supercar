@@ -6,6 +6,18 @@
         <input type="hidden" name="action" value="add">
         <div class="fields flex flex-col gap-y-3">
             <!-- /.fields -->
+			<p>Utilisateur</p>
+			<div class=" grid grid-cols-1 md:grid-cols-2 gap-3">
+				<select class="select" name="user" id="user">
+                    <?php if(!empty($all_users)): ?>
+                        <?php foreach($all_users as $user): ?>
+							<option value=<?php echo $user["id_utilisateur"]; ?>>
+								<?php echo $user["nom"] . " ".$user["prenom"] ; ?>
+							</option>
+                        <?php endforeach; ?>
+                    <?php endif;?>
+				</select>
+			</div>
             <div class=" grid grid-cols-1 md:grid-cols-2 gap-3">
 				<label class="input input-bordered flex items-center gap-2">
 					<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">

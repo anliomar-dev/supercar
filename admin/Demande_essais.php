@@ -6,11 +6,13 @@
     use app\Paginator;
     use models\Essai;
     use models\Marque;
+    use models\Utilisateur;
 
     class Demande_essais extends MainController
     {
         private Essai $demandeEssaiModel;
         private Marque $marqueModel;
+        private Utilisateur $utilisateurModel;
 
 
         /**
@@ -21,7 +23,7 @@
             // Ensure loadModel returns an instance of models\Utilisateur
             $this->demandeEssaiModel = $this->loadModel("Essai");
             $this->marqueModel = new Marque;
-
+            $this->utilisateurModel = new Utilisateur();
         }
         public function index(): void {
             // the id of the test drive (demande d'essai)
@@ -33,9 +35,14 @@
                         JOIN modele ON modele.id_modele = essai.id_modele
                      ";
             }else{
-                $query = "SELECT essai.*, modele.nom AS nom_modele FROM essai 
-                           JOIN modele ON modele.id_modele = essai.id_modele
-                           WHERE id_demande_essai = $test_id";
+                $query = "SELECT essai.*, 
+                            modele.nom AS nom_modele, 
+                            utilisateur.id_utilisateur AS applicant_id, utilisateur.prenom AS applicant_firstname, 
+                            utilisateur.nom AS applicant_lastname
+                            FROM essai 
+                            JOIN modele ON modele.id_modele = essai.id_modele
+                            JOIN utilisateur ON utilisateur.id_utilisateur = essai.id_utilisateur
+                            WHERE id_demande_essai = $test_id";
             }
             $current_page = $_GET['page'] ?? 1;
             $per_page = 6;
@@ -69,6 +76,7 @@
                     [
                         "paginated_tests" => $paginated_tests,
                         "all_brands" => $all_brands,
+                        "all_users" => $this->utilisateurModel->getAll("utilisateur"),
                         "prev_url" => $prev_url,
                         "next_url" => $next_url
                     ]

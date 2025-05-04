@@ -54,7 +54,7 @@
         {
             if (empty($_SESSION["user_id"]) || empty($_SESSION["csrf_token"])) {
                 $next = $_SERVER['REQUEST_URI'];
-                $next = str_replace('/supercar/', '', $next); // on enlève le préfixe
+                $next = str_replace('/supercar/', '', $next);
                 header("Location: /supercar/login?next=" . $next);
                 exit();
             }

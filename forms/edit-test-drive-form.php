@@ -5,6 +5,12 @@
 			<div class="login-form-title flex justify-center">
 				<h2 class="text-xl font-bold font-comic py-4">Modifier la demnande</h2>
 			</div>
+			<div class="card flex flex-row gap-x-2 py-3">
+				<h3 class="text-2xl">Demandeur: </h3>
+				<p class="text-2xl">
+					<?php echo "  ". $current_test["applicant_firstname"] ." ". $current_test["applicant_lastname"]; ; ?>
+				</p>
+			</div>
 			<input type="hidden" name="action" value="edit">
 			<input type="hidden" name="id_essai" value="<?php echo $current_test["id_demande_essai"]; ?>" >
 			<div class="fields flex flex-col gap-y-3">

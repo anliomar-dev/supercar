@@ -22,7 +22,7 @@
 			</div>
 
 			<!-- /.adresse -->
-			<div class="adresse">
+			<div class="adresse w-full grid grid-cols-1">
 				<label class="input input-bordered flex items-center gap-2">
 					<svg xmlns="http://www.w3.org/2000/svg" fill="none"
 						 viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6 opacity-70 text-secondary">

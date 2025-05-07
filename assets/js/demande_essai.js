@@ -50,13 +50,17 @@ document.addEventListener('DOMContentLoaded', async()=>{
     const testDriveBrandOptions = document.getElementById('test-drive-brand-edit-option');
 
     await displayCars(parseInt(brandOption.value), carOptions);
-    await displayCars(parseInt(testDriveBrandOptions.value), testDriveCarOptions);
+    if(testDriveBrandOptions && testDriveCarOptions){
+        await displayCars(parseInt(testDriveBrandOptions.value), testDriveCarOptions);
+    }
 
     brandOption.addEventListener('change', async function(){
         await displayCars(parseInt(this.value), carOptions)
     });
 
-    testDriveBrandOptions.addEventListener('change', async function(){
-        await displayCars(parseInt(this.value), testDriveCarOptions);
-    })
+    if(testDriveBrandOptions && testDriveCarOptions){
+        testDriveBrandOptions.addEventListener('change', async function(){
+            await displayCars(parseInt(this.value), testDriveCarOptions);
+        })
+    }
 })

@@ -50,12 +50,12 @@
                 <table class="table">
                     <!-- head -->
                     <thead>
-                    <tr>
-                        <th>Nom et prenom</th>
-                        <th>email</th>
-                        <th>Téléphone</th>
-                        <th></th>
-                    </tr>
+						<tr>
+							<th>Nom et prenom</th>
+							<th>email</th>
+							<th>Téléphone</th>
+							<th></th>
+						</tr>
                     </thead>
                     <tbody>
 						<?php $i = 1; ?>

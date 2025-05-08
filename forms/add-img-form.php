@@ -4,8 +4,8 @@
             <h2 class="text-xl font-bold font-comic py-4">Ajouter une nouvelle image</h2>
         </div>
         <input type="hidden" name="action" value="add">
+		<!-- /.fields -->
         <div class="fields flex flex-col gap-y-3">
-            <!-- /.fields -->
             <div class=" grid grid-cols-1 md:grid-cols-2 gap-3">
                 <select class="select" name="brand" id="brand">
                     <?php if(!empty($all_cars)): ?>

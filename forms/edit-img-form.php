@@ -1,6 +1,6 @@
 <?php if(!empty($current_image)):?>
-    <div class="edit-form section w-full flex justify-center bg-base-100 py-10 rounded-lg">
-        <form action="" method="POST" class="w-1/2 flex flex-col gap-y-2 bg-base-100 p-5 rounded-lg shadow-md">
+    <div class="edit-form section w-full grid grid-cols-1 lg:grid-cols-2 justify-center bg-base-100 py-10 rounded-lg p-6">
+        <form action="" method="POST" class="flex flex-col gap-y-2 bg-base-100 p-5 rounded-lg shadow-md">
             <div class="login-form-title flex justify-center">
                 <h2 class="text-xl font-bold font-comic py-4">Modifier l'image</h2>
             </div>
@@ -67,5 +67,8 @@
             </div>
             <button class="btn btn-primary min-h-0 h-10 font-bold my-2">Ajouter</button>
         </form>
+		<div class="flex items-center">
+			<img src="<?php echo $current_image["url"]; ?>" class="rounded-lg" alt="image">
+		</div>
     </div>
 <?php endif;?>

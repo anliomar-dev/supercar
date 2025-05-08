@@ -1,5 +1,5 @@
 <?php if(!empty($current_event)): ?>
-    <div class="edit-form section w-full grid grid-cols-1 lg:grid-cols-2 justify-center  gap-3 bg-base-100 py-10 rounded-lg p-4">
+    <div class="edit-form section w-full grid grid-cols-1 lg:grid-cols-2 justify-center gap-3 bg-base-100 py-10 rounded-lg p-4">
         <form action="" method="POST" class="flex flex-col gap-y-2 bg-base-100 p-5 rounded-lg shadow-md">
             <div class="login-form-title flex justify-center">
                 <h2 class="text-xl font-bold font-comic py-4">Ajouter un nouvel Evennement</h2>

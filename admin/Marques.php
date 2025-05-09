@@ -5,6 +5,7 @@
     use app\MainController;
     use app\Paginator;
     use models\Marque;
+    use PDOException;
 
     class Marques extends MainController
     {
@@ -63,6 +64,46 @@
                         "current_brand" => $paginated_brands["data"][0],
                     ]
                 );
+            }
+        }
+
+        public function create(): void{
+            if($_SERVER["REQUEST_METHOD"] == "GET"){
+                $this->render("marques", "admin",);
+            }else if($_SERVER["REQUEST_METHOD"] == "POST"){
+                $brand_name = $_POST["nom_marque"] ?? "";
+                $logo = $_POST["logo"] ?? "";
+
+                if($this->marqueModele->isRowExists("marque", "nom", $brand_name)){
+                    $warning_message = "Une marque avec ce nom exite dejà";
+                    self::setFlashMessageAndRender($warning_message, "alert-warning", "marques", "admin");
+                    exit();
+                }
+
+                try{
+                    // Data coming from the POST request
+                    $new_brand = $this->marqueModele::create([
+                        "nom" => $brand_name,
+                        "logo" => $logo,
+                    ]);
+                    if(is_array($new_brand)){
+                        $success_message = "La marque a été ajouté avec succès";
+                        $this->setFlashMessage($success_message, "alert-success");
+                        header("Location: /supercar/admin/marques");
+                    }else{
+                        $error_message = "Un problème est survenur lors de l'ajout de la nouvelle marque ! veuillez réassayer plus tard";
+                        $this->setFlashMessage($error_message, "alert-error");
+                    }
+                }catch (PDOException $exception) {
+                    error_log('Database error: ' . $exception->getMessage());
+                    $error_message = "Un problème est survenur lors de l'ajout de la nouvelle marque ! veuillez réassayer plus tard";
+                    $this->setFlashMessage($error_message, "alert-error");
+                }
+            }
+            else{
+                $warning_message = "Methode non autorisée";
+                self::setFlashMessageAndRender($warning_message, "alert-warning", "marque", "admin");
+                exit();
             }
         }
     }

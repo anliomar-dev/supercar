@@ -8,10 +8,9 @@ use PDOException;
 
 class Marque extends MainModel
 {
-    public function __construct()
-    {
-        parent::__construct();
-        $this->tableName = "marque";
+    protected string $tableName = 'marque';
+    public function __construct(array $attributes = []){
+        parent::__construct($attributes);
     }
 
     public function getAllBrands(): array {

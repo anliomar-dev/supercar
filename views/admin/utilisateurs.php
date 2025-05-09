@@ -8,7 +8,6 @@
 	<link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
 	<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 	<link href="https://cdn.jsdelivr.net/npm/daisyui@5/themes.css" rel="stylesheet" type="text/css" />
-	<script src="/supercar/assets/js/admin/base.js" type="module" defer></script>
 	<title>Utilisateurs</title>
 	<style>
         .drawer-side {
@@ -23,6 +22,7 @@
 	</style>
 </head>
 <body class="relative bg-base-200">
+<?php require_once ROOT."components/flash-message.php"?>
 <div class="drawer lg:drawer-open">
 	<input id="my-drawer-2" type="checkbox" class="drawer-toggle" />
 	<div class="drawer-content flex flex-col items-center px-3 lg:px-8 py-4">
@@ -40,8 +40,13 @@
 				</div>
             <?php else: ?>
 				<div class="join">
-					<input class="join-item btn section-btn" data-section="list-form" type="radio" name="options" value="1" aria-label="Utilisateurs" checked />
-					<input class="join-item btn section-btn" data-section="add-form" type="radio" name="options" value="2" aria-label="Ajouter" />
+					<?php if(str_ends_with($_SERVER["REQUEST_URI"], "create")): ?>
+						<a href="/supercar/admin/utilisateurs" class="btn join-item">Utilisateurs</a>
+						<a href="/supercar/admin/utilisateurs/create" class="btn btn-primary join-item">Ajouter</a>
+					<?php else:?>
+						<a href="/supercar/admin/utilisateurs" class="btn btn-primary join-item">Utilisateurs</a>
+						<a href="/supercar/admin/utilisateurs/create" class="btn join-item">Ajouter</a>
+					<?php endif; ?>
 				</div>
 			<?php endif; ?>
 		</div>
@@ -129,15 +134,13 @@
 					</tfoot>
 				</table>
 			</form>
-        <?php else: ?>
-        <?php endif; ?>
-		<!-- add form -->
-		<?php include_once (ROOT.'forms/adduser-form.php'); ?>
-
-		<!-- aditform -->
-        <?php if(!empty($current_user)): ?>
+        <?php elseif(!empty($current_user)): ?>
+			<!--edit form -->
             <?php include_once (ROOT.'forms/edituser-form.php'); ?>
-		<?php endif; ?>
+		<?php else: ?>
+			<!-- add form -->
+            <?php include_once (ROOT.'forms/adduser-form.php'); ?>
+        <?php endif; ?>
 	</div>
 	<label for="my-drawer-2" aria-label="close sidebar" class="drawer-overlay z-10"></label>
     <?php include_once ("sidebar.php");?>

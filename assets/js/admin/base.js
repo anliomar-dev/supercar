@@ -1,6 +1,7 @@
 import {toggleNavbar, toggleTheme, animateAndRemoveAlert, togglePassword} from "../index.js";
 //import { animate } from "https://cdn.jsdelivr.net/npm/motion@11.11.13/+esm"
 document.addEventListener("DOMContentLoaded", () => {
+    animateAndRemoveAlert();
     let path = window.location.href;
     if (path.endsWith("/")) {
         path = path.slice(0, -1); // supprime le dernier /

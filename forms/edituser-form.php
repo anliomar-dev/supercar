@@ -1,8 +1,8 @@
 <?php if(!empty($current_user)) :?>
 	<div class="add-form section w-full flex justify-center bg-base-100 py-10 rounded-lg">
-		<form action="" method="POST" class="w-1/2 flex flex-col gap-y-2 bg-base-100 p-5 rounded-lg shadow-md">
+		<form action="/supercar/admin/utilisateurs/update/" method="POST" class="w-1/2 flex flex-col gap-y-2 bg-base-100 p-5 rounded-lg shadow-md">
 			<input type="hidden" name="action" value="edit">
-			<input type="hidden" name="id" value="<?php echo $current_user["id_utilisateur"]; ?>">
+			<input type="hidden" name="id_utilisateur" value="<?php echo $current_user["id_utilisateur"]; ?>">
 			<div class="login-form-title flex justify-center">
 				<h2 class="text-xl font-bold font-comic py-4">Modifier</h2>
 			</div>
@@ -63,7 +63,7 @@
 
 						<!-- input password filed -->
 						<input type="password" placeholder="Mot de passe" name="password"
-							   required class="grow password-field" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$"
+							   class="grow password-field" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$"
 							   title="Le mot de passe doit contenir au moins 8 caractères, dont une majuscule, une minuscule, un chiffre, et un caractère spécial."
 						/>
 
@@ -90,7 +90,7 @@
 						</svg>
 						<!-- input password filed -->
 						<input type="password" placeholder="Mot de passe" name="confirm_password"
-							   required class="grow password-field" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$"
+							   class="grow password-field" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$"
 							   title="Le mot de passe doit contenir au moins 8 caractères, dont une majuscule, une minuscule, un chiffre, et un caractère spécial."
 						/>
 

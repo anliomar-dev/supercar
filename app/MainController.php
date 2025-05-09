@@ -86,16 +86,19 @@ abstract class MainController
      * @param string $message The alert message to store.
      * @param string $alert_type The type of the alert (e.g., 'warning', 'error', 'success', 'info').
      * @param string $view_file The name of the view file to render after storing the flash message.
-     *
+     * @param string $view_path
      * @return void
      */
     protected static function setFlashMessageAndRender(
         string $message,
         string $alert_type,
-        string $view_file):void
+        string $view_file,
+        string $view_path = ""
+    ):void
+
     {
         self::setFlashMessage($message, $alert_type);
-        self::render($view_file);
+        self::render($view_file, $view_path);
     }
 
 }

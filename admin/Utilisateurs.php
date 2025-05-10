@@ -100,7 +100,7 @@
                         "mot_de_passe" => password_hash($password, PASSWORD_BCRYPT)
                     ]);
                     if(is_array($new_user)){
-                        $success_message = "Le compte compte a été créé avec succès". $new_user["id_utilisateur"];
+                        $success_message = "Le compte compte a été créé avec succès";
                         $this->setFlashMessage($success_message, "alert-success");
                         header("Location: /supercar/admin/utilisateurs?user=".$new_user["id_utilisateur"]);
                     }else{

@@ -131,11 +131,11 @@
                     if(is_array($new_brand)){
                         $success_message = "Modifications effectuées avec succès";
                         $this->setFlashMessage($success_message, "alert-success");
-                        header("Location: /supercar/admin/marques?brand=".str_replace(" ", "-", $new_brand["name"]));
+                        header("Location: /supercar/admin/marques?brand=".str_replace(" ", "-", $new_brand["nom"]));
                     }else{
                         $error_message = "Un problème est survenur lors de la modification de la marque ! veuillez réassayer plus tard";
                         $this->setFlashMessage($error_message, "alert-error");
-                        header("Location: /supercar/admin/marques?brand=".str_replace(" ", "-", $new_brand["name"]));
+                        header("Location: /supercar/admin/marques?brand=".str_replace(" ", "-", $new_brand["nom"]));
                     }
                 }catch (PDOException $exception) {
                     error_log('Database error: ' . $exception->getMessage());

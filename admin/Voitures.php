@@ -6,7 +6,10 @@
     use app\MainController;
     use app\Paginator;
     use models\Marque;
-    use models\Voiture; // Import the 'models\Voiture' class
+    use models\Voiture;
+    use PDOException;
+
+    // Import the 'models\Voiture' class
 
     #[AllowDynamicProperties] class Voitures extends MainController
     {
@@ -75,9 +78,157 @@
                     "voitures", "admin",
                     [
                         "all_brands" => $all_brands,
-                        "current_car" => $paginated_cars["data"][0],
+                        "current_car" => $paginated_cars["data"][0] ?? "",
                     ]
                 );
+            }
+        }
+
+        public function create(): void{
+            if($_SERVER["REQUEST_METHOD"] == "GET"){
+                $all_brands = $this->marqueModel->getAllBrands();
+                $this->render("voitures", "admin", ["all_brands" => $all_brands]);
+            }else if($_SERVER["REQUEST_METHOD"] == "POST"){
+                $car_name = $_POST["nom"] ?? "";
+                $id_marque = $_POST["id_marque"] ?? "";
+                $moteur = $_POST["moteur"] ?? "";
+                $prix = $_POST["prix"] ?? "";
+                $transmission = $_POST["transmission"] ?? "";
+                $carburant = $_POST["carburant"] ?? "";
+                $annee = $_POST["annee"] ?? "";
+                $description = $_POST["description"] ?? "";
+
+                $data = [$car_name, $id_marque, $moteur, $prix, $transmission, $carburant, $annee, $description];
+
+                $all_fields_fielled = array_reduce($data, function($result, $item){
+                    return $result && !empty(trim($item));
+                }, true);
+
+                if(!$all_fields_fielled){
+                    $warning_message = "tous les champs doivent être correctement remplis";
+
+                    self::setFlashMessageAndRender(
+                        $warning_message,
+                        "alert-warning",
+                        "voitures",
+                        "admin"
+                    );
+                    exit();
+                }
+
+                if($this->voitureModele->isRowExists("modele", "nom", $car_name)){
+                    $warning_message = "Une voiture avec ce nom exite dejà";
+                    self::setFlashMessageAndRender(
+                        $warning_message,
+                        "alert-warning",
+                        "voitures",
+                        "admin"
+                    );
+                    exit();
+                }
+
+                try{
+                    // Data coming from the POST request
+                    $new_car = $this->voitureModele::create([
+                        "nom" => $car_name,
+                        "prix" => $prix,
+                        "moteur" => $moteur,
+                        "transmission" => $transmission,
+                        "carburant" => $carburant,
+                        "annee" => $annee,
+                        "description" => trim($description),
+                        "id_marque" => $id_marque
+                    ]);
+                    if(is_array($new_car)){
+                        $success_message = "La Voiture a été ajouté avec succès";
+                        $this->setFlashMessage($success_message, "alert-success");
+                        header("Location: /supercar/admin/voitures?slug=".str_replace(" ", "-", $car_name));
+                    }else{
+                        $error_message = "Un problème est survenu lors de l'ajout de la nouvelle marque ! veuillez réassayer plus tard";
+                        self::setFlashMessageAndRender(
+                            $error_message,
+                            "alert-error",
+                            "voitures",
+                            "admin"
+                        );
+                        exit();
+                    }
+                }catch (PDOException $exception) {
+                    error_log('Database error: ' . $exception->getMessage());
+                    $error_message = "Un problème est survenu lors de l'ajout de la nouvelle voiture 2 ! veuillez réassayer plus tard";
+                    self::setFlashMessageAndRender(
+                        $error_message,
+                        "alert-error",
+                        "voitures",
+                        "admin"
+                    );
+                    exit();
+                }
+            } else{
+                $warning_message = "Methode non autorisée";
+                $this->setFlashMessage($warning_message, "alert-warning");
+                header("Location: /supercar/admin/voitures/create");
+            }
+        }
+        public function update(): void{
+            if($_SERVER["REQUEST_METHOD"] == "GET"){
+                $all_brands = $this->marqueModel->getAllBrands();
+                $this->render("voitures", "admin", ["all_brands" => $all_brands]);
+            }else if($_SERVER["REQUEST_METHOD"] == "POST"){
+                $id_modele = $_POST["id_modele"] ?? "";
+                $car_name = $_POST["nom"] ?? "";
+                $id_marque = $_POST["id_marque"] ?? "";
+                $moteur = $_POST["moteur"] ?? "";
+                $prix = $_POST["prix"] ?? "";
+                $transmission = $_POST["transmission"] ?? "";
+                $carburant = $_POST["carburant"] ?? "";
+                $annee = $_POST["annee"] ?? "";
+                $description = $_POST["description"] ?? "";
+
+                $data = [$car_name, $id_marque, $moteur, $prix, $transmission, $carburant, $annee, $description];
+
+                $all_fields_fielled = array_reduce($data, function($result, $item){
+                    return $result && !empty(trim($item));
+                }, true);
+
+                if(!$all_fields_fielled){
+                    $warning_message = "tous les champs doivent être correctement remplis";
+                    $this->setFlashMessage($warning_message, "alert-warning");
+                    header("Location: /supercar/admin/voitures?slug=".str_replace(" ", "-", $car_name));
+                }
+
+                try{
+                    // Data coming from the POST request
+                    $new_car = $this->voitureModele::create([
+                        "id_modele" => $id_modele,
+                        "nom" => $car_name,
+                        "prix" => $prix,
+                        "moteur" => $moteur,
+                        "transmission" => $transmission,
+                        "carburant" => $carburant,
+                        "annee" => $annee,
+                        "description" => trim($description),
+                        "id_marque" => $id_marque
+                    ]);
+                    if(is_array($new_car)){
+                        $success_message = "Modifications efféctués avec succes";
+                        $this->setFlashMessage($success_message, "alert-success");
+                        header("Location: /supercar/admin/voitures?slug=".str_replace(" ", "-", $car_name));
+                    }else{
+                        $error_message = "Un problème est survenu ! veuillez réassayer plus tard";
+                        $this->setFlashMessage($error_message, "alert-error");
+                        header("Location: /supercar/admin/voitures?slug=".str_replace(" ", "-", $car_name));
+                    }
+                }catch (PDOException $exception) {
+                    error_log('Database error: ' . $exception->getMessage());
+                    $error_message = "Un problème est survenu ! veuillez réassayer plus tard";
+                    $this->setFlashMessage($error_message, "alert-error");
+                    header("Location: /supercar/admin/voitures?slug=".str_replace(" ", "-", $car_name));
+                }
+            } else{
+                $warning_message = "Methode non autorisée";
+                $this->setFlashMessage($warning_message, "alert-warning");
+                header("Location: /supercar/admin/voitures");
             }
         }
     }

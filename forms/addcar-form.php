@@ -1,9 +1,8 @@
-<div class="hidden add-form section w-full flex justify-center bg-base-100 py-10 rounded-lg">
-    <form action="" method="POST" class="w-1/2 flex flex-col gap-y-2 bg-base-100 p-5 rounded-lg shadow-md">
+<div class="w-full flex justify-center bg-base-100 py-10 rounded-lg">
+    <form action="/supercar/admin/voitures/create" method="POST" class="w-1/2 flex flex-col gap-y-2 bg-base-100 p-5 rounded-lg shadow-md">
         <div class="login-form-title flex justify-center">
             <h2 class="text-xl font-bold font-comic py-4">Ajouter une nouvelle voiture</h2>
         </div>
-        <input type="hidden" name="action" value="add">
         <div class="fields flex flex-col gap-y-3">
             <!-- /.fields -->
             <div class=" grid grid-cols-1 md:grid-cols-2 gap-3">
@@ -14,10 +13,12 @@
                     <input type="text" placeholder="Nom du modèle" name="nom" required title="minimum 2 caractères" pattern="^(?!\s*$).{2,}$" class="grow" />
                 </label>
                 <select class="select" name="id_marque">
-                    <option disabled selected value="0">Choisis une marque</option>
+                    <option disabled selected value="">Veuillez choisir une marque</option>
                     <?php if(!empty($all_brands)): ?>
 						<?php foreach($all_brands as $brand): ?>
-							<option value=<?php echo $brand["id_marque"]; ?>><?php echo $brand["nom"]; ?></option>
+							<option value=<?php echo $brand["id_marque"]; ?>>
+								<?php echo $brand["nom"]; ?>
+							</option>
 						<?php endforeach; ?>
 					<?php endif;?>
                 </select>
@@ -35,13 +36,13 @@
             <!-- /.fields -->
             <div class=" grid grid-cols-1 md:grid-cols-2 gap-3">
                 <select class="select" name="moteur">
-                    <option disabled selected value="0">Moteur (hybride, éléctrique, à combustion)</option>
+                    <option disabled selected value="">Moteur (hybride, éléctrique, à combustion)</option>
                     <option value="Electrique">Eléctrique</option>
                     <option value="Combustion">Combustion</option>
                     <option value="Hybride">Hybride</option>
                 </select>
                 <select class="select" name="transmission">
-                    <option disabled selected value="0">Transmissions (Auto, Manuelle)</option>
+                    <option disabled selected value="">Transmissions (Auto, Manuelle)</option>
                     <option value="Automatique">Automatique</option>
                     <option value="Manuelle">Manuelle</option>
                 </select>
@@ -50,7 +51,7 @@
             <!-- /.fields -->
             <div class=" grid grid-cols-1 md:grid-cols-2 gap-3">
                 <select class="select" name="carburant">
-                    <option disabled selected value="0">Carburant (Essence, Diesel)</option>
+                    <option disabled selected value="">Carburant (Essence, Diesel)</option>
                     <option value="Essence">Essence</option>
                     <option value="Diesel">Diesel</option>
                 </select>
@@ -65,7 +66,7 @@
             <fieldset class="fieldset w-full">
                 <legend class="fieldset-legend">Description</legend>
                 <label>
-                    <textarea class="textarea h-24 w-full" placeholder="Description"></textarea>
+                    <textarea class="textarea h-24 w-full" placeholder="Description" name="description" required></textarea>
                 </label>
             </fieldset>
         </div>

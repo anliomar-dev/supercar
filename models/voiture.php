@@ -7,11 +7,10 @@ use PDO;
 
 class Voiture extends MainModel
 {
-  public function __construct()
-  {
-    parent::__construct();
-    $this->tableName = "modele";
-  }
+    protected string $tableName = 'modele';
+    public function __construct(array $attributes = []){
+        parent::__construct($attributes);
+    }
 
     /**
      * This function return a query that retrieve all cars, with an optional filter by brand.

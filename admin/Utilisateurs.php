@@ -104,13 +104,13 @@
                         $this->setFlashMessage($success_message, "alert-success");
                         header("Location: /supercar/admin/utilisateurs?user=".$new_user["id_utilisateur"]);
                     }else{
-                        $error_message = "Un problème est survenur lors de la création de votre compte ! veuillez réassayer plus tard";
+                        $error_message = "Un problème est survenu lors de la création de votre compte ! veuillez réassayer plus tard";
                         $this->setFlashMessage($error_message, "alert-error");
                         header("Location: /supercar/admin/utilisateurs/create");
                     }
                 }catch (PDOException $exception) {
                     error_log('Database error: ' . $exception->getMessage());
-                    $error_message = "Un problème est survenur lors de la création de votre compte ! veuillez réassayer plus tard";
+                    $error_message = "Un problème est survenu lors de la création de votre compte ! veuillez réassayer plus tard";
                     $this->setFlashMessage($error_message, "alert-error");
                 }
             }
@@ -175,13 +175,13 @@
                         $this->setFlashMessage($success_message, "alert-success");
                         header("Location: /supercar/admin/utilisateurs?user=$id_utilisateur");
                     }else{
-                        $error_message = "Un problème est survenur lors de la modification ! veuillez réassayer plus tard";
+                        $error_message = "Un problème est survenu lors de la modification ! veuillez réassayer plus tard";
                         $this->setFlashMessage($error_message, "alert-error");
                         header("Location: /supercar/admin/utilisateurs?user=".$id_utilisateur);
                     }
                 }catch (PDOException $exception) {
                     error_log('Database error: ' . $exception->getMessage());
-                    $error_message = "Un problème est survenur lors de la modification ! veuillez réassayer plus tard";
+                    $error_message = "Un problème est survenu lors de la modification ! veuillez réassayer plus tard";
                     $this->setFlashMessage($error_message, "alert-error");
                     header("Location: /supercar/admin/utilisateurs?user=".$id_utilisateur);
                 }

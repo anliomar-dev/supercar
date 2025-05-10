@@ -1,10 +1,10 @@
 <?php if(!empty($current_car)): ?>
-    <div class="edit-form section w-full flex justify-center bg-base-100 py-10 rounded-lg">
-        <form action="" method="POST" class="w-1/2 flex flex-col gap-y-2 bg-base-100 p-5 rounded-lg shadow-md">
+    <div class="w-full flex justify-center bg-base-100 py-10 rounded-lg">
+        <form action="/supercar/admin/voitures/update" method="POST" class="w-1/2 flex flex-col gap-y-2 bg-base-100 p-5 rounded-lg shadow-md">
             <div class="login-form-title flex justify-center">
                 <h2 class="text-xl font-bold font-comic py-4">Modifier</h2>
             </div>
-            <input type="hidden" name="action" value="edit">
+            <input type="hidden" name="id_modele" value="<?php echo $current_car["id_modele"]; ?>">
             <div class="fields flex flex-col gap-y-3">
                 <!-- /.fields -->
                 <div class=" grid grid-cols-1 md:grid-cols-2 gap-3">

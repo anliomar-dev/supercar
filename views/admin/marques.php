@@ -8,7 +8,7 @@
     <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <link href="https://cdn.jsdelivr.net/npm/daisyui@5/themes.css" rel="stylesheet" type="text/css" />
-	<!--<script src="/supercar/assets/js/admin/base.js" type="module" defer></script>-->
+	<script src="/supercar/assets/js/admin/base.js" type="module" defer></script>
     <title>Marques</title>
     <style>
         .drawer-side {
@@ -133,7 +133,7 @@
 				</form>
 			<?php elseif(isset($current_brand)): ?>
 				<?php if(!empty($current_brand)):?>
-					<<!-- adit form -->
+					<!-- adit form -->
 					<?php include_once (ROOT.'forms/editbrand-form.php'); ?>
 				<?php else: ?>
 					<?php echo "404 Not Found"; ?>

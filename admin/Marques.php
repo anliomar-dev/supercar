@@ -91,12 +91,12 @@
                         $this->setFlashMessage($success_message, "alert-success");
                         header("Location: /supercar/admin/marques?brand=".str_replace(" ", "-", $brand_name));
                     }else{
-                        $error_message = "Un problème est survenur lors de l'ajout de la nouvelle marque ! veuillez réassayer plus tard";
+                        $error_message = "Un problème est survenu lors de l'ajout de la nouvelle marque ! veuillez réassayer plus tard";
                         $this->setFlashMessage($error_message, "alert-error");
                     }
                 }catch (PDOException $exception) {
                     error_log('Database error: ' . $exception->getMessage());
-                    $error_message = "Un problème est survenur lors de l'ajout de la nouvelle marque ! veuillez réassayer plus tard";
+                    $error_message = "Un problème est survenu lors de l'ajout de la nouvelle marque ! veuillez réassayer plus tard";
                     $this->setFlashMessage($error_message, "alert-error");
                 }
             }
@@ -133,13 +133,13 @@
                         $this->setFlashMessage($success_message, "alert-success");
                         header("Location: /supercar/admin/marques?brand=".str_replace(" ", "-", $new_brand["nom"]));
                     }else{
-                        $error_message = "Un problème est survenur lors de la modification de la marque ! veuillez réassayer plus tard";
+                        $error_message = "Un problème est survenu lors de la modification de la marque ! veuillez réassayer plus tard";
                         $this->setFlashMessage($error_message, "alert-error");
                         header("Location: /supercar/admin/marques?brand=".str_replace(" ", "-", $new_brand["nom"]));
                     }
                 }catch (PDOException $exception) {
                     error_log('Database error: ' . $exception->getMessage());
-                    $error_message = "Un problème est survenur lors de la modification de la marque ! veuillez réassayer plus tard";
+                    $error_message = "Un problème est survenu lors de la modification de la marque ! veuillez réassayer plus tard";
                     $this->setFlashMessage($error_message, "alert-error");
                     header("Location: /supercar/admin/marques?brand=".str_replace(" ", "-", $brand_name));
                 }

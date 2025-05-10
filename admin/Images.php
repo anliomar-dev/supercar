@@ -4,7 +4,7 @@
     use app\MainController;
     use app\Paginator;
     use models\Image;
-    use models\Voiture;
+    use models\Voiture; // Import the 'models\Voiture' class
 
     class Images extends MainController
     {
@@ -18,7 +18,7 @@
         {
             // Ensure loadModel returns an instance of models\Evennement
             $this->imageModele = $this->loadModel("Image");
-            $this->voitureModele = new Voiture();
+            $this->voitureModele = $this->loadModel("Voiture");
 
         }
         public function index(): void {

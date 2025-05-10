@@ -61,7 +61,7 @@
                 $this->render(
                     "marques", "admin",
                     [
-                        "current_brand" => $paginated_brands["data"][0],
+                        "current_brand" => $paginated_brands["data"][0] ?? "",
                     ]
                 );
             }
@@ -89,7 +89,7 @@
                     if(is_array($new_brand)){
                         $success_message = "La marque a été ajouté avec succès";
                         $this->setFlashMessage($success_message, "alert-success");
-                        header("Location: /supercar/admin/marques");
+                        header("Location: /supercar/admin/marques?brand=".str_replace(" ", "-", $brand_name));
                     }else{
                         $error_message = "Un problème est survenur lors de l'ajout de la nouvelle marque ! veuillez réassayer plus tard";
                         $this->setFlashMessage($error_message, "alert-error");
@@ -103,6 +103,50 @@
             else{
                 $warning_message = "Methode non autorisée";
                 self::setFlashMessageAndRender($warning_message, "alert-warning", "marque", "admin");
+                exit();
+            }
+        }
+
+        public function update(): void{
+            if($_SERVER["REQUEST_METHOD"] == "GET"){
+                $this->render("marques", "admin",);
+            }else if($_SERVER["REQUEST_METHOD"] == "POST"){
+                $id_marque = $_POST["id_marque"] ?? "";
+                $brand_name = $_POST["nom_marque"] ?? "";
+                $logo = $_POST["logo"] ?? "";
+
+                if(empty($id_marque)){
+                    $warning_message = "identifiant invalid";
+                    self::setFlashMessageAndRender($warning_message, "alert-warning", "marques", "admin");
+                    exit();
+                }
+
+                try{
+                    // Data coming from the POST request
+                    $new_brand = $this->marqueModele::create([
+                        "id_marque" => $id_marque,
+                        "nom" => $brand_name,
+                        "logo" => $logo,
+                    ]);
+                    if(is_array($new_brand)){
+                        $success_message = "Modifications effectuées avec succès";
+                        $this->setFlashMessage($success_message, "alert-success");
+                        header("Location: /supercar/admin/marques?brand=".str_replace(" ", "-", $new_brand["name"]));
+                    }else{
+                        $error_message = "Un problème est survenur lors de la modification de la marque ! veuillez réassayer plus tard";
+                        $this->setFlashMessage($error_message, "alert-error");
+                        header("Location: /supercar/admin/marques?brand=".str_replace(" ", "-", $new_brand["name"]));
+                    }
+                }catch (PDOException $exception) {
+                    error_log('Database error: ' . $exception->getMessage());
+                    $error_message = "Un problème est survenur lors de la modification de la marque ! veuillez réassayer plus tard";
+                    $this->setFlashMessage($error_message, "alert-error");
+                    header("Location: /supercar/admin/marques?brand=".str_replace(" ", "-", $brand_name));
+                }
+            }
+            else{
+                $warning_message = "Methode non autorisée";
+                self::setFlashMessageAndRender($warning_message, "alert-warning", "marques", "admin");
                 exit();
             }
         }

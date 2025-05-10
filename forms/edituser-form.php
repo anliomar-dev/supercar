@@ -4,7 +4,10 @@
 			<input type="hidden" name="action" value="edit">
 			<input type="hidden" name="id_utilisateur" value="<?php echo $current_user["id_utilisateur"]; ?>">
 			<div class="login-form-title flex justify-center">
-				<h2 class="text-xl font-bold font-comic py-4">Modifier</h2>
+				<h2 class="text-xl font-bold font-comic py-4">
+                    <?php echo $current_user["nom"] . " "; ?>
+					<?php echo $current_user["prenom"]; ?>
+				</h2>
 			</div>
 
 			<div class="fields flex flex-col gap-y-3">

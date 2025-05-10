@@ -134,9 +134,13 @@
 					</tfoot>
 				</table>
 			</form>
-        <?php elseif(!empty($current_user)): ?>
-			<!--edit form -->
-            <?php include_once (ROOT.'forms/edituser-form.php'); ?>
+        <?php elseif(isset($current_user)): ?>
+			<?php if(!empty($current_user)):?>
+				<!--edit form -->
+                <?php include_once (ROOT.'forms/edituser-form.php'); ?>
+            <?php else: ?>
+				<?php echo "404 Not Found"; ?>
+			<?php endif;?>
 		<?php else: ?>
 			<!-- add form -->
             <?php include_once (ROOT.'forms/adduser-form.php'); ?>

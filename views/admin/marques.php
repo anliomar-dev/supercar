@@ -131,9 +131,13 @@
                     </tfoot>
                 </table>
             </form>
-        <?php elseif(!empty($current_brand)): ?>
-			<!-- adit form -->
-            <?php include_once (ROOT.'forms/editbrand-form.php'); ?>
+        <?php elseif(isset($current_brand)): ?>
+            <?php if(!empty($current_brand)):?>
+				<<!-- adit form -->
+                <?php include_once (ROOT.'forms/editbrand-form.php'); ?>
+            <?php else: ?>
+                <?php echo "404 Not Found"; ?>
+            <?php endif;?>
         <?php else: ?>
 			<!-- add form -->
             <?php include_once (ROOT.'forms/addbrand-form.php'); ?>

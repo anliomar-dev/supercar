@@ -59,7 +59,7 @@
                 $this->render(
                     "utilisateurs", "admin",
                     [
-                        "current_user" => $paginated_users["data"][0],
+                        "current_user" => $paginated_users["data"][0] ?? [],
                     ]
                 );
             }
@@ -100,12 +100,13 @@
                         "mot_de_passe" => password_hash($password, PASSWORD_BCRYPT)
                     ]);
                     if(is_array($new_user)){
-                        $success_message = "Le compte compte a été créé avec succès";
+                        $success_message = "Le compte compte a été créé avec succès". $new_user["id_utilisateur"];
                         $this->setFlashMessage($success_message, "alert-success");
-                        header("Location: /supercar/admin/utilisateurs");
+                        header("Location: /supercar/admin/utilisateurs?user=".$new_user["id_utilisateur"]);
                     }else{
                         $error_message = "Un problème est survenur lors de la création de votre compte ! veuillez réassayer plus tard";
                         $this->setFlashMessage($error_message, "alert-error");
+                        header("Location: /supercar/admin/utilisateurs/create");
                     }
                 }catch (PDOException $exception) {
                     error_log('Database error: ' . $exception->getMessage());
@@ -176,11 +177,13 @@
                     }else{
                         $error_message = "Un problème est survenur lors de la modification ! veuillez réassayer plus tard";
                         $this->setFlashMessage($error_message, "alert-error");
+                        header("Location: /supercar/admin/utilisateurs?user_id=".$id_utilisateur);
                     }
                 }catch (PDOException $exception) {
                     error_log('Database error: ' . $exception->getMessage());
                     $error_message = "Un problème est survenur lors de la modification ! veuillez réassayer plus tard";
                     $this->setFlashMessage($error_message, "alert-error");
+                    header("Location: /supercar/admin/utilisateurs?user_id=".$id_utilisateur);
                 }
             }
             else{

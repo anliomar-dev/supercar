@@ -2,7 +2,11 @@ import {toggleNavbar, toggleTheme, animateAndRemoveAlert, togglePassword} from "
 //import { animate } from "https://cdn.jsdelivr.net/npm/motion@11.11.13/+esm"
 document.addEventListener("DOMContentLoaded", () => {
     animateAndRemoveAlert();
-    let path = window.location.href;
+    // if the path ends with "/create" it means we are in the same path:
+    // exp: /voitures/create and /voitures, the button voiture of the sidebar will be primary because it's the same path
+    let path = window.location.href.replace("/create", "");
+    console.log(path);
+
     if (path.endsWith("/")) {
         path = path.slice(0, -1); // supprime le dernier /
     }

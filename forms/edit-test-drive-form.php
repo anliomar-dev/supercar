@@ -56,6 +56,15 @@
                             <?php echo $current_test["nom_modele"]; ?>
 						</option>
 					</select>
+					<select class="select" name="status">
+						<option value="<?php echo $current_test["status"]; ?>">
+							<?php echo $current_test["status"]; ?>
+						</option>
+						<option value="en_attente">En attente</option>
+						<option value="confirme">Confirmé</option>
+						<option value="termine">Terminé</option>
+						<option value="annule">Annuler</option>
+					</select>
 				</div>
 			</div>
 			<button class="btn btn-primary min-h-0 h-10 font-bold my-2">Sauvegarder</button>

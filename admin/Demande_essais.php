@@ -150,7 +150,8 @@
                     if(is_array($new_test_drive)){
                         $success_message = "La demande a été enregistré.";
                         $this->setFlashMessage($success_message, "alert-success");
-                        header("Location: /supercar/admin/demande_essais");
+                        $id = $new_test_drive["id_essai"];
+                        header("Location: /supercar/admin/demande_essais?essai=$id");
                     }else{
                         $error_message = "Un problème est survenur lors de l'enregistrement de la demande ! veuillez réassayer plus tard";
                         $this->setFlashMessage($error_message, "alert-error");
@@ -160,6 +161,87 @@
                     $error_message = "Un problème est survenur lors de l'enregistrement de la demande ! veuillez réassayer plus tard";
                     $this->setFlashMessage($error_message, "alert-error");
                 }
+            } else{
+                $warning_message = "Methode non autorisée";
+                self::setFlashMessageAndRender($warning_message, "alert-warning", "demande_essais", "admin");
+                exit();
+            }
+        }
+
+        /**
+         * @throws Exception
+         */
+        public function update(): void{
+            if($_SERVER["REQUEST_METHOD"] == "GET"){
+                $all_users = $this->utilisateurModel->getAll("utilisateur");
+                $all_brands = $this->marqueModel->getAllBrands();
+                $this->render("demande_essais", "admin", [
+                    "all_users" => $all_users,
+                    "all_brands" => $all_brands
+                ]);
+            }else if($_SERVER["REQUEST_METHOD"] == "POST"){
+                //data coming from edit form(date, time, brand, car, user, id_essai, old_date, status)
+                extract($_POST);
+
+                //$data = ["date" => $date, "time" => $time, "brand" => $brand, "car" => $car, "old_date" => $old_date, "id_essai" => $id_essai];
+                //$today = date("Y-m-d");
+                // convert test drive date and todoy date in a date obj
+                $dateObj = new DateTime($date);
+                //$todayObj = new DateTime($today);
+                $old_date = new DateTime($old_date);
+                $interval = $old_date->diff($dateObj); // calculate difference betwenn new date and old one
+
+                //convert given time from string to time obj eg: '21:30' => 21:30
+                $time = substr($time, 0, 5); // "09:30"
+                $timeObj = DateTime::createFromFormat('H:i', $time);
+                $minutes = $timeObj->format('i');
+                $startTime = DateTime::createFromFormat('H:i', '08:30');
+                $endTime = DateTime::createFromFormat('H:i', '16:00');
+                if($interval->days < 0){
+                    $warning_message = "la nouvelle date ne doit être avant la date actuelle";
+                    self::setFlashMessage($warning_message, "alert-warning");
+                    header('Location: /supercar/admin/demande_essais/create');
+                    exit();
+                }
+                // il faut que l'heure soit compris entre 8h30 et 16h
+                if ($timeObj < $startTime || $timeObj > $endTime) {
+                    $warning_message = "Veuillez choisir un horaire entre 08:30 et 16:00, avec un interval de 30 minutes.";
+                    self::setFlashMessage($warning_message, "alert-warning");
+                    header('Location: /supercar/admin/demande_essais/create');
+                    exit();
+                    // les minuites: soit 00 ou 30
+                }elseif($minutes != 00 && $minutes != 30){
+                    $warning_message = "Veuillez choisir un horaire entre 08:30 et 16:00, avec un interval de 30 minutes.";
+                    self::setFlashMessage($warning_message, "alert-warning");
+                    header('Location: /supercar/admin/demande_essais/create');
+                    exit();
+                }
+                try{
+                    // Data coming from the POST request
+                    $new_test_drive = $this->demandeEssaiModel::create([
+                        "id_essai" => $id_essai,
+                        "date_essai" => $date,
+                        "heure" => $time,
+                        "status" => $status,
+                        "id_marque" => $brand,
+                        "id_modele" => $car,
+                    ]);
+                    if(is_array($new_test_drive)){
+                        $success_message = "La demande a été modifié.";
+                        $this->setFlashMessage($success_message, "alert-success");
+                        $id = $new_test_drive["id_essai"];
+                        header("Location: /supercar/admin/demande_essais?essai=$id");
+                    }else{
+                        $error_message = "Un problème est survenur lors de la modification de la demande ! veuillez réassayer plus tard";
+                        header("Location: /supercar/admin/demande_essais?essai=$id_essai");
+                    }
+                }catch (PDOException $exception) {
+                    error_log('Database error: ' . $exception->getMessage());
+                    $error_message = "Un problème est survenur lors de la modification de la demande ! veuillez réassayer plus tard";
+                    $this->setFlashMessage($error_message, "alert-error");
+                    header("Location: /supercar/admin/demande_essais?essai=$id_essai");
+                }
+
             } else{
                 $warning_message = "Methode non autorisée";
                 self::setFlashMessageAndRender($warning_message, "alert-warning", "demande_essais", "admin");

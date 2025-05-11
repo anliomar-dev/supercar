@@ -4,9 +4,12 @@
 
     use app\MainController;
     use app\Paginator;
+    use DateTime;
+    use Exception;
     use models\Essai;
     use models\Marque;
     use models\Utilisateur;
+    use PDOException;
 
     class Demande_essais extends MainController
     {
@@ -29,7 +32,7 @@
             // the id of the test drive (demande d'essai)
             $test_id = $_GET["essai"] ?? 0;
             if($test_id == 0){
-                $query = "SELECT essai.id_demande_essai, essai.date_essai, 
+                $query = "SELECT essai.id_essai, essai.date_essai, 
                         essai.heure, essai.status, modele.nom AS voiture
                         FROM essai
                         JOIN modele ON modele.id_modele = essai.id_modele
@@ -42,7 +45,7 @@
                             FROM essai 
                             JOIN modele ON modele.id_modele = essai.id_modele
                             JOIN utilisateur ON utilisateur.id_utilisateur = essai.id_utilisateur
-                            WHERE id_demande_essai = $test_id";
+                            WHERE id_essai = $test_id";
             }
             $current_page = $_GET['page'] ?? 1;
             $per_page = 6;
@@ -91,4 +94,77 @@
                 );
             }
         }
+
+        /**
+         * @throws Exception
+         */
+        public function create(): void{
+            if($_SERVER["REQUEST_METHOD"] == "GET"){
+                $all_users = $this->utilisateurModel->getAll("utilisateur");
+                $all_brands = $this->marqueModel->getAllBrands();
+                $this->render("demande_essais", "admin", [
+                    "all_users" => $all_users,
+                    "all_brands" => $all_brands
+                ]);
+            }else if($_SERVER["REQUEST_METHOD"] == "POST"){
+                extract($_POST);
+                $data = [$date, $time, $brand, $car, $user];
+                $today = date("Y-m-d");
+                // convert test drive date and todoy date in a date obj
+                $dateObj = new DateTime($date);
+                $todayObj = new DateTime($today);
+                $interval = $todayObj->diff($dateObj); // calculate difference in days
+
+                //convert given time from string to time obj eg: '21:30' => 21:30
+                $timeObj = DateTime::createFromFormat('H:i', $time);
+                $minutes = $timeObj->format('i');
+                $startTime = DateTime::createFromFormat('H:i', '08:30');
+                $endTime = DateTime::createFromFormat('H:i', '16:00');
+
+                if($interval->days < 7){
+                    $warning_message = "La date de l'essai doit être au minium 7 jours après la demande.";
+                    self::setFlashMessage($warning_message, "alert-warning");
+                    header('Location: /supercar/admin/demande_essais/create');
+                    exit();
+                }
+                if ($timeObj < $startTime || $timeObj > $endTime) {
+                    $warning_message = "Veuillez choisir un horaire entre 08:30 et 16:00, avec un interval de 30 minutes.";
+                    self::setFlashMessage($warning_message, "alert-warning");
+                    header('Location: /supercar/admin/demande_essais/create');
+                    exit();
+                }elseif($minutes != 00 && $minutes != 30){
+                    $warning_message = "Veuillez choisir un horaire entre 08:30 et 16:00, avec un interval de 30 minutes.";
+                    self::setFlashMessage($warning_message, "alert-warning");
+                    header('Location: /supercar/admin/demande_essais/create');
+                    exit();
+                }
+                try{
+                    // Data coming from the POST request
+                    $new_test_drive = $this->demandeEssaiModel::create([
+                        "date_essai" => $date,
+                        "heure" => $time,
+                        "id_marque" => $brand,
+                        "id_modele" => $car,
+                        "id_utilisateur" => $user
+                    ]);
+                    if(is_array($new_test_drive)){
+                        $success_message = "La demande a été enregistré.";
+                        $this->setFlashMessage($success_message, "alert-success");
+                        header("Location: /supercar/admin/demande_essais");
+                    }else{
+                        $error_message = "Un problème est survenur lors de l'enregistrement de la demande ! veuillez réassayer plus tard";
+                        $this->setFlashMessage($error_message, "alert-error");
+                    }
+                }catch (PDOException $exception) {
+                    error_log('Database error: ' . $exception->getMessage());
+                    $error_message = "Un problème est survenur lors de l'enregistrement de la demande ! veuillez réassayer plus tard";
+                    $this->setFlashMessage($error_message, "alert-error");
+                }
+            } else{
+                $warning_message = "Methode non autorisée";
+                self::setFlashMessageAndRender($warning_message, "alert-warning", "demande_essais", "admin");
+                exit();
+            }
+        }
     }
+

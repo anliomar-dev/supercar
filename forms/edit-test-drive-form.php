@@ -12,7 +12,7 @@
 				</p>
 			</div>
 			<input type="hidden" name="action" value="edit">
-			<input type="hidden" name="id_essai" value="<?php echo $current_test["id_demande_essai"]; ?>" >
+			<input type="hidden" name="id_essai" value="<?php echo $current_test["id_essai"]; ?>" >
 			<div class="fields flex flex-col gap-y-3">
 				<!-- /.fields -->
 				<div class=" grid grid-cols-1 md:grid-cols-2 gap-3">

@@ -1,14 +1,14 @@
-<div class="hidden add-form section w-full flex justify-center bg-base-100 py-10 rounded-lg">
-    <form action="" method="POST" class="w-1/2 flex flex-col gap-y-2 bg-base-100 p-5 rounded-lg shadow-md">
+<div class="add-form section w-full flex justify-center bg-base-100 py-10 rounded-lg">
+    <form action="/supercar/admin/demande_essais/create" method="POST" class="w-1/2 flex flex-col gap-y-2 bg-base-100 p-5 rounded-lg shadow-md">
         <div class="login-form-title flex justify-center">
             <h2 class="text-xl font-bold font-comic py-4">Ajouter une nouvelle demande</h2>
         </div>
         <input type="hidden" name="action" value="add">
         <div class="fields flex flex-col gap-y-3">
             <!-- /.fields -->
-			<p>Utilisateur</p>
 			<div class=" grid grid-cols-1 md:grid-cols-2 gap-3">
 				<select class="select" name="user" id="user">
+					<option value="">Choisir un utilisateur</option>
                     <?php if(!empty($all_users)): ?>
                         <?php foreach($all_users as $user): ?>
 							<option value=<?php echo $user["id_utilisateur"]; ?>>
@@ -40,9 +40,7 @@
                     <?php endif;?>
 				</select>
 				<!-- cars -->
-				<select class="select input-bordered" id="car"  name="car" required>
-
-				</select>
+				<select class="select input-bordered" id="car"  name="car" required></select>
 			</div>
         </div>
         <button class="btn btn-primary min-h-0 h-10 font-bold my-2">Ajouter</button>

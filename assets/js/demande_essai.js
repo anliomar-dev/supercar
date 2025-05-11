@@ -27,7 +27,7 @@ async function displayCars(brandId, carsOptions) {
         if(cars.length > 0){
             cars.forEach((car) => {
                 const option = document.createElement("option");
-                option.value = car.id_voiture;
+                option.value = car.id_modele;
                 option.textContent = car.nom;
                 carsOptions.appendChild(option);
             })

@@ -1,10 +1,10 @@
 <?php if(!empty($current_event)): ?>
     <div class="edit-form section w-full grid grid-cols-1 lg:grid-cols-2 justify-center gap-3 bg-base-100 py-10 rounded-lg p-4">
-        <form action="" method="POST" class="flex flex-col gap-y-2 bg-base-100 p-5 rounded-lg shadow-md">
+        <form action="/supercar/admin/evennements/update" method="POST" class="flex flex-col gap-y-2 bg-base-100 p-5 rounded-lg shadow-md">
             <div class="login-form-title flex justify-center">
                 <h2 class="text-xl font-bold font-comic py-4">Ajouter un nouvel Evennement</h2>
             </div>
-            <input type="hidden" name="action" value="edit">
+			<input type="hidden" name="id_event" value="<?php echo $current_event["id_evennement"]; ?>"/>
             <div class="fields flex flex-col">
                 <!-- /.fields -->
                 <!-- tittre et emplacement de l'évennement-->
@@ -71,9 +71,7 @@
                 <fieldset class="fieldset w-full">
                     <legend class="fieldset-legend">Description</legend>
                     <label>
-                            <textarea class="textarea h-24 w-full" name="description" placeholder="Description">
-                                value="<?php echo $current_event["description"]; ?>"
-                            </textarea>
+                            <textarea class="textarea h-24 w-full" name="description" placeholder="Description"><?php echo $current_event["description"]; ?></textarea>
                     </label>
                 </fieldset>
             </div>

@@ -77,13 +77,10 @@
 						/>
                     </label>
                 </div>
-
                 <fieldset class="fieldset w-full">
                     <legend class="fieldset-legend">Description</legend>
                     <label>
-                        <textarea class="textarea h-24 w-full" name="description" placeholder="Description">
-							<?php echo trim($current_car["description"]); ?>
-						</textarea>
+                        <textarea class="textarea h-24 w-full" name="description" placeholder="Description"><?php echo trim($current_car["description"]); ?></textarea>
                     </label>
                 </fieldset>
             </div>

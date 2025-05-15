@@ -4,6 +4,7 @@
     use app\MainController;
     use app\Paginator;
     use models\Evennement;
+    use PDOException;
 
     class Evennements extends MainController
     {
@@ -64,6 +65,93 @@
                         "current_event" => $paginated_events["data"][0],
                     ]
                 );
+            }
+        }
+
+        public function create(): void{
+            if($_SERVER["REQUEST_METHOD"] == "GET"){
+                $this->render("evennements", "admin",);
+            }else if($_SERVER["REQUEST_METHOD"] == "POST"){
+                $title = $_POST["titre"] ?? "";
+                $location = $_POST["location"] ?? "";
+                $image_url = $_POST["event-img-url"] ?? "";
+                $date_debut = $_POST["date_debut"] ?? "";
+                $date_fin = $_POST["date_fin"] ?? "";
+                $description = $_POST["description"] ?? "";
+
+                 try{
+                      // Data coming from the POST request
+                      $new_event = $this->eventModel::create([
+                          "titre" => $title,
+                          "location" => $location,
+                          "image" => $image_url,
+                          "date_debut" => $date_debut,
+                          "date_fin" => $date_fin,
+                          "description" => $description,
+                      ]);
+                      if(is_array($new_event)){
+                          $success_message = "L'evennement a été ajouté avec succès";
+                          $this->setFlashMessage($success_message, "alert-success");
+                          header("Location: /supercar/admin/evennements?event=".$new_event["id_evennement"]);
+                      }else{
+                          $error_message = "Un problème est survenu lors de l'ajout de l'évennement ! veuillez réassayer plus tard";
+                          $this->setFlashMessage($error_message, "alert-error");
+                          header("Location: /supercar/admin/evennements/create");
+                      }
+                  }catch (PDOException $exception) {
+                      error_log('Database error: ' . $exception->getMessage());
+                      $error_message = "Un problème est survenu lors de l'ajout de l'évennement ! veuillez réassayer plus tard";
+                      $this->setFlashMessage($error_message, "alert-error");
+                      header("Location: /supercar/admin/evennements");
+                  }
+            } else{
+                $warning_message = "Methode non autorisée";
+                self::setFlashMessageAndRender($warning_message, "alert-warning", "evennements", "admin");
+                exit();
+            }
+        }
+
+        public function update(): void{
+            if($_SERVER["REQUEST_METHOD"] == "GET"){
+                $this->render("evennements", "admin",);
+            }else if($_SERVER["REQUEST_METHOD"] == "POST"){
+                $id_event = $_POST["id_event"];
+                $title = $_POST["titre"] ?? "";
+                $location = $_POST["location"] ?? "";
+                $image_url = $_POST["event-img-url"] ?? "";
+                $date_debut = $_POST["date_debut"] ?? "";
+                $date_fin = $_POST["date_fin"] ?? "";
+                $description = $_POST["description"] ?? "";
+
+                try{
+                    $new_event = $this->eventModel::create([
+                        "id_evennement" => $id_event,
+                        "titre" => $title,
+                        "location" => $location,
+                        "image" => $image_url,
+                        "date_debut" => $date_debut,
+                        "date_fin" => $date_fin,
+                        "description" => $description,
+                    ]);
+                    if(is_array($new_event)){
+                        $success_message = "L'evennement a été modifié avec succès";
+                        $this->setFlashMessage($success_message, "alert-success");
+                        header("Location: /supercar/admin/evennements?event=".$new_event["id_evennement"]);
+                    }else{
+                        $error_message = "Un problème est survenu lors de la modification de l'évennement ! veuillez réassayer plus tard";
+                        $this->setFlashMessage($error_message, "alert-error");
+                        header("Location: /supercar/admin/evennements?event=".$id_event);
+                    }
+                }catch (PDOException $exception) {
+                    error_log('Database error: ' . $exception->getMessage());
+                    $error_message = "Un problème est survenu lors de la modification de l'évennement ! veuillez réassayer plus tard";
+                    $this->setFlashMessage($error_message, "alert-error");
+                    header("Location: /supercar/admin/evennements?event=".$id_event);
+                }
+            } else{
+                $warning_message = "Methode non autorisée";
+                self::setFlashMessageAndRender($warning_message, "alert-warning", "evennements", "admin");
+                exit();
             }
         }
     }

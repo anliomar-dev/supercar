@@ -6,10 +6,9 @@
 
     class Evennement extends MainModel
     {
-        public function __construct()
-        {
-            parent::__construct();
-            $this->tableName = "evennement";
+        protected string $tableName = 'evennement';
+        public function __construct(array $attributes = []){
+            parent::__construct($attributes);
         }
         public function all(): array{
             return $this->getAll('evennement');

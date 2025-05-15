@@ -116,9 +116,9 @@
                 $logo = $_POST["logo"] ?? "";
 
                 if(empty($id_marque)){
-                    $warning_message = "identifiant invalid";
-                    self::setFlashMessageAndRender($warning_message, "alert-warning", "marques", "admin");
-                    exit();
+                    $warning_message = "identifiant(id) invalid";
+                    $this->setFlashMessage($warning_message, "alert-warning");
+                    header("Location: /supercar/admin/marques");
                 }
 
                 try{

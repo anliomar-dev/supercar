@@ -160,6 +160,7 @@
                     error_log('Database error: ' . $exception->getMessage());
                     $error_message = "Un problème est survenur lors de l'enregistrement de la demande ! veuillez réassayer plus tard";
                     $this->setFlashMessage($error_message, "alert-error");
+                    header("Location: /supercar/admin/demande_essais/create");
                 }
             } else{
                 $warning_message = "Methode non autorisée";
@@ -241,7 +242,6 @@
                     $this->setFlashMessage($error_message, "alert-error");
                     header("Location: /supercar/admin/demande_essais?essai=$id_essai");
                 }
-
             } else{
                 $warning_message = "Methode non autorisée";
                 self::setFlashMessageAndRender($warning_message, "alert-warning", "demande_essais", "admin");

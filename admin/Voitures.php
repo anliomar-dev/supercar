@@ -156,13 +156,8 @@
                 }catch (PDOException $exception) {
                     error_log('Database error: ' . $exception->getMessage());
                     $error_message = "Un problème est survenu lors de l'ajout de la nouvelle voiture 2 ! veuillez réassayer plus tard";
-                    self::setFlashMessageAndRender(
-                        $error_message,
-                        "alert-error",
-                        "voitures",
-                        "admin"
-                    );
-                    exit();
+                    $this->setFlashMessage($error_message, "alert-error");
+                    header("Location: /supercar/admin/voitures/create");
                 }
             } else{
                 $warning_message = "Methode non autorisée";

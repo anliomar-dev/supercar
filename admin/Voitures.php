@@ -78,7 +78,7 @@
                     "voitures", "admin",
                     [
                         "all_brands" => $all_brands,
-                        "current_car" => $paginated_cars["data"][0] ?? "",
+                        "current_car" => $paginated_cars["data"][0] ?? [],
                     ]
                 );
             }

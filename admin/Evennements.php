@@ -62,7 +62,7 @@
                 $this->render(
                     "evennements", "admin",
                     [
-                        "current_event" => $paginated_events["data"][0],
+                        "current_event" => $paginated_events["data"][0] ?? [],
                     ]
                 );
             }

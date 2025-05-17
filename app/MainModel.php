@@ -14,8 +14,7 @@ use Dotenv;
 $dotenv = Dotenv\Dotenv::createImmutable($rootPath);
 $dotenv->load();
 
-abstract class MainModel
-{
+abstract class MainModel{
     /**
      * Get the value of the attribute specified by the key.
      *
@@ -224,7 +223,6 @@ abstract class MainModel
             $placeholders = ":" . implode(", :", array_keys($this->attributes));
             $query = "INSERT INTO {$this->tableName} ({$fields}) VALUES ({$placeholders})";
             $statement = $this->getConnection()->prepare($query);
-
             foreach ($this->attributes as $key => $value) {
                 $statement->bindValue(":$key", $value);
             }

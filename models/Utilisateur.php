@@ -14,7 +14,7 @@ class Utilisateur extends MainModel
     }
 
     /**
-     * the function authenticated a user and a associative array that container user infor
+     * the function authenticated a user and an associative array that contains user infor
      * @param string $email
      * @param string $password
      * @return ?array

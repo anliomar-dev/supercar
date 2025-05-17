@@ -64,7 +64,7 @@
                 $this->render(
                     "images", "admin",
                     [
-                        "current_image" => $paginated_images["data"][0],
+                        "current_image" => $paginated_images["data"][0] ?? [],
                         "all_cars" => $this->voitureModele->getAll("modele"), //get all cars in table modele
                     ]
                 );

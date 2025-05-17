@@ -61,7 +61,7 @@
                 $this->render(
                     "marques", "admin",
                     [
-                        "current_brand" => $paginated_brands["data"][0] ?? "",
+                        "current_brand" => $paginated_brands["data"][0] ?? [],
                     ]
                 );
             }

@@ -89,7 +89,7 @@
                     "demande_essais", "admin",
                     [
                         "all_brands" => $all_brands,
-                        "current_test" => $paginated_tests["data"][0],
+                        "current_test" => $paginated_tests["data"][0] ?? [],
                     ]
                 );
             }

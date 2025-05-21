@@ -150,4 +150,38 @@
                 exit();
             }
         }
+
+
+        public function delete(): void{
+            if($_SERVER["REQUEST_METHOD"] == "GET"){
+                $brand_id = $_GET["brand"] ?? "";
+                if(empty($brand_id)){
+                    $warning_message = "Veuillez preciser l'id de la marque a supprimer";
+                    $this->setFlashMessage($warning_message, "alert-warning");
+                    header("Location: /supercar/admin/marques");
+                }
+                $this->render("delete", "admin", [
+                    "confirmation_msg" => "Voulez-vous supprimer cette marque ?",
+                    "id" => $brand_id
+                ]);
+            }else if($_SERVER["REQUEST_METHOD"] == "POST"){
+                $id = $_POST["id"] ?? "";
+                try{
+                    $deleted = $this->marqueModele->delete($id);
+                    if($deleted){
+                        $success_message = "La marque a été supprimé avec succès !";
+                        $this->setFlashMessage($success_message, "alert-success");
+                        header("Location: /supercar/admin/marques");
+                    }else{
+                        $error_message = "La marque n'a pas été supprimé, Veuillez réessayer plus tard.";
+                        $this->setFlashMessage($error_message, "alert-error");
+                        header("Location: /supercar/admin/marques");
+                    }
+                }catch (PDOException $exception) {
+                    $warning_message = "Une erreur est survenue lors de la suppressions de la marque ! Veuillez réessayer plus tard.";
+                    $this->setFlashMessage($warning_message, "alert-warning");
+                    header("Location: /supercar/admin/marques");
+                }
+            }
+        }
     }

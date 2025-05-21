@@ -3,8 +3,23 @@
 		<div class="login-form-title flex justify-center">
 			<h2 class="text-xl font-bold font-comic py-4">Ajouter un utilisateur</h2>
 		</div>
-		<input type="hidden" name="action" value="add">
 		<div class="fields flex flex-col gap-y-3">
+			<div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+				<fieldset class="fieldset bg-base-100 border-base-300 rounded-box w-64 border p-4">
+					<legend class="fieldset-legend">Est admin</legend>
+					<label class="label">
+						<input type="checkbox" class="checkbox" value="1" name="est-admin" />
+						Peut accèder l'interface admin ?
+					</label>
+				</fieldset>
+				<fieldset class="fieldset bg-base-100 border-base-300 rounded-box w-64 border p-4">
+					<legend class="fieldset-legend">Est super-admin</legend>
+					<label class="label">
+						<input type="checkbox" class="checkbox" value="1" name="est-superadmin" />
+						Est super-utilisateur ?
+					</label>
+				</fieldset>
+			</div>
 			<!-- /.fullname-fields -->
 			<div class="fullname-fields grid grid-cols-1 md:grid-cols-2 gap-3">
 				<label class="input input-bordered flex items-center gap-2">
@@ -23,7 +38,7 @@
 
 			<!-- /.adresse -->
 			<div class="adresse w-full grid grid-cols-1">
-				<label class="input input-bordered flex items-center gap-2">
+				<label class="input input-bordered flex items-center gap-2 w-full">
 					<svg xmlns="http://www.w3.org/2000/svg" fill="none"
 						 viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6 opacity-70 text-secondary">
 						<path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />

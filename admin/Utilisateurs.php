@@ -74,6 +74,8 @@
                 $address = $_POST["address"] ?? "";
                 $phone = $_POST["phone"] ?? "";
                 $email = $_POST["email"] ?? "";
+                $est_admin = intval($_POST["est-admin"]) ?? 0;
+                $est_superadmin = intval($_POST["est-superadmin"]) ?? 0;
                 $password = $_POST["password"] ?? "";
                 $confirm_password = $_POST["confirm_password"] ?? "";
 
@@ -97,6 +99,8 @@
                         "adresse" => $address,
                         "telephone" => $phone,
                         "email" => $email,
+                        "est_admin" => $est_admin,
+                        "est_superadmin" => $est_superadmin,
                         "mot_de_passe" => password_hash($password, PASSWORD_BCRYPT)
                     ]);
                     if(is_array($new_user)){
@@ -132,6 +136,8 @@
                 $address = $_POST["address"] ?? "";
                 $phone = $_POST["phone"] ?? "";
                 $email = $_POST["email"] ?? "";
+                $est_admin = intval($_POST["est-admin"]) ?? 0;
+                $est_superadmin = intval($_POST["est-superadmin"]) ?? 0;
                 $password = $_POST["password"] ?? "";
                 $confirm_password = $_POST["confirm_password"] ?? "";
 
@@ -159,6 +165,8 @@
                             "adresse" => $address,
                             "telephone" => $phone,
                             "email" => $email,
+                            "est_admin" => $est_admin,
+                            "est_superadmin" => $est_superadmin,
                             "mot_de_passe" => password_hash($password, PASSWORD_BCRYPT)
                         ]);
                     }else{
@@ -169,6 +177,8 @@
                             "adresse" => $address,
                             "telephone" => $phone,
                             "email" => $email,
+                            "est_admin" => $est_admin,
+                            "est_superadmin" => $est_superadmin,
                         ]);
                     }
                     if(is_array($new_user)){

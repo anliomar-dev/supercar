@@ -6,8 +6,8 @@
         <input type="hidden" name="action" value="add">
         <div class="fields flex flex-col gap-y-3">
             <!-- /.fields -->
-			<div class=" grid grid-cols-1 md:grid-cols-2 gap-3">
-				<select class="select" name="user" id="user">
+			<div class="grid grid-cols-1 gap-3 w-full">
+				<select class="select w-full" name="user" id="user">
 					<option value="">Choisir un utilisateur</option>
                     <?php if(!empty($all_users)): ?>
                         <?php foreach($all_users as $user): ?>

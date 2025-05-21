@@ -164,7 +164,7 @@
                     header("Location: /supercar/admin/evennements");
                 }
                 $this->render("delete", "admin", [
-                    "confirmation_msg" => "Voulez-vous supprimer cette image ?",
+                    "confirmation_msg" => "Voulez-vous supprimer cet évennement ?",
                     "id" => $event_id
                 ]);
             }else if($_SERVER["REQUEST_METHOD"] == "POST"){

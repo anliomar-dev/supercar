@@ -259,7 +259,7 @@
                     header("Location: /supercar/admin/demande_essais");
                 }
                 $this->render("delete", "admin", [
-                    "confirmation_msg" => "Voulez-vous supprimer cette image ?",
+                    "confirmation_msg" => "Voulez-vous supprimer cette demande ?",
                     "id" => $test_id
                 ]);
             }else if($_SERVER["REQUEST_METHOD"] == "POST"){

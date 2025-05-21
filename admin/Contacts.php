@@ -156,7 +156,7 @@
                     header("Location: /supercar/admin/contacts");
                 }
                 $this->render("delete", "admin", [
-                    "confirmation_msg" => "Voulez-vous supprimer cette image ?",
+                    "confirmation_msg" => "Voulez-vous supprimer ce contact ?",
                     "id" => $contact_id
                 ]);
             }else if($_SERVER["REQUEST_METHOD"] == "POST"){

@@ -12,6 +12,30 @@
 
 			<div class="fields flex flex-col gap-y-3">
 				<!-- /.fullname-fields -->
+				<div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+					<fieldset class="fieldset bg-base-100 border-base-300 rounded-box w-64 border p-4">
+						<legend class="fieldset-legend">Est admin</legend>
+						<label class="label">
+                            <?php if($current_user["est_admin"] === 1): ?>
+								<input type="checkbox" class="checkbox" checked="checked" value="1" name="est-admin" />
+                            <?php else: ?>
+								<input type="checkbox" class="checkbox" value="1" name="est-admin" />
+                            <?php endif; ?>
+							Peut accèder l'interface admin ?
+						</label>
+					</fieldset>
+					<fieldset class="fieldset bg-base-100 border-base-300 rounded-box w-64 border p-4">
+						<legend class="fieldset-legend">Est super-admin</legend>
+						<label class="label">
+							<?php if($current_user["est_superadmin"] === 1): ?>
+								<input type="checkbox" class="checkbox" checked value="1" name="est-superadmin" />
+							<?php else: ?>
+								<input type="checkbox" class="checkbox" value="1" name="est-superadmin" />
+							<?php endif; ?>
+							Est super-utilisateur ?
+						</label>
+					</fieldset>
+				</div>
 				<div class="fullname-fields grid grid-cols-1 md:grid-cols-2 gap-3">
 					<label class="input input-bordered flex items-center gap-2">
 						<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6 opacity-70 text-secondary">
@@ -28,8 +52,8 @@
 				</div>
 
 				<!-- /.adresse -->
-				<div class="adresse">
-					<label class="input input-bordered flex items-center gap-2">
+				<div class="adresse w-full">
+					<label class="input input-bordered flex items-center gap-2 w-full">
 						<svg xmlns="http://www.w3.org/2000/svg" fill="none"
 							 viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6 opacity-70 text-secondary">
 							<path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />

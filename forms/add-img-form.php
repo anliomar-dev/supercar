@@ -1,5 +1,5 @@
-<div class="hidden add-form section w-full flex justify-center bg-base-100 py-10 rounded-lg">
-    <form action="" method="POST" class="w-1/2 flex flex-col gap-y-2 bg-base-100 p-5 rounded-lg shadow-md">
+<div class="section w-full flex justify-center bg-base-100 py-10 rounded-lg">
+    <form action="/supercar/admin/images/create" method="POST" class="w-1/2 flex flex-col gap-y-2 bg-base-100 p-5 rounded-lg shadow-md">
         <div class="login-form-title flex justify-center">
             <h2 class="text-xl font-bold font-comic py-4">Ajouter une nouvelle image</h2>
         </div>
@@ -7,7 +7,7 @@
 		<!-- /.fields -->
         <div class="fields flex flex-col gap-y-3">
             <div class=" grid grid-cols-1 md:grid-cols-2 gap-3">
-                <select class="select" name="brand" id="brand">
+                <select class="select" name="car_id" id="car">
                     <?php if(!empty($all_cars)): ?>
                         <?php foreach($all_cars as $car): ?>
                             <option value=<?php echo $car["id_modele"]; ?>><?php echo $car["nom"]; ?></option>
@@ -27,14 +27,15 @@
 						value="https://"
 						pattern="^(https?://)?([a-zA-Z0-9]([a-zA-Z0-9\-].*[a-zA-Z0-9])?\.)+[a-zA-Z].*$"
 						title="Must be valid URL"
+						name="image-url"
 					/>
 				</label>
 				<p class="validator-hint">Must be valid URL</p>
             </div>
             <div class=" grid grid-cols-1 md:grid-cols-2 gap-3">
-				<select class="select" name="type-img" id="type-img">
-					<option value="inside">intérieur</option>
+				<select class="select" name="image-type" id="image-type">
 					<option value="outside">Extérieur</option>
+					<option value="inside">intérieur</option>
 				</select>
 				<select class="select" name="color" id="color">
 					<option value="blue">Blue</option>

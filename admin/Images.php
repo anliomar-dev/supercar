@@ -4,12 +4,11 @@
     use app\MainController;
     use app\Paginator;
     use models\Image;
-    use models\Voiture; // Import the 'models\Voiture' class
+    use PDOException;
 
     class Images extends MainController
     {
         private Image $imageModele;
-        private Voiture $voitureModele;
 
         /**
          * Constructor for initializing model "Voiture".
@@ -18,7 +17,6 @@
         {
             // Ensure loadModel returns an instance of models\Evennement
             $this->imageModele = $this->loadModel("Image");
-            $this->voitureModele = $this->loadModel("Voiture");
 
         }
         public function index(): void {
@@ -57,7 +55,7 @@
                         "paginated_images" => $paginated_images,
                         "prev_url" => $prev_url,
                         "next_url" => $next_url,
-                        "all_cars" => $this->voitureModele->getAll("modele"), //get all cars in table modele
+                        "all_cars" => $this->imageModele->getAllCars(), //get all cars in table modele
                     ]
                 );
             }else{
@@ -65,9 +63,94 @@
                     "images", "admin",
                     [
                         "current_image" => $paginated_images["data"][0] ?? [],
-                        "all_cars" => $this->voitureModele->getAll("modele"), //get all cars in table modele
+                        "all_cars" => $this->imageModele->getAllCars(),
                     ]
                 );
             }
         }
+
+        public function create(): void{
+            if($_SERVER["REQUEST_METHOD"] == "GET"){
+                $all_cars = $this->imageModele->getAllCars();
+                $this->render("images", "admin", [
+                    "all_cars" => $all_cars
+                ]);
+            }else if($_SERVER["REQUEST_METHOD"] == "POST"){
+                $car_id = $_POST["car_id"];
+                $image_url = $_POST["image-url"];
+                $image_type = $_POST["image-type"];
+                $color = $_POST["color"];
+                try{
+                    // Data coming from the POST request
+                    $new_image = $this->imageModele::create([
+                        "url" => $image_url,
+                        "type" => $image_type,
+                        "couleur" => $color,
+                        "id_modele" => $car_id
+                    ]);
+                    if(is_array($new_image)){
+                        $success_message = "L'image a été ajouté avec succès";
+                        $this->setFlashMessage($success_message, "alert-success");
+                        header("Location: /supercar/admin/images?image=".$new_image["id_image"]);
+                    }else{
+                        $error_message = "Un problème est survenu lors de l'ajout de la nouvelle image ! veuillez réassayer plus tard";
+                        $this->setFlashMessage($error_message, "alert-error");
+                        header("Location: /supercar/admin/images/create");
+                    }
+                }catch (PDOException $exception) {
+                    error_log('Database error: ' . $exception->getMessage());
+                    $error_message = "Un problème est survenu lors de l'ajout de la nouvelle image ! veuillez réassayer plus tard";
+                    $this->setFlashMessage($error_message, "alert-error");
+                    header("Location: /supercar/admin/images/create");
+                }
+            } else{
+                $warning_message = "Methode non autorisée";
+                self::setFlashMessageAndRender($warning_message, "alert-warning", "images", "admin");
+                exit();
+            }
+        }
+
+        public function update(): void{
+            if($_SERVER["REQUEST_METHOD"] == "GET"){
+                $all_cars = $this->imageModele->getAllCars();
+                $this->render("images", "admin", [
+                    "all_cars" => $all_cars
+                ]);
+            }else if($_SERVER["REQUEST_METHOD"] == "POST"){
+                $image_id = $_POST["id_image"];
+                $car_id = $_POST["car_id"];
+                $image_url = $_POST["image-url"];
+                $image_type = $_POST["image-type"];
+                $color = $_POST["color"];
+                try{
+                    // Data coming from the POST request
+                    $new_image = $this->imageModele::create([
+                        "id_image" => $image_id,
+                        "url" => $image_url,
+                        "type" => $image_type,
+                        "couleur" => $color,
+                        "id_modele" => $car_id
+                    ]);
+                    if(is_array($new_image)){
+                        $success_message = "L'image a été modifié avec succès";
+                        $this->setFlashMessage($success_message, "alert-success");
+                        header("Location: /supercar/admin/images?image=".$new_image["id_image"]);
+                    }else{
+                        $error_message = "Un problème est survenu lors de la modification de la nouvelle image ! veuillez réassayer plus tard";
+                        $this->setFlashMessage($error_message, "alert-error");
+                        header("Location: /supercar/admin/images/create?image=$image_id");
+                    }
+                }catch (PDOException $exception) {
+                    error_log('Database error: ' . $exception->getMessage());
+                    $error_message = "Un problème est survenu lors de la modification de l'image ! veuillez réassayer plus tard";
+                    $this->setFlashMessage($error_message, "alert-error");
+                    header("Location: /supercar/admin/images/create?image=$image_id");
+                }
+            } else{
+                $warning_message = "Methode non autorisée";
+                self::setFlashMessageAndRender($warning_message, "alert-warning", "images", "admin");
+                exit();
+            }
+        }
+
     }

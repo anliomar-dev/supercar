@@ -1,15 +1,14 @@
 <?php if(!empty($current_image)):?>
-    <div class="edit-form section w-full grid grid-cols-1 lg:grid-cols-2 justify-center bg-base-100 py-10 rounded-lg p-6">
-        <form action="" method="POST" class="flex flex-col gap-y-2 bg-base-100 p-5 rounded-lg shadow-md">
+    <div class="section w-full grid grid-cols-1 lg:grid-cols-2 justify-center bg-base-100 py-10 rounded-lg p-6">
+        <form action="/supercar/admin/images/update" method="POST" class="flex flex-col gap-y-2 bg-base-100 p-5 rounded-lg shadow-md">
             <div class="login-form-title flex justify-center">
                 <h2 class="text-xl font-bold font-comic py-4">Modifier l'image</h2>
             </div>
-            <input type="hidden" name="action" value="edit">
             <input type="hidden" name="id_image" value="<?php echo $current_image["id_image"]; ?>">
             <div class="fields flex flex-col gap-y-3">
                 <!-- /.fields -->
                 <div class=" grid grid-cols-1 md:grid-cols-2 gap-3">
-                    <select class="select" name="brand" id="brand">
+                    <select class="select" name="car_id" id="car_id">
                         <?php if(!empty($all_cars)): ?>
                             <?php foreach($all_cars as $car): ?>
                                 <option
@@ -34,12 +33,13 @@
                             value=<?php echo $current_image["url"]; ?>
                             pattern="^(https?://)?([a-zA-Z0-9]([a-zA-Z0-9\-].*[a-zA-Z0-9])?\.)+[a-zA-Z].*$"
                             title="Must be valid URL"
+							name="image-url"
                         />
                     </label>
                     <p class="validator-hint">Must be valid URL</p>
                 </div>
                 <div class=" grid grid-cols-1 md:grid-cols-2 gap-3">
-                    <select class="select" name="type-img" id="type-img">
+                    <select class="select" name="image-type" id="image-type">
                         <option
                             value="inside"
                             <?php if($current_image["type"] == "inside"): ?>
@@ -65,7 +65,7 @@
                     </select>
                 </div>
             </div>
-            <button class="btn btn-primary min-h-0 h-10 font-bold my-2">Ajouter</button>
+            <button class="btn btn-primary min-h-0 h-10 font-bold my-2">Sauvegarder</button>
         </form>
 		<div class="flex items-center">
 			<img src="<?php echo $current_image["url"]; ?>" class="rounded-lg" alt="image">

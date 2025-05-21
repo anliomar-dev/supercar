@@ -104,13 +104,13 @@
                         $this->setFlashMessage($success_message, "alert-success");
                         header("Location: /supercar/admin/utilisateurs?user=".$new_user["id_utilisateur"]);
                     }else{
-                        $error_message = "Un problème est survenu lors de la création de votre compte ! veuillez réassayer plus tard";
+                        $error_message = "Un problème est survenu lors de la création de votre compte ! Veuillez réessayer plus tard.";
                         $this->setFlashMessage($error_message, "alert-error");
                         header("Location: /supercar/admin/utilisateurs/create");
                     }
                 }catch (PDOException $exception) {
                     error_log('Database error: ' . $exception->getMessage());
-                    $error_message = "Un problème est survenu lors de la création de votre compte ! veuillez réassayer plus tard";
+                    $error_message = "Un problème est survenu lors de la création de votre compte ! Veuillez réessayer plus tard.";
                     $this->setFlashMessage($error_message, "alert-error");
                     header("Location: /supercar/admin/utilisateurs/create");
                 }
@@ -176,13 +176,13 @@
                         $this->setFlashMessage($success_message, "alert-success");
                         header("Location: /supercar/admin/utilisateurs?user=$id_utilisateur");
                     }else{
-                        $error_message = "Un problème est survenu lors de la modification ! veuillez réassayer plus tard";
+                        $error_message = "Un problème est survenu lors de la modification ! Veuillez réessayer plus tard.";
                         $this->setFlashMessage($error_message, "alert-error");
                         header("Location: /supercar/admin/utilisateurs?user=".$id_utilisateur);
                     }
                 }catch (PDOException $exception) {
                     error_log('Database error: ' . $exception->getMessage());
-                    $error_message = "Un problème est survenu lors de la modification ! veuillez réassayer plus tard";
+                    $error_message = "Un problème est survenu lors de la modification ! Veuillez réessayer plus tard.";
                     $this->setFlashMessage($error_message, "alert-error");
                     header("Location: /supercar/admin/utilisateurs?user=".$id_utilisateur);
                 }
@@ -195,6 +195,35 @@
         }
 
         public function delete(): void{
-
+            if($_SERVER["REQUEST_METHOD"] == "GET"){
+                $id_utilisateur = $_GET["user"] ?? "";
+                if(empty($id_utilisateur)){
+                    $warning_message = "Veuillez preciser l'id de l'utilisateur a supprimer";
+                    $this->setFlashMessage($warning_message, "alert-warning");
+                    header("Location: /supercar/admin/utilisateurs");
+                }
+                $this->render("delete", "admin", [
+                    "confirmation_msg" => "Voulez-vous supprimer ce compte ?",
+                    "id" => $id_utilisateur
+                ]);
+            }else if($_SERVER["REQUEST_METHOD"] == "POST"){
+                $id_utilisateur = $_POST["id"] ?? "";
+                try{
+                    $deleted = $this->utilisateurModele->delete($id_utilisateur);
+                    if($deleted){
+                        $success_message = "Le compte a été supprimé avec succès !";
+                        $this->setFlashMessage($success_message, "alert-success");
+                        header("Location: /supercar/admin/utilisateurs");
+                    }else{
+                        $error_message = "Le compte n'a pas été supprimé, Veuillez réessayer plus tard.";
+                        $this->setFlashMessage($error_message, "alert-error");
+                        header("Location: /supercar/admin/utilisateurs");
+                    }
+                }catch (PDOException $exception) {
+                    $warning_message = "Une erreur est survenue lors de la suppressions de l'utilisateur ! Veuillez réessayer plus tard.";
+                    $this->setFlashMessage($warning_message, "alert-warning");
+                    header("Location: /supercar/admin/utilisateurs");
+                }
+            }
         }
     }

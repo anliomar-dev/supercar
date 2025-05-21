@@ -32,12 +32,12 @@
 			<div class="flex justify-between items-center w-full mt-5 py-3">
 				<?php if(isset($_GET["slug"])): ?>
 					<div class="join">
-						<a href="/supercar/admin/voitures" class="btn btn-accent btn-outline rounded-lg">
+						<button onclick={history.back()} class="btn btn-accent btn-outline rounded-lg">
 							<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
 								<path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18" />
 							</svg>
 							Liste des voitures
-						</a>
+						</button>
 					</div>
 				<?php else: ?>
 					<div class="join">

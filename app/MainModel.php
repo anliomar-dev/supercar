@@ -278,15 +278,14 @@ abstract class MainModel{
     }
 
     /**
-     * @param int $id the id(primary_key) of the row we want to delete in the table
-     * @return bool true if the deletion successfull, false otherwise
+     * @param int $id The ID (primary key) of the row to delete
+     * @return bool True if the deletion is successful, false otherwise
      */
-    public function delete(int $id): bool{
-        return true;
+    public function delete(int $id): bool {
+        $primaryKey = "id_{$this->tableName}";
+        $query = "DELETE FROM {$this->tableName} WHERE {$primaryKey} = :{$primaryKey}";
+        $statement = $this->getConnection()->prepare($query);
+        return $statement->execute([$primaryKey => $id]);
     }
 
-
-    public function filter(array $filters):void{
-        //rien
-    }
 }

@@ -236,4 +236,17 @@
                 }
             }
         }
+
+
+        public function moi(): void{
+            if($_SERVER["REQUEST_METHOD"] == "GET"){
+                $this->render("mon_profile", "admin");
+            }
+        }
+
+        public function supprimer_mon_compte(): void{
+            if($_SERVER["REQUEST_METHOD"] == "GET"){
+                $my_id = $_GET["id"] ?? "";
+            }
+        }
     }

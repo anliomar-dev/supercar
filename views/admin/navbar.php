@@ -1,10 +1,12 @@
 <div class="navbar bg-base-100 shadow-md px-3 rounded-lg">
     <div class="navbar-start flex flex-col items-start">
-        <p class="text-sm">16/04/2025</p>
+        <p class="text-sm">
+			<?php echo date("d-m-Y");  ; ?>
+		</p>
         <a class="text-md font-bold">Anli Omar</a>
     </div>
     <div class="navbar-end">
-        <label for="my-drawer-2" class="btn btn drawer-button lg:hidden">
+        <label for="my-drawer-2" class="btn drawer-button lg:hidden">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
             </svg>
@@ -49,7 +51,7 @@
                 tabindex="0"
                 class="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
                 <li>
-                    <a class="justify-between">
+                    <a href="/supercar/admin/utilisateurs/moi" class="justify-between">
                         Mon Profile
                     </a>
                 </li>

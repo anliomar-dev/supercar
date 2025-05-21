@@ -254,7 +254,7 @@
                         header("Location: /supercar/admin/voitures");
                     }
                 }catch (PDOException $exception) {
-                    $warning_message = "Une erreur est survenue lors de la suppressions de la voiture ! Veuillez réessayer plus tard.";
+                    $warning_message = "Une erreur est survenue lors de la suppression de la voiture ! Veuillez réessayer plus tard.";
                     $this->setFlashMessage($warning_message, "alert-warning");
                     header("Location: /supercar/admin/voitures");
                 }

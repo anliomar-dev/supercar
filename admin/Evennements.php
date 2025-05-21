@@ -154,4 +154,37 @@
                 exit();
             }
         }
+
+        public function delete(): void{
+            if($_SERVER["REQUEST_METHOD"] == "GET"){
+                $event_id = $_GET["event"] ?? "";
+                if(empty($event_id)){
+                    $warning_message = "Veuillez preciser l'id de l'Evennement a supprimer";
+                    $this->setFlashMessage($warning_message, "alert-warning");
+                    header("Location: /supercar/admin/evennements");
+                }
+                $this->render("delete", "admin", [
+                    "confirmation_msg" => "Voulez-vous supprimer cette image ?",
+                    "id" => $event_id
+                ]);
+            }else if($_SERVER["REQUEST_METHOD"] == "POST"){
+                $id = $_POST["id"] ?? "";
+                try{
+                    $deleted = $this->eventModel->delete($id);
+                    if($deleted){
+                        $success_message = "L'évennement été supprimé avec succès !";
+                        $this->setFlashMessage($success_message, "alert-success");
+                        header("Location: /supercar/admin/evennements");
+                    }else{
+                        $error_message = "L'évennement n'a pas été supprimé, Veuillez réessayer plus tard.";
+                        $this->setFlashMessage($error_message, "alert-error");
+                        header("Location: /supercar/admin/evennements");
+                    }
+                }catch (PDOException $exception) {
+                    $warning_message = "Une erreur est survenue lors de la suppression de l'évennement ! Veuillez réessayer plus tard.";
+                    $this->setFlashMessage($warning_message, "alert-warning");
+                    header("Location: /supercar/admin/evennements");
+                }
+            }
+        }
     }

@@ -145,4 +145,38 @@
                 exit();
             }
         }
+
+
+        public function delete(): void{
+            if($_SERVER["REQUEST_METHOD"] == "GET"){
+                $contact_id = $_GET["contact"] ?? "";
+                if(empty($contact_id)){
+                    $warning_message = "Veuillez preciser l'id du contact a supprimer";
+                    $this->setFlashMessage($warning_message, "alert-warning");
+                    header("Location: /supercar/admin/contacts");
+                }
+                $this->render("delete", "admin", [
+                    "confirmation_msg" => "Voulez-vous supprimer cette image ?",
+                    "id" => $contact_id
+                ]);
+            }else if($_SERVER["REQUEST_METHOD"] == "POST"){
+                $id = $_POST["id"] ?? "";
+                try{
+                    $deleted = $this->contactModel->delete($id);
+                    if($deleted){
+                        $success_message = "Le contact a été supprimé avec succès !";
+                        $this->setFlashMessage($success_message, "alert-success");
+                        header("Location: /supercar/admin/contacts");
+                    }else{
+                        $error_message = "Le contact n'a pas été supprimé, Veuillez réessayer plus tard.";
+                        $this->setFlashMessage($error_message, "alert-error");
+                        header("Location: /supercar/admin/contacts");
+                    }
+                }catch (PDOException $exception) {
+                    $warning_message = "Une erreur est survenu lors de la suppression du contact ! Veuillez réessayer plus tard.";
+                    $this->setFlashMessage($warning_message, "alert-warning");
+                    header("Location: /supercar/admin/contacts");
+                }
+            }
+        }
     }

@@ -153,4 +153,37 @@
             }
         }
 
+        public function delete(): void{
+            if($_SERVER["REQUEST_METHOD"] == "GET"){
+                $image_id = $_GET["image"] ?? "";
+                if(empty($image_id)){
+                    $warning_message = "Veuillez preciser l'id de l'image' a supprimer";
+                    $this->setFlashMessage($warning_message, "alert-warning");
+                    header("Location: /supercar/admin/images");
+                }
+                $this->render("delete", "admin", [
+                    "confirmation_msg" => "Voulez-vous supprimer cette image ?",
+                    "id" => $image_id
+                ]);
+            }else if($_SERVER["REQUEST_METHOD"] == "POST"){
+                $id = $_POST["id"] ?? "";
+                try{
+                    $deleted = $this->imageModele->delete($id);
+                    if($deleted){
+                        $success_message = "L'image a été supprimé avec succès !";
+                        $this->setFlashMessage($success_message, "alert-success");
+                        header("Location: /supercar/admin/images");
+                    }else{
+                        $error_message = "L'image' n'a pas été supprimé, Veuillez réessayer plus tard.";
+                        $this->setFlashMessage($error_message, "alert-error");
+                        header("Location: /supercar/admin/images");
+                    }
+                }catch (PDOException $exception) {
+                    $warning_message = "Une erreur est survenue lors de la suppression de l'image' ! Veuillez réessayer plus tard.";
+                    $this->setFlashMessage($warning_message, "alert-warning");
+                    header("Location: /supercar/admin/images");
+                }
+            }
+        }
+
     }

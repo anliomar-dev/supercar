@@ -220,7 +220,7 @@
                         header("Location: /supercar/admin/utilisateurs");
                     }
                 }catch (PDOException $exception) {
-                    $warning_message = "Une erreur est survenue lors de la suppressions de l'utilisateur ! Veuillez réessayer plus tard.";
+                    $warning_message = "Une erreur est survenue lors de la  de l'utilisateur ! Veuillez réessayer plus tard.";
                     $this->setFlashMessage($warning_message, "alert-warning");
                     header("Location: /supercar/admin/utilisateurs");
                 }

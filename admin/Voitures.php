@@ -226,4 +226,38 @@
                 header("Location: /supercar/admin/voitures");
             }
         }
+
+
+        public function delete(): void{
+            if($_SERVER["REQUEST_METHOD"] == "GET"){
+                $car_id = $_GET["car"] ?? "";
+                if(empty($car_id)){
+                    $warning_message = "Veuillez preciser l'id de la voiture a supprimer";
+                    $this->setFlashMessage($warning_message, "alert-warning");
+                    header("Location: /supercar/admin/voitures");
+                }
+                $this->render("delete", "admin", [
+                    "confirmation_msg" => "Voulez-vous supprimer cette voiture ?",
+                    "id" => $car_id
+                ]);
+            }else if($_SERVER["REQUEST_METHOD"] == "POST"){
+                $id = $_POST["id"] ?? "";
+                try{
+                    $deleted = $this->voitureModele->delete($id);
+                    if($deleted){
+                        $success_message = "La voiture a été supprimé avec succès !";
+                        $this->setFlashMessage($success_message, "alert-success");
+                        header("Location: /supercar/admin/voitures");
+                    }else{
+                        $error_message = "La voiture n'a pas été supprimé, Veuillez réessayer plus tard.";
+                        $this->setFlashMessage($error_message, "alert-error");
+                        header("Location: /supercar/admin/voitures");
+                    }
+                }catch (PDOException $exception) {
+                    $warning_message = "Une erreur est survenue lors de la suppressions de la voiture ! Veuillez réessayer plus tard.";
+                    $this->setFlashMessage($warning_message, "alert-warning");
+                    header("Location: /supercar/admin/voitures");
+                }
+            }
+        }
     }

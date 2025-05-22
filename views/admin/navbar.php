@@ -1,9 +1,13 @@
+<?php
+	$first_name = explode(" ",$_SESSION['username'])[0];
+    $last_name = explode(" ",$_SESSION['username'])[1];
+?>
 <div class="navbar bg-base-100 shadow-md px-3 rounded-lg">
     <div class="navbar-start flex flex-col items-start">
         <p class="text-sm">
 			<?php echo date("d-m-Y");  ; ?>
 		</p>
-        <a class="text-md font-bold">Anli Omar</a>
+        <a class="text-md font-bold"><?php echo $_SESSION["username"];  ; ?></a>
     </div>
     <div class="navbar-end">
         <label for="my-drawer-2" class="btn drawer-button lg:hidden">
@@ -43,7 +47,9 @@
             <div tabindex="0" role="button" class="btn btn-ghost btn-circle">
                 <div class="avatar avatar-placeholder">
                     <div class="bg-neutral text-neutral-content w-8 rounded-full">
-                        <span>SY</span>
+                        <span>
+							<?php echo strtoupper($first_name[0]) . strtoupper($last_name[0]) ?>
+						</span>
                     </div>
                 </div>
             </div>

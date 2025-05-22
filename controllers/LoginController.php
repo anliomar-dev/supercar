@@ -13,7 +13,7 @@ class LoginController extends MainController
     public function index(): void{
         if ($_SERVER['REQUEST_METHOD'] == 'POST'){
             if(!isset($_POST["email"]) || !isset($_POST["password"])){
-                $error_message = "Les deux mots de passe sont obligatoires";
+                $error_message = "Les deux champs doivent être correctement remplis";
                 self::setFlashMessageAndRender($error_message, "alert-error", "login");
                 exit();
             }

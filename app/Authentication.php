@@ -47,24 +47,31 @@
 
         public function session_expired():void{
             $this->render("session_expired");
-
         }
 
-        public function is_authenticated(): void
+        public function is_authenticated(string $user_interface="client", $session_validity_in_seconde = 30): void
         {
             if (empty($_SESSION["user_id"]) || empty($_SESSION["csrf_token"])) {
                 $next = $_SERVER['REQUEST_URI'];
                 $next = str_replace('/supercar/', '', $next);
-                header("Location: /supercar/login?next=" . $next);
+               if($user_interface == "client"){
+                   header("Location: /supercar/login?next=" . $next);
+               }elseif ($user_interface == "admin"){
+                   header("Location: /supercar/admin/login?next=" . $next);
+               }
                 exit();
             }
-            $session_timeout = 60;
+            $session_timeout = $session_validity_in_seconde;
             if (isset($_SESSION["last_activity"]) && (time() - $_SESSION["last_activity"]) > $session_timeout) {
                 $this->destroySession();
-                // redirect user to the signin page
-                header("Location: /supercar/authentication/session_expired");
-                exit();
+                // redirect user to the session expired page
 
+                if($user_interface == "client"){
+                    header("Location: /supercar/authentication/session_expired");
+                }elseif ($user_interface == "admin"){
+                    header("Location: /supercar/admin/session_expired");
+                }
+                exit();
             }
             $_SESSION["last_activity"] = time();
         }

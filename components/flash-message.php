@@ -12,7 +12,7 @@
                         displayAlertIconByType($type);
                     };
                 ?>
-                <span class="text-white">
+                <span class="text-white text-center">
 					<?php
                         $message = $_SESSION["flash_message"]["message"];
                         echo $message;

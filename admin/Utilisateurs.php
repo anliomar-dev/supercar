@@ -312,4 +312,60 @@
                 }
             }
         }
+
+        public function update_password(): void{
+            // check is user is authenticated
+            $this->auth->is_authenticated("admin", 300);
+            if($_SERVER["REQUEST_METHOD"] == "POST"){
+                $id_utilisateur = $_SESSION["user_id"] ?? "";
+                $old_password = $_POST["old-password"] ?? "";
+                $new_password = $_POST["new-password"] ?? "";
+                $new_password_confirm = $_POST["new-password-confirm"] ?? "";
+
+                $user = $this->utilisateurModele->getByColumn(["id_utilisateur"=>$id_utilisateur]);
+
+                if(!password_verify($old_password, $user["mot_de_passe"])){
+                    $error_message = "Ancien mot de passe incorrect !";
+                    $this->setFlashMessage($error_message, "alert-error");
+                    header("Location: /supercar/admin/utilisateurs/moi");
+                    exit();
+                }
+
+                if($new_password != $new_password_confirm){
+                    $error_message = "les 2 mots de passes ne correspondent pas.";
+                    $this->setFlashMessage($error_message, "alert-error");
+                    header("Location: /supercar/admin/utilisateurs/moi");
+                    exit();
+                }
+
+                if(empty($id_utilisateur)){
+                    $error_message = "invalid id_utilisateur";
+                    $this->setFlashMessage($error_message, "alert-error");
+                    header("Location: /supercar/admin/utilisateurs/moi");
+                    exit();
+                }
+
+                try{
+                    // Data coming from the POST request
+                    $new_user = $this->utilisateurModele::create([
+                        "id_utilisateur" => $id_utilisateur,
+                        "mot_de_passe" => password_hash($new_password, PASSWORD_BCRYPT),
+                    ]);
+                    if(is_array($new_user)){
+                        $success_message = "Votre mot de passe a été modifié avec succès";
+                        $this->setFlashMessage($success_message, "alert-success");
+                    }else{
+                        $error_message = "Un problème est survenu lors de la modification ! Veuillez réessayer plus tard.";
+                        $this->setFlashMessage($error_message, "alert-error");
+                    }
+                    header("Location: /supercar/admin/utilisateurs/moi");
+                }catch (PDOException $exception) {
+                    error_log('Database error: ' . $exception->getMessage());
+                    $error_message = "Un problème est survenu lors de la modification ! Veuillez réessayer plus tard.";
+                    $this->setFlashMessage($error_message, "alert-error");
+                    header("Location: /supercar/admin/utilisateurs/moi");
+                } catch (RandomException $e) {
+                }
+            }
+        }
     }

@@ -1,4 +1,4 @@
-<form action="" method="POST" class="flex flex-col gap-y-2 bg-base-200 p-5 rounded-lg card-body">
+<form action="/supercar/admin/utilisateurs/update_password" method="POST" class="flex flex-col gap-y-2 bg-base-200 p-5 rounded-lg card-body">
     <div class="fields flex flex-col gap-y-3">
 
 		<!-- change password section -->
@@ -10,7 +10,7 @@
 					<path stroke-linecap="round" stroke-linejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 1 0-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 0 0 2.25-2.25v-6.75a2.25 2.25 0 0 0-2.25-2.25H6.75a2.25 2.25 0 0 0-2.25 2.25v6.75a2.25 2.25 0 0 0 2.25 2.25Z" />
 				</svg>
 				<!-- input password filed -->
-				<input type="password" placeholder="Ancien mot de passe" name="old_password"
+				<input type="password" placeholder="Ancien mot de passe" name="old-password"
 					   required class="grow password-field" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$"
 					   title="Le mot de passe doit contenir au moins 8 caractères, dont une majuscule, une minuscule, un chiffre, et un caractère spécial."
 				/>
@@ -42,7 +42,7 @@
 				</svg>
 
 				<!-- input password filed -->
-				<input type="password" placeholder="Nouveau" name="password"
+				<input type="password" placeholder="Nouveau" name="new-password"
 					   required class="grow password-field" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$"
 					   title="Le mot de passe doit contenir au moins 8 caractères, dont une majuscule, une minuscule, un chiffre, et un caractère spécial."
 				/>
@@ -69,7 +69,7 @@
 					<path stroke-linecap="round" stroke-linejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 1 0-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 0 0 2.25-2.25v-6.75a2.25 2.25 0 0 0-2.25-2.25H6.75a2.25 2.25 0 0 0-2.25 2.25v6.75a2.25 2.25 0 0 0 2.25 2.25Z" />
 				</svg>
 				<!-- input password filed -->
-				<input type="password" placeholder="Confirmer" name="confirm_password"
+				<input type="password" placeholder="Confirmer" name="new-password-confirm"
 					   required class="grow password-field" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$"
 					   title="Le mot de passe doit contenir au moins 8 caractères, dont une majuscule, une minuscule, un chiffre, et un caractère spécial."
 				/>

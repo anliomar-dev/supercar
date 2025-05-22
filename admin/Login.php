@@ -12,6 +12,7 @@
          * @throws RandomException
          */
         public function index(): void{
+            $request_uri = $_SERVER['REQUEST_URI'];
             if($_SERVER["REQUEST_METHOD"] == "GET"){
                 $this->render("login", "admin");
             }elseif ($_SERVER["REQUEST_METHOD"] == "POST"){
@@ -21,8 +22,8 @@
 
                 if(empty($email) || empty($password)){
                     $error_message = "Les deux champs doivent être correctement remplis!";
-                    self::setFlashMessageAndRender($error_message, "alert-error", "login", "admin");
-                    exit();
+                    $this->setFlashMessage($error_message, "alert-error");
+                    header("Location: $request_uri");
                 }
 
                 $auth = new Authentication();
@@ -33,13 +34,14 @@
                         header("Location: /supercar/{$next}");
                     }else{
                         $error_message = "Accès refusé : Vous n'avez pas les droits d'accès à l'administration";
-                        self::setFlashMessageAndRender($error_message, "alert-error", "login", "admin");
+                        $this->setFlashMessage($error_message, "alert-error");
+                        header("Location: $request_uri");
                     }
                     exit();
                 }
                 $error_message = "Email et/ou mot de passe incorrect";
-                self::setFlashMessageAndRender($error_message, "alert-error", "login", "admin");
-                exit();
+                $this->setFlashMessage($error_message, "alert-error");
+                header("Location: $request_uri");
             }
         }
     }

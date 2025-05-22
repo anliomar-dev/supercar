@@ -8,6 +8,7 @@
     use http\Header;
     use models\Utilisateur;
     use PDOException;
+    use Random\RandomException;
 
     class Utilisateurs extends MainController
     {
@@ -252,9 +253,9 @@
         public function moi(): void{
             // check is user is authenticated and redirect login is he/she is not
             $this->auth->is_authenticated("admin", 300);
-            if($_SERVER["REQUEST_METHOD"] == "GET"){
-                $this->render("mon_profile", "admin");
-            }
+            $current_user_id = $_SESSION["user_id"] ?? "";
+            $current_data = $this->utilisateurModele->getByColumn(["id_utilisateur"=>$current_user_id]);
+            $this->render("mon_profile", "admin", ["user_data"=>$current_data]);
         }
 
         public function supprimer_mon_compte(): void{
@@ -262,6 +263,53 @@
             $this->auth->is_authenticated("admin", 300);
             if($_SERVER["REQUEST_METHOD"] == "GET"){
                 $my_id = $_GET["id"] ?? "";
+            }
+        }
+
+        public function update_profile(): void{
+            // check is user is authenticated
+            $this->auth->is_authenticated("admin", 300);
+            if($_SERVER["REQUEST_METHOD"] == "POST"){
+                $id_utilisateur = $_SESSION["user_id"] ?? "";
+                $first_name = $_POST["prenom"] ?? "";
+                $last_name = $_POST["nom"] ?? "";
+                $phone = $_POST["phone"] ?? "";
+                $email = $_POST["email"] ?? "";
+                $address = $_POST["address"] ?? "";
+
+                if(empty($id_utilisateur)){
+                    $error_message = "invalid id_utilisateur";
+                    $this->setFlashMessage($error_message, "alert-error");
+                    header("Location: /supercar/admin/utilisateurs/moi");
+                    exit();
+                }
+
+                try{
+                    // Data coming from the POST request
+                    $new_user = $this->utilisateurModele::create([
+                        "id_utilisateur" => $id_utilisateur,
+                        "prenom" => $first_name,
+                        "nom" => $last_name,
+                        "adresse" => $address,
+                        "telephone" => $phone,
+                        "email" => $email,
+                    ]);
+                    if(is_array($new_user)){
+                        $success_message = "Votre profile a été modifié avec succès";
+                        $this->auth->login($new_user); // updated session with new data(prenom, nom, email)
+                        $this->setFlashMessage($success_message, "alert-success");
+                    }else{
+                        $error_message = "Un problème est survenu lors de la modification ! Veuillez réessayer plus tard.";
+                        $this->setFlashMessage($error_message, "alert-error");
+                    }
+                    header("Location: /supercar/admin/utilisateurs/moi");
+                }catch (PDOException $exception) {
+                    error_log('Database error: ' . $exception->getMessage());
+                    $error_message = "Un problème est survenu lors de la modification ! Veuillez réessayer plus tard.";
+                    $this->setFlashMessage($error_message, "alert-error");
+                    header("Location: /supercar/admin/utilisateurs/moi");
+                } catch (RandomException $e) {
+                }
             }
         }
     }

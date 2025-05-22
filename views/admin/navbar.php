@@ -55,7 +55,7 @@
                         Mon Profile
                     </a>
                 </li>
-                <li><a>Deconnexion</a></li>
+                <li><a href="/supercar/admin/logout">Deconnexion</a></li>
             </ul>
         </div>
     </div>

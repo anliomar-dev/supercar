@@ -2,6 +2,7 @@
 
     namespace admin;
 
+    use app\Authentication;
     use app\MainController;
     use app\Paginator;
     use models\Marque;
@@ -10,7 +11,7 @@
     class Marques extends MainController
     {
         private Marque $marqueModele;
-
+        private Authentication $auth;
 
         /**
          * Constructor for initializing model "Voiture".
@@ -19,9 +20,13 @@
         {
             // Ensure loadModel returns an instance of models\marque
             $this->marqueModele = $this->loadModel("Marque");
-
+            $this->auth = new Authentication();
         }
+
+
         public function index(): void {
+            // check is user is authenticated and redirect to login page if he/she is not or session expired
+            $this->auth->is_authenticated("admin", 300);
             $brand_slug = $_GET["brand"] ?? "";
             if($brand_slug == ""){
                 $query = "SELECT * FROM marque";
@@ -68,6 +73,8 @@
         }
 
         public function create(): void{
+            // check is user is authenticated and redirect to login page if he/she is not or session expired
+            $this->auth->is_authenticated("admin", 300);
             if($_SERVER["REQUEST_METHOD"] == "GET"){
                 $this->render("marques", "admin",);
             }else if($_SERVER["REQUEST_METHOD"] == "POST"){
@@ -108,6 +115,8 @@
         }
 
         public function update(): void{
+            // check is user is authenticated and redirect to login page if he/she is not or session expired
+            $this->auth->is_authenticated("admin", 300);
             if($_SERVER["REQUEST_METHOD"] == "GET"){
                 $this->render("marques", "admin",);
             }else if($_SERVER["REQUEST_METHOD"] == "POST"){
@@ -153,6 +162,8 @@
 
 
         public function delete(): void{
+            // check is user is authenticated and redirect to login page if he/she is not or session expired
+            $this->auth->is_authenticated("admin", 300);
             if($_SERVER["REQUEST_METHOD"] == "GET"){
                 $brand_id = $_GET["brand"] ?? "";
                 if(empty($brand_id)){

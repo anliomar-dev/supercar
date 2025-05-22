@@ -3,6 +3,7 @@
     namespace admin;
 
     use AllowDynamicProperties;
+    use app\Authentication;
     use app\MainController;
     use app\Paginator;
     use models\Marque;
@@ -15,6 +16,7 @@
     {
         private Voiture $voitureModele;
         private Marque $marqueModel;
+        private Authentication $auth;
 
         /**
          * Constructor for initializing model "Voiture".
@@ -24,9 +26,11 @@
             // Ensure loadModel returns an instance of models\Voiture
             $this->voitureModele = $this->loadModel("voiture");
             $this->marqueModel = new Marque();
-
+            $this->auth = new Authentication();
         }
         public function index(): void {
+            // check is user is authenticated and redirect to login page if he/she is not or session expired
+            $this->auth->is_authenticated("admin", 300);
             $slug = $_GET["slug"] ?? "";
             if($slug == ""){
                 $query = "
@@ -85,6 +89,8 @@
         }
 
         public function create(): void{
+            // check is user is authenticated and redirect to login page if he/she is not or session expired
+            $this->auth->is_authenticated("admin", 300);
             if($_SERVER["REQUEST_METHOD"] == "GET"){
                 $all_brands = $this->marqueModel->getAllBrands();
                 $this->render("voitures", "admin", ["all_brands" => $all_brands]);
@@ -165,7 +171,11 @@
                 header("Location: /supercar/admin/voitures/create");
             }
         }
+
+
         public function update(): void{
+            // check is user is authenticated and redirect to login page if he/she is not or session expired
+            $this->auth->is_authenticated("admin", 300);
             if($_SERVER["REQUEST_METHOD"] == "GET"){
                 $all_brands = $this->marqueModel->getAllBrands();
                 $this->render("voitures", "admin", ["all_brands" => $all_brands]);
@@ -229,6 +239,8 @@
 
 
         public function delete(): void{
+            // check is user is authenticated and redirect to login page if he/she is not or session expired
+            $this->auth->is_authenticated("admin", 300);
             if($_SERVER["REQUEST_METHOD"] == "GET"){
                 $car_id = $_GET["car"] ?? "";
                 if(empty($car_id)){

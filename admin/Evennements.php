@@ -1,6 +1,7 @@
 <?php
 
     namespace admin;
+    use app\Authentication;
     use app\MainController;
     use app\Paginator;
     use models\Evennement;
@@ -9,6 +10,7 @@
     class Evennements extends MainController
     {
         private Evennement $eventModel;
+        private Authentication $auth;
 
         /**
          * Constructor for initializing model "Voiture".
@@ -17,9 +19,12 @@
         {
             // Ensure loadModel returns an instance of models\Evennement
             $this->eventModel = $this->loadModel("Evennement");
-
+            $this->auth = new Authentication();
         }
+
         public function index(): void {
+            // check is user is authenticated and redirect to login page if he/she is not or session expired
+            $this->auth->is_authenticated("admin", 300);
             $event = $_GET["event"] ?? "";
             if($event == ""){
                 $query = "
@@ -69,6 +74,8 @@
         }
 
         public function create(): void{
+            // check is user is authenticated and redirect to login page if he/she is not or session expired
+            $this->auth->is_authenticated("admin", 300);
             if($_SERVER["REQUEST_METHOD"] == "GET"){
                 $this->render("evennements", "admin",);
             }else if($_SERVER["REQUEST_METHOD"] == "POST"){
@@ -112,6 +119,8 @@
         }
 
         public function update(): void{
+            // check is user is authenticated and redirect to login page if he/she is not or session expired
+            $this->auth->is_authenticated("admin", 300);
             if($_SERVER["REQUEST_METHOD"] == "GET"){
                 $this->render("evennements", "admin",);
             }else if($_SERVER["REQUEST_METHOD"] == "POST"){
@@ -156,6 +165,8 @@
         }
 
         public function delete(): void{
+            // check is user is authenticated and redirect to login page if he/she is not or session expired
+            $this->auth->is_authenticated("admin", 300);
             if($_SERVER["REQUEST_METHOD"] == "GET"){
                 $event_id = $_GET["event"] ?? "";
                 if(empty($event_id)){

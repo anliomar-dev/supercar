@@ -2,6 +2,7 @@
 
     namespace admin;
 
+    use app\Authentication;
     use app\MainController;
     use app\Paginator;
     use DateTime;
@@ -16,7 +17,7 @@
         private Essai $demandeEssaiModel;
         private Marque $marqueModel;
         private Utilisateur $utilisateurModel;
-
+        private Authentication $auth;
 
         /**
          * Constructor for initializing model "Voiture".
@@ -27,8 +28,13 @@
             $this->demandeEssaiModel = $this->loadModel("Essai");
             $this->marqueModel = new Marque;
             $this->utilisateurModel = new Utilisateur();
+            $this->auth = new Authentication();
+
         }
+
         public function index(): void {
+            // check is user is authenticated and redirect to login page if he/she is not or session expired
+            $this->auth->is_authenticated("admin", 300);
             // the id of the test drive (demande d'essai)
             $test_id = $_GET["essai"] ?? 0;
             if($test_id == 0){
@@ -99,6 +105,8 @@
          * @throws Exception
          */
         public function create(): void{
+            // check is user is authenticated and redirect to login page if he/she is not or session expired
+            $this->auth->is_authenticated("admin", 300);
             if($_SERVER["REQUEST_METHOD"] == "GET"){
                 $all_users = $this->utilisateurModel->getAll("utilisateur");
                 $all_brands = $this->marqueModel->getAllBrands();
@@ -173,6 +181,8 @@
          * @throws Exception
          */
         public function update(): void{
+            // check is user is authenticated and redirect to login page if he/she is not or session expired
+            $this->auth->is_authenticated("admin", 300);
             if($_SERVER["REQUEST_METHOD"] == "GET"){
                 $all_users = $this->utilisateurModel->getAll("utilisateur");
                 $all_brands = $this->marqueModel->getAllBrands();
@@ -249,8 +259,9 @@
             }
         }
 
-
         public function delete(): void{
+            // check is user is authenticated and redirect to login page if he/she is not or session expired
+            $this->auth->is_authenticated("admin", 300);
             if($_SERVER["REQUEST_METHOD"] == "GET"){
                 $test_id = $_GET["essai"] ?? "";
                 if(empty($test_id)){

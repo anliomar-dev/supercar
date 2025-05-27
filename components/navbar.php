@@ -103,11 +103,11 @@
 				<li class="lg:hidden min-h-0 h-8 m-1 border-none flex items-center justify-center">
 					<div class="dropdown dropdown-bottom dropdown-end">
 						<div tabindex="0" role="button" class="btn m-1 rounded-full min-h-0 min-w-0 w-10 h-10">
-							O
+                            <?php echo strtoupper($_SESSION["username"][0]);?>
 						</div>
 						<ul tabindex="0" class="dropdown-content menu bg-base-100 rounded-box z-[1] w-52 p-2 shadow">
-							<li><a href="/supercar/dashboard/compte">Mon compte</a></li>
-							<li><a href="/supercar/dashboard/mes_donnees">Mes données</a></li>
+							<li><a href="/supercar/dashboard/change_password">Password</a></li>
+							<li><a href="/supercar/dashboard/profile">Profile</a></li>
 							<li><a href="/supercar/dashboard/mes_essais">Mes essais</a></li>
 							<li><a href="/supercar/dashboard/demande_essai">Réserver un essai</a></li>
 							<li><a href="/supercar/authentication/logout">Se deconnecter</a></li>
@@ -128,11 +128,11 @@
         <?php if(isset($_SESSION["user_id"])):?>
 			<div class="dropdown dropdown-bottom dropdown-end">
 				<div tabindex="0" role="button" class="btn m-1 rounded-full min-h-0 min-w-0 w-10 h-10">
-					O
+                    <?php echo strtoupper($_SESSION["username"][0]);?>
 				</div>
 				<ul tabindex="0" class="dropdown-content menu bg-base-100 rounded-box z-[1] w-52 p-2 shadow">
-					<li><a href="/supercar/dashboard/compte">Mon compte</a></li>
-					<li><a href="/supercar/dashboard/mes_donnees">Mes données</a></li>
+					<li><a href="/supercar/dashboard/change_password">Password</a></li>
+					<li><a href="/supercar/dashboard/profile">Profile</a></li>
 					<li><a href="/supercar/dashboard/mes_essais">Mes essais</a></li>
 					<li><a href="/supercar/dashboard/demande_essai">Réserver un essai</a></li>
 					<li><a href="/supercar/authentication/logout">Se deconnecter</a></li>

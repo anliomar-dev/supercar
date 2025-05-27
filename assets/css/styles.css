@@ -2634,6 +2634,10 @@ html {
   top: 6rem;
 }
 
+.z-50 {
+  z-index: 50;
+}
+
 .z-\[-1\] {
   z-index: -1;
 }

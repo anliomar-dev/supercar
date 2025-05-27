@@ -39,4 +39,53 @@ class Utilisateur extends MainModel
             return null;
         }
     }
+
+    public function getUserEmail(int $id_utilisateur): ?string{
+        $query = "SELECT email FROM utilisateur WHERE id_utilisateur = :id_utilisateur";
+        $statement = $this->_connection->prepare($query);
+        $statement->bindValue(':id_utilisateur', $id_utilisateur);
+        $statement->execute();
+        $result = $statement->fetch(PDO::FETCH_ASSOC);
+        return $result ? $result['email'] : null;
+    }
+
+    /**
+     * return true if the current password of the user is correct, false otherwise
+     * @param int $id_utilisateur
+     * @param string $current_password
+     * @return bool
+     */
+    public function checkPassword(
+        int $id_utilisateur,
+        string $current_password,
+    ): bool{
+        $query = "SELECT mot_de_passe FROM utilisateur WHERE id_utilisateur = :id_utilisateur";
+        $statement = $this->_connection->prepare($query);
+        $statement->bindValue(':id_utilisateur', $id_utilisateur);
+        $statement->execute();
+        $result = $statement->fetch(PDO::FETCH_ASSOC);
+        if(!$result["mot_de_passe"]){
+            return false;
+        }
+        return password_verify($current_password, $result['mot_de_passe']);
+    }
+
+    /**
+     * return true if the password was updated, false otherwise
+     * @param int $id_utilisateur
+     * @param string $new_password
+     * @return bool
+     */
+    public function changePassword(int $id_utilisateur, string $new_password): bool {
+        $query = "UPDATE utilisateur SET mot_de_passe = :new_password WHERE id_utilisateur = :id_utilisateur";
+        $statement = $this->_connection->prepare($query);
+
+        $statement->bindValue(':id_utilisateur', $id_utilisateur, PDO::PARAM_INT);
+        $statement->bindValue(':new_password', $new_password, PDO::PARAM_STR);
+
+        $statement->execute();
+
+        return $statement->rowCount() > 0;
+    }
+
 }

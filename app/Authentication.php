@@ -49,7 +49,7 @@
             $this->render("session_expired");
         }
 
-        public function is_authenticated(string $user_interface="client", $session_validity_in_seconde = 30): void
+        public function is_authenticated(string $user_interface="client", $session_validity_in_seconde = 300): void
         {
             if (empty($_SESSION["user_id"]) || empty($_SESSION["csrf_token"])) {
                 $next = $_SERVER['REQUEST_URI'];

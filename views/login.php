@@ -10,6 +10,7 @@
     <title>Connexion</title>
 </head>
 <body class="">
+	<?php require_once ROOT."components/flash-message.php"?>
 	<div class="bg-base-200 fixed top-0 start-0 h-3/5 w-full z-[-1]"></div>
 	<div class="w-full flex flex-col gap-y-6 items-center py-6 md:py-16 px-6 md:px-0">
 		<div class="w-full md:w-auto bg-primary border rounded-lg shadow-lg p-2 md:p-3 md:pb-0">
@@ -53,7 +54,7 @@
 					</label>
 					<div class="flex justify-end"><a href="" class="text-secondary">Mot de passe oublié</a></div>
 				</div>
-				<input type="hidden" name="next" value=<?php echo $_GET['next'] ?? "dashboard/mes_donnees";?>>
+				<input type="hidden" name="next" value=<?php echo $_GET['next'] ?? "dashboard/profile";?>>
 
 				<button class="btn btn-primary min-h-0 h-10 font-bold my-2">Se connecter</button>
 				<hr class="my-2" style="height: 2px;">

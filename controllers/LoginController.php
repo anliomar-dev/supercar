@@ -19,7 +19,7 @@ class LoginController extends MainController
             }
             $email = $_POST["email"];
             $password = $_POST["password"];
-            $next = $_POST['next'] ?? "dashboard/mes_donnees";
+            $next = $_POST['next'] ?? "dashboard/profile";
 
             $auth = new Authentication();
             $user = $auth->authenticate($email, $password);

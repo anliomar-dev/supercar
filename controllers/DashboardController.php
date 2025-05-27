@@ -8,6 +8,7 @@ use DateTime;
 use Exception;
 use models\Essai;
 use models\Marque;
+use models\Utilisateur;
 use PDOException;
 
 class DashboardController extends MainController
@@ -15,37 +16,77 @@ class DashboardController extends MainController
     private Authentication $auth;
     private Marque $marqueModel;
     private Essai $essaiModel;
+    private Utilisateur $utilisateurModel;
     
     public function __construct(){
         $this->auth = new Authentication();
         $this->marqueModel = new Marque();
         $this->essaiModel = new Essai();
+        $this->utilisateurModel = new Utilisateur();
     }
 
     public function index():void{
-        header('Location: /supercar/dashboard/mes_donnees');
+        $this->auth->is_authenticated();
+        header('Location: /supercar/dashboard/profile');
     }
 
-    public function compte():void{
-        //$this->auth->is_authenticated();
+    public function change_password():void{
+        $this->auth->is_authenticated();
         if($_SERVER["REQUEST_METHOD"] == "POST"){
-            echo "posted from compte view";
-            exit();
+            var_dump($_POST);
+            $current_password = $_POST["current_password"] ?? "";
+            $new_password = $_POST["new_password"] ?? "";
+            $confirm_password = $_POST["confirm_password"] ?? "";
+            if(empty($current_password) || empty($new_password) || empty($confirm_password)){
+                $error_message = "Tous les champs doivent être correctement remplis !";
+                self::setFlashMessage($error_message, "alert-error");
+                header('Location: /supercar/dashboard/change_password');
+                exit();
+            }
+            if($new_password != $confirm_password){
+                $error_message = "Les mots de passe ne correspondent pas !";
+                self::setFlashMessage($error_message, "alert-error");
+                header('Location: /supercar/dashboard/change_password');
+                exit();
+            }
+            $user_id = $_SESSION["user_id"];
+            $current_password_correct = $this->utilisateurModel->checkPassword($user_id ,$current_password);
+            if($current_password_correct){
+                $hashed_password = password_hash($new_password, PASSWORD_BCRYPT);
+                $set_password = $this->utilisateurModel->changePassword($user_id, $hashed_password);
+                if($set_password){
+                    $success_message = "Votre mot de passe a été modifié avec succès !";
+                    self::setFlashMessage($success_message, "alert-success");
+                    header('Location: /supercar/dashboard/change_password');
+                    exit();
+                }
+                $error_message = "Une erreur inattendue est survenue ! Veuillez réessayer.";
+                self::setFlashMessage($error_message, "alert-error");
+                header('Location: /supercar/dashboard/change_password');
+                exit();
+
+            }else{
+                $error_message = "Le mot de passe est incorrect !";
+                self::setFlashMessage($error_message, "alert-error");
+                header('Location: /supercar/dashboard/change_password');
+                exit();
+            }
+
         }
-        $this->render("compte", "", ["ui" => "Compte"]);
+        $this->render("change_password", "", ["ui" => "Compte"]);
     }
 
-    public function mes_donnees():void{
-        //$this->auth->is_authenticated();
+    public function profile():void{
+        $this->auth->is_authenticated();
         if($_SERVER["REQUEST_METHOD"] == "POST"){
             echo "posted from mes_donnees";
             exit();
         }
-        $this->render("mes_donnees", "", ["ui" => "Mes données"]);
+        $this->render("profile", "", ["ui" => "Mes données"]);
     }
 
     public function mes_essais():void{
-        //$this->auth->is_authenticated();
+        $this->auth->is_authenticated();
         if($_SERVER["REQUEST_METHOD"] == "POST"){
             echo "posted from mes_essais";
             exit();
@@ -81,7 +122,6 @@ class DashboardController extends MainController
                 $warning_message = "La date de l'essai doit être au minium 7 jours après la demande.";
                 self::setFlashMessage($warning_message, "alert-warning");
                 header('Location: demande_essai');
-                exit();
             }
             if ($timeObj < $startTime || $timeObj > $endTime) {
                 $warning_message = "Veuillez choisir un horaire entre 08:30 et 16:00, avec un interval de 30 minutes.";

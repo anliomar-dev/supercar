@@ -7,7 +7,7 @@
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<link rel="stylesheet" href="/supercar/assets/css/styles.css">
 	<script src="/supercar/assets/js/dashboard.js" type="module" defer></script>
-	<title>Mes essais</title>
+	<title>Mes Données</title>
 </head>
 <body>
 	<?php require_once ROOT."components/flash-message.php"?>
@@ -64,7 +64,7 @@
 			</div>
 			<div class="personal-data-wrapper p-6 w-full md:w-9/12">
 				<div class="persona-data__header w-full flex justify-center">
-					<h3 class="text-2xl font-bold">Mes essais</h3>
+					<h3 class="text-2xl font-bold">Mon profile</h3>
 				</div>
 				<div class="form p-4">
 					<form action="/supercar/contact" method="POST" class="w-auto flex flex-col gap-y-2">

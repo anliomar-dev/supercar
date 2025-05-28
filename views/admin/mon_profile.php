@@ -55,7 +55,7 @@
             </div>
 
             <!-- Suppression -->
-            <div class="card bg-base-200 max-w-96">
+			<!--<div class="card bg-base-200 max-w-96">
                 <div class="card-body items-center text-center">
                     <h2 class="card-title text-red-700">Supprimer mon compte</h2>
                     <p class="text-sm text-gray-700 mt-2">
@@ -65,7 +65,7 @@
                         <button class="btn btn-error" onclick="my_modal_1.showModal()">Supprimer</button>
                     </div>
                 </div>
-            </div>
+            </div>-->
         </div>
     </div>
     <label for="my-drawer-2" aria-label="close sidebar" class="drawer-overlay z-10"></label>

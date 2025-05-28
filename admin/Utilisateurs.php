@@ -9,11 +9,13 @@
     use models\Utilisateur;
     use PDOException;
     use Random\RandomException;
+    use app\Authorization;
 
     class Utilisateurs extends MainController
     {
         private Utilisateur $utilisateurModele;
         private Authentication $auth;
+        private Authorization $authorization;
         /**
          * Constructor for initializing model "Voiture".
          */
@@ -22,10 +24,12 @@
             // Ensure loadModel returns an instance of models\Utilisateur
             $this->utilisateurModele = $this->loadModel("Utilisateur");
             $this->auth = new Authentication();
+            $this->authorization = new Authorization();
         }
         public function index(): void {
             // check is user is authenticated
             $this->auth->is_authenticated("admin", 300);
+            $this->authorization->is_staff();
             $user_id = $_GET["user"] ?? 0;
             if($user_id == 0){
                 $query = "SELECT * FROM utilisateur";
@@ -74,6 +78,7 @@
         public function create(): void{
             // check is user is authenticated
             $this->auth->is_authenticated("admin", 300);
+            $this->authorization->is_staff();
             if($_SERVER["REQUEST_METHOD"] == "GET"){
                 $this->render("utilisateurs", "admin",);
             }else if($_SERVER["REQUEST_METHOD"] == "POST"){
@@ -137,6 +142,7 @@
         public function update(): void{
             // check is user is authenticated
             $this->auth->is_authenticated("admin", 300);
+            $this->authorization->is_staff();
             if($_SERVER["REQUEST_METHOD"] == "GET"){
                 $this->render("utilisateurs", "admin",);
             }else if($_SERVER["REQUEST_METHOD"] == "POST"){
@@ -217,6 +223,7 @@
         public function delete(): void{
             // check is user is authenticated
             $this->auth->is_authenticated("admin", 300);
+            $this->authorization->is_staff();
             if($_SERVER["REQUEST_METHOD"] == "GET"){
                 $id_utilisateur = $_GET["user"] ?? "";
                 if(empty($id_utilisateur)){
@@ -253,6 +260,7 @@
         public function moi(): void{
             // check is user is authenticated and redirect login is he/she is not
             $this->auth->is_authenticated("admin", 300);
+            $this->authorization->is_staff();
             $current_user_id = $_SESSION["user_id"] ?? "";
             $current_data = $this->utilisateurModele->getByColumn(["id_utilisateur"=>$current_user_id]);
             $this->render("mon_profile", "admin", ["user_data"=>$current_data]);
@@ -261,6 +269,7 @@
         public function supprimer_mon_compte(): void{
             // check is user is authenticated
             $this->auth->is_authenticated("admin", 300);
+            $this->authorization->is_staff();
             if($_SERVER["REQUEST_METHOD"] == "GET"){
                 $my_id = $_GET["id"] ?? "";
             }
@@ -269,6 +278,7 @@
         public function update_profile(): void{
             // check is user is authenticated
             $this->auth->is_authenticated("admin", 300);
+            $this->authorization->is_staff();
             if($_SERVER["REQUEST_METHOD"] == "POST"){
                 $id_utilisateur = $_SESSION["user_id"] ?? "";
                 $first_name = $_POST["prenom"] ?? "";
@@ -316,6 +326,7 @@
         public function update_password(): void{
             // check is user is authenticated
             $this->auth->is_authenticated("admin", 300);
+            $this->authorization->is_staff();
             if($_SERVER["REQUEST_METHOD"] == "POST"){
                 $id_utilisateur = $_SESSION["user_id"] ?? "";
                 $old_password = $_POST["old-password"] ?? "";

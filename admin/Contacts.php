@@ -2,6 +2,7 @@
 
     namespace admin;
     use app\Authentication;
+    use app\Authorization;
     use app\MainController;
     use app\Paginator;
     use models\Contact;
@@ -11,6 +12,7 @@
     {
         private Contact $contactModel;
         private Authentication $auth;
+        private Authorization $authorization;
 
         /**
          * Constructor for initializing model "Voiture".
@@ -20,11 +22,13 @@
             // Ensure loadModel returns an instance of models\Evennement
             $this->contactModel = $this->loadModel("Contact");
             $this->auth = new Authentication();
+            $this->authorization = new Authorization();
         }
 
         public function index(): void {
             // check is user is authenticated and redirect to login page if he/she is not or session expired
             $this->auth->is_authenticated("admin", 300);
+            $this->authorization->is_staff();
             $contact = $_GET["contact"] ?? "";
             if($contact == ""){
                 $query = "
@@ -75,6 +79,7 @@
         public function create():void{
             // check is user is authenticated and redirect to login page if he/she is not or session expired
             $this->auth->is_authenticated("admin", 300);
+            $this->authorization->is_staff();
             if($_SERVER["REQUEST_METHOD"] == "GET"){
                 $this->render("contacts", "admin");
             }else if($_SERVER["REQUEST_METHOD"] == "POST"){
@@ -116,6 +121,7 @@
         public function update():void{
             // check is user is authenticated and redirect to login page if he/she is not or session expired
             $this->auth->is_authenticated("admin", 300);
+            $this->authorization->is_staff();
             if($_SERVER["REQUEST_METHOD"] == "GET"){
                 $this->render("contacts", "admin");
             }else if($_SERVER["REQUEST_METHOD"] == "POST"){
@@ -158,6 +164,7 @@
         public function delete(): void{
             // check is user is authenticated and redirect to login page if he/she is not or session expired
             $this->auth->is_authenticated("admin", 300);
+            $this->authorization->is_staff();
             if($_SERVER["REQUEST_METHOD"] == "GET"){
                 $contact_id = $_GET["contact"] ?? "";
                 if(empty($contact_id)){

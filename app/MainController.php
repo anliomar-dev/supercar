@@ -39,7 +39,7 @@ abstract class MainController
      * @param array $data
      * @return void
      */
-    protected static function render(string $viewName, string $path = "", array $data=[]): void {
+    protected static function render(string $viewName, string $path = "", array $data=[], string $controller=""): void {
 
         // Attempt to include the view file
         $viewPath = ROOT . 'views/' . $viewName . '.php';
@@ -50,7 +50,7 @@ abstract class MainController
 
         // Check if the file exists before requiring it
         if (file_exists($viewPath)) {
-            if($path != "admin"){
+            if($path != "admin" && $controller !== "Authorization"){
                 require_once ROOT . 'components/navbar.php';
             }
             require_once($viewPath);

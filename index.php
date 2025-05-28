@@ -27,7 +27,7 @@ require_once(ROOT . 'app/MainController.php');
                 $controller = ucfirst($params[0]);
                 $action = $params[1] ?? 'index';
                 $arguments = array_slice($params, 2);
-                if ($controller == 'Authentication') {
+                if ($controller == 'Authentication' || $controller == 'Authorization') {
                     $controllerClass = 'app\\' . $controller;
                     $controllerPath = ROOT . 'app/' . $controller . '.php';
                 } else {
@@ -44,7 +44,10 @@ require_once(ROOT . 'app/MainController.php');
                 if (class_exists($controllerClass)) {
                     $controllerInstance = new $controllerClass();
 
-                    if (($controller == 'Authentication') && !method_exists($controllerInstance, $action)) {
+                    if (
+                        ($controller == 'Authentication' || $controller = 'Authorization')
+                        && !method_exists($controllerInstance, $action)
+                    ) {
                         echo "404";
                         exit();
                     }

@@ -2,6 +2,7 @@
 
     namespace admin;
     use app\Authentication;
+    use app\Authorization;
     use app\MainController;
     use app\Paginator;
     use models\Image;
@@ -11,6 +12,7 @@
     {
         private Image $imageModele;
         private Authentication $auth;
+        private Authorization $authorization;
 
         /**
          * Constructor for initializing model "Voiture".
@@ -20,11 +22,13 @@
             // Ensure loadModel returns an instance of models\Evennement
             $this->imageModele = $this->loadModel("Image");
             $this->auth = new Authentication();
+            $this->authorization = new Authorization();
         }
 
         public function index(): void {
             // check is user is authenticated and redirect to login page if he/she is not or session expired
             $this->auth->is_authenticated("admin", 300);
+            $this->authorization->is_staff();
             $image = $_GET["image"] ?? "";
             if($image == ""){
                 $query = "
@@ -77,6 +81,7 @@
         public function create(): void{
             // check is user is authenticated and redirect to login page if he/she is not or session expired
             $this->auth->is_authenticated("admin", 300);
+            $this->authorization->is_staff();
             if($_SERVER["REQUEST_METHOD"] == "GET"){
                 $all_cars = $this->imageModele->getAllCars();
                 $this->render("images", "admin", [
@@ -120,6 +125,7 @@
         public function update(): void{
             // check is user is authenticated and redirect to login page if he/she is not or session expired
             $this->auth->is_authenticated("admin", 300);
+            $this->authorization->is_staff();
             if($_SERVER["REQUEST_METHOD"] == "GET"){
                 $all_cars = $this->imageModele->getAllCars();
                 $this->render("images", "admin", [
@@ -165,6 +171,7 @@
         public function delete(): void{
             // check is user is authenticated and redirect to login page if he/she is not or session expired
             $this->auth->is_authenticated("admin", 300);
+            $this->authorization->is_staff();
             if($_SERVER["REQUEST_METHOD"] == "GET"){
                 $image_id = $_GET["image"] ?? "";
                 if(empty($image_id)){

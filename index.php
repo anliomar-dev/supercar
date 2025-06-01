@@ -81,7 +81,7 @@ require_once(ROOT . 'app/MainController.php');
                     }
                     // we don't include the footer if the url return json data instead of html content,
                     // or if we are in the admin interface
-                    if (!str_starts_with($controller, "Api") && $params[0] !== "admin") {
+                    if (!str_starts_with($controller, "Api") && $params[0] !== "admin" && $controller != "Authentication") {
                         require_once ROOT . 'components/footer.php';
                     }
 

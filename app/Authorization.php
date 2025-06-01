@@ -16,7 +16,7 @@ class Authorization extends MainController
     public function is_staff(): void{
         $is_admin = $_SESSION['is_admin'];
         $is_superuser = $_SESSION['is_super_user'];
-        if($is_admin == 0 && $is_superuser == 0){
+        if($is_admin == "0" && $is_superuser == "0"){
             header('location: /supercar/authorization');
             exit();
         }

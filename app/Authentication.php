@@ -46,7 +46,7 @@
         }
 
         public function session_expired():void{
-            $this->render("session_expired");
+            $this->render("session_expired", "", [], "Authentication");
         }
 
         public function is_authenticated(string $user_interface="client", $session_validity_in_seconde = 420): void

@@ -73,16 +73,65 @@ class DashboardController extends MainController
             }
 
         }
-        $this->render("change_password", "", ["ui" => "Compte"]);
+        $this->render("change_password", "");
     }
 
     public function profile():void{
         $this->auth->is_authenticated();
         if($_SERVER["REQUEST_METHOD"] == "POST"){
-            echo "posted from mes_donnees";
-            exit();
+            $firstname = $_POST["firstname"] ?? "";
+            $lastname = $_POST["lastname"] ?? "";
+            $email = $_POST["email"] ?? "";
+            $phone = $_POST["phone"] ?? "";
+            $address = $_POST["address"] ?? "";
+            $required_fields = [$firstname, $lastname, $address, $phone, $email];
+
+            $all_fields_filled = array_reduce($required_fields, function($result, $item){
+                return $result && !empty(trim($item));
+            }, true);
+            if(!$all_fields_filled){
+                $error_message = "Tous les champs doivent être correctement remplis";
+                $this->setFlashMessage($error_message, "alert-error");
+                header("Location: /supercar/dashboard/profile");
+                exit();
+            }
+            $new_user_data = [
+                "id_utilisateur" => $_SESSION["user_id"],
+                "prenom" => $firstname,
+                "nom" => $lastname,
+                "email" => $email,
+                "telephone" => $phone,
+                "adresse" => $address
+            ];
+            try{
+                $new_user_profile = $this->utilisateurModel::create($new_user_data);
+                if(is_array($new_user_profile)){
+                    // updated session with new data(prenom, nom, email)
+                    $_SESSION["username"] = $new_user_profile["prenom"] . " " . $new_user_profile["nom"];
+                    $success_message = "Votre profile a été modifié avec succès";
+                    $this->setFlashMessage($success_message, "alert-success");
+                    header("Location: /supercar/dashboard/profile");
+                    exit();
+                }else{
+                    $error_message = "Un problème est survenur lors de la modification du profile ! veuillez réassayer plus tard";
+                    $this->setFlashMessage($error_message, "alert-error");
+                    header("Location: /supercar/dashboard/profile");
+                    exit();
+                }
+
+
+            }catch(Exception $e){
+                $error_message = "Une erreur inattendue est survenue !";
+                $this->setFlashMessage($error_message, "alert-error");
+                header("Location: /supercar/dashboard/profile");
+                exit();
+            }
         }
-        $this->render("profile", "", ["ui" => "Mes données"]);
+        else if($_SERVER["REQUEST_METHOD"] == "GET"){
+            $param = ["id_utilisateur" => $_SESSION["user_id"]];
+            $current_user_data = $this->utilisateurModel->getByColumn($param);
+            $this->render("profile", "", ["current_user_data" => $current_user_data]);
+        }
     }
 
     public function mes_essais():void{

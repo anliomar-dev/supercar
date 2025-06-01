@@ -1,10 +1,15 @@
 <div class="sidebar__header bg-primary rounded-tl-lg p-4 flex flex-col justify-center items-center">
     <div class="avatar placeholder flex justify-center">
         <div class="bg-neutral text-neutral-content w-12 rounded-full">
-            <span>OA</span>
+            <span>
+				<?php
+                    $names = explode(" ", $_SESSION['username']);
+					echo strtoupper($names["username"][0][0].$names["username"][1][0])
+				?>
+			</span>
         </div>
     </div>
-    <h3 class="text-lg text-black">Omar anli</h3>
+    <h3 class="text-lg text-black"><?php echo $_SESSION["username"] ?></h3>
 </div>
 <div class="side-nav py-4">
     <ul tabindex="0" class="dropdown-content menu bg-base-100 z-[1] w-[200px] gap-2">

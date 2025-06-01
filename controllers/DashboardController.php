@@ -136,11 +136,8 @@ class DashboardController extends MainController
 
     public function mes_essais():void{
         $this->auth->is_authenticated();
-        if($_SERVER["REQUEST_METHOD"] == "POST"){
-            echo "posted from mes_essais";
-            exit();
-        }
-        $this->render("mes_essais", "", ["ui" => "Mes essais"]);
+        $user_tests_drives = $this->essaiModel->findAllCurrentUserTestsDrives($_SESSION["user_id"]);
+        $this->render("mes_essais", "", ["mes_essais" => $user_tests_drives]);
     }
 
     /**

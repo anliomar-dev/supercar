@@ -24,7 +24,7 @@
 						<p class="font-default lg:text-xl">Explorez notre gamme de véhicules exceptionnels et réservez dès maintenant votre essai gratuit</p>
 					</div>
 					<div class="">
-						<button class="btn btn-primary min-h-0 h-10">Reservez un essai gratuit</button>
+						<a href="/supercar/dashboard/demande_essai" class="btn btn-primary min-h-0 h-10">Reservez un essai gratuit</a>
 					</div>
 				</div>
 				<div class="lg:w-[1200px] flex justify-center items-center py-3 lg:py-8">
@@ -199,10 +199,6 @@
 								</table>
 							</div>
 						</div>
-						<div class="footer-card flex gap-y-2 box-border">
-							<a href="#" class="btn btn-primary w-1/2 min-h-0 h-8">Essayer</a>
-							<a href="#" class="btn w-1/2 min-h-0 h-8 text-secondary">voir plus</a>
-						</div>
 					</div>
 				</template>
 				<!--cars are by display dinamicly with js-->
@@ -234,7 +230,7 @@
 				</div>
 			</div>
 			<div class="pt-6 flex justify-end">
-				<a href="" class="btn btn-primary min-h-0 h-8">plus de voitures</a>
+				<a href="/supercar/voiture" class="btn btn-primary min-h-0 h-8">plus de voitures</a>
 			</div>
 		</section>
 

@@ -100,7 +100,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 container.classList.add("hidden")
             })
             // show cars container related to the clicked button
-            // (e.g: if the attribute data-engire fo the clicked button is hubride, we're gonna select the div with class hybrid-container)
+            // (e.g: if the attribute data-engire fo the clicked button is hubride, we're going to select the div with class hybrid-container)
             document.querySelector(`.${e.target.dataset.engine}-container`).classList.remove("hidden");
             document.querySelector(".engine-type-title").textContent = e.target.textContent; // set the title to current engire(hybrid)
         })

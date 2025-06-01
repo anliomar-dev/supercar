@@ -4,7 +4,7 @@
             <span>
 				<?php
                     $names = explode(" ", $_SESSION['username']);
-					echo strtoupper($names["username"][0][0].$names["username"][1][0])
+					echo strtoupper($names[0][0].$names[1][0])
 				?>
 			</span>
         </div>
